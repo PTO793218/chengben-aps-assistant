@@ -1,0 +1,12 @@
+ARG DOTNET_SDK_IMAGE=mcr.microsoft.com/dotnet/sdk:6.0
+ARG DOTNET_ASPNET_IMAGE=mcr.microsoft.com/dotnet/aspnet:6.0
+FROM ${DOTNET_SDK_IMAGE} AS build
+WORKDIR /src
+COPY speech-ark-backend/WePilot.Speech.csproj ./
+RUN dotnet restore
+COPY speech-ark-backend/ ./
+RUN dotnet publish -c Release -o /app --no-restore /p:UseAppHost=false
+FROM ${DOTNET_ASPNET_IMAGE}
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "WePilot.Speech.dll"]

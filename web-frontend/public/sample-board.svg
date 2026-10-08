@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="850" viewBox="0 0 1400 850">
+<defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="#edf6ff"/><stop offset="1" stop-color="#fff"/></linearGradient><linearGradient id="c" x2="0" y2="1"><stop stop-color="#4b9bff"/><stop offset="1" stop-color="#d4e9ff"/></linearGradient></defs>
+<rect width="1400" height="850" rx="28" fill="url(#b)"/><rect x="48" y="48" width="1304" height="754" rx="24" fill="#fff" stroke="#dce8f7"/>
+<text x="94" y="116" font-family="Arial,sans-serif" font-size="34" fill="#213653">WePilot / Visual workspace</text><text x="94" y="155" font-family="Arial,sans-serif" font-size="18" fill="#8091a8">SAMPLE IMAGE — preview, zoom and explore</text>
+<path d="M100 650H1280M100 550H1280M100 450H1280M100 350H1280M100 250H1280" stroke="#edf2f8" stroke-width="2"/>
+<g fill="url(#c)"><rect x="160" y="485" width="100" height="165" rx="12"/><rect x="340" y="405" width="100" height="245" rx="12"/><rect x="520" y="440" width="100" height="210" rx="12"/><rect x="700" y="315" width="100" height="335" rx="12"/><rect x="880" y="350" width="100" height="300" rx="12"/><rect x="1060" y="260" width="100" height="390" rx="12"/></g>
+<g font-family="Arial,sans-serif" font-size="20" fill="#70829b" text-anchor="middle"><text x="210" y="690">01</text><text x="390" y="690">02</text><text x="570" y="690">03</text><text x="750" y="690">04</text><text x="930" y="690">05</text><text x="1110" y="690">06</text></g>
+<rect x="95" y="735" width="210" height="28" rx="14" fill="#edf5ff"/><text x="112" y="755" font-family="Arial,sans-serif" font-size="14" fill="#3979cc">ILLUSTRATIVE DATA ONLY</text></svg>

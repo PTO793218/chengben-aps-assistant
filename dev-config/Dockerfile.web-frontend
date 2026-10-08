@@ -1,0 +1,17 @@
+ARG NODE_IMAGE=node:20-alpine
+ARG NGINX_IMAGE=nginx:1.27-alpine
+FROM ${NODE_IMAGE} AS build
+WORKDIR /src
+RUN npm install -g pnpm@10.27.0
+COPY web-frontend/package.json web-frontend/pnpm-lock.yaml ./web-frontend/
+WORKDIR /src/web-frontend
+RUN pnpm install --frozen-lockfile
+WORKDIR /src
+COPY web-frontend/ ./web-frontend/
+# material-readiness.js imports this verified demo snapshot at build time.
+COPY agent-backend/Data/production-demo.json ./agent-backend/Data/production-demo.json
+WORKDIR /src/web-frontend
+RUN pnpm build
+FROM ${NGINX_IMAGE}
+COPY dev-config/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /src/web-frontend/dist /usr/share/nginx/html

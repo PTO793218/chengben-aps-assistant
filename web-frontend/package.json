@@ -1,0 +1,26 @@
+{
+  "name": "wepilot-web-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.27.0",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test ../tests/frontend/*.test.mjs"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.13",
+    "echarts": "^5.6.0",
+    "marked": "^18.0.9",
+    "pinia": "^3.0.3",
+    "three": "0.180.0",
+    "vue": "^3.5.18"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "vite": "^7.1.1"
+  }
+}

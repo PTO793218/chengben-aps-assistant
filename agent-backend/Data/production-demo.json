@@ -1,0 +1,6744 @@
+{
+  "id": "CB-DEMO-20260926-v3",
+  "source": "synthetic-demo",
+  "title": "诚本生产计划 · 演示快照",
+  "asOf": "2026-09-26T17:30:00+08:00",
+  "year": 2026,
+  "defaultStart": "2026-09-07",
+  "defaultEnd": "2026-10-04",
+  "coverageStart": "2026-09-01",
+  "coverageEnd": "2026-10-31",
+  "calendarMetric": "计划占用工时 / 可用工时上限",
+  "nonWorkingWeekdays": [
+    0
+  ],
+  "lines": [
+    {
+      "id": "turn-1",
+      "name": "车削半自动线1",
+      "stage": "车工"
+    },
+    {
+      "id": "turn-3",
+      "name": "车削半自动线3",
+      "stage": "车工"
+    },
+    {
+      "id": "heat-1",
+      "name": "油炉线 A",
+      "stage": "热处理"
+    },
+    {
+      "id": "heat-2",
+      "name": "油炉线 B",
+      "stage": "热处理"
+    },
+    {
+      "id": "grind-3",
+      "name": "S08-3线",
+      "stage": "磨工"
+    },
+    {
+      "id": "grind-4",
+      "name": "S09-3线",
+      "stage": "磨工"
+    }
+  ],
+  "orders": [
+    {
+      "id": "Z9900001",
+      "product": "球面滚子 RQ03-23256",
+      "spec": "55.25×70.086",
+      "quantity": 4200,
+      "dueDate": "2026-09-12",
+      "plannedEnd": "2026-09-15",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": true,
+      "color": "#4f8ef7"
+    },
+    {
+      "id": "Z9900011",
+      "product": "球面滚子 RQ03-22248",
+      "spec": "50.25×46.072",
+      "quantity": 1050,
+      "dueDate": "2026-09-19",
+      "plannedEnd": "2026-09-16",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": false,
+      "color": "#29b5a4"
+    },
+    {
+      "id": "Z9900010",
+      "product": "圆锥滚子 GC H-24032",
+      "spec": "20×32",
+      "quantity": 7714,
+      "dueDate": "2026-09-21",
+      "plannedEnd": "2026-09-18",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": false,
+      "color": "#8e79de"
+    },
+    {
+      "id": "Z9900013",
+      "product": "球面滚子 RQ03-23256",
+      "spec": "55.25×70.086",
+      "quantity": 5150,
+      "dueDate": "2026-09-18",
+      "plannedEnd": "2026-09-21",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": true,
+      "color": "#e6a44b"
+    },
+    {
+      "id": "Z9900008",
+      "product": "球面滚子 RQ03-22248",
+      "spec": "50.25×46.072",
+      "quantity": 28000,
+      "dueDate": "2026-09-25",
+      "plannedEnd": "2026-09-22",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": false,
+      "color": "#4aa5bc"
+    },
+    {
+      "id": "Z9900012",
+      "product": "圆锥滚子 GC H-24032",
+      "spec": "20×32",
+      "quantity": 12000,
+      "dueDate": "2026-09-27",
+      "plannedEnd": "2026-09-24",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": false,
+      "color": "#db8297"
+    },
+    {
+      "id": "Z9900009",
+      "product": "球面滚子 RQ03-23256",
+      "spec": "55.25×70.086",
+      "quantity": 10352,
+      "dueDate": "2026-09-24",
+      "plannedEnd": "2026-09-26",
+      "scheduleStatus": "full",
+      "productionStatus": "inProgress",
+      "risk": true,
+      "color": "#79944d"
+    },
+    {
+      "id": "Z9900002",
+      "product": "球面滚子 RQ03-22248",
+      "spec": "50.25×46.072",
+      "quantity": 12500,
+      "dueDate": "2026-10-16",
+      "plannedEnd": "2026-10-13",
+      "scheduleStatus": "full",
+      "productionStatus": "notStarted",
+      "risk": false,
+      "color": "#687dd0"
+    },
+    {
+      "id": "Z9900005",
+      "product": "圆锥滚子 GC H-24032",
+      "spec": "20×32",
+      "quantity": 14000,
+      "dueDate": "2026-10-03",
+      "plannedEnd": null,
+      "scheduleStatus": "partial",
+      "productionStatus": "notStarted",
+      "risk": false,
+      "color": "#aa74a2"
+    },
+    {
+      "id": "Z9900007",
+      "product": "球面滚子 RQ03-23256",
+      "spec": "55.25×70.086",
+      "quantity": 4500,
+      "dueDate": "2026-09-30",
+      "plannedEnd": null,
+      "scheduleStatus": "partial",
+      "productionStatus": "inProgress",
+      "risk": false,
+      "color": "#bd9766"
+    },
+    {
+      "id": "Z9900006",
+      "product": "球面滚子 RQ03-22248",
+      "spec": "50.25×46.072",
+      "quantity": 12500,
+      "dueDate": "2026-10-07",
+      "plannedEnd": null,
+      "scheduleStatus": "none",
+      "productionStatus": "notStarted",
+      "risk": false,
+      "color": "#778699"
+    },
+    {
+      "id": "Z9900003",
+      "product": "圆锥滚子 GC H-24032",
+      "spec": "20×32",
+      "quantity": 50000,
+      "dueDate": "2026-10-09",
+      "plannedEnd": null,
+      "scheduleStatus": "none",
+      "productionStatus": "notStarted",
+      "risk": false,
+      "color": "#929bac"
+    },
+    {
+      "id": "Z9900004",
+      "product": "球面滚子 RQ03-23256",
+      "spec": "55.25×70.086",
+      "quantity": 3000,
+      "dueDate": "2026-09-06",
+      "plannedEnd": "2026-09-08",
+      "scheduleStatus": "full",
+      "productionStatus": "completed",
+      "risk": true,
+      "color": "#bec8d6"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "Z9900001-0-0",
+      "orderId": "Z9900001",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-07",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-0-1",
+      "orderId": "Z9900001",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-07",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-0-2",
+      "orderId": "Z9900001",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-08",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-0-3",
+      "orderId": "Z9900001",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-08",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-1-0",
+      "orderId": "Z9900001",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-10",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-1-1",
+      "orderId": "Z9900001",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-10",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-1-2",
+      "orderId": "Z9900001",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-11",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-1-3",
+      "orderId": "Z9900001",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-11",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-2-0",
+      "orderId": "Z9900001",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-14",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-2-1",
+      "orderId": "Z9900001",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-14",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-2-2",
+      "orderId": "Z9900001",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-15",
+      "shift": "白班",
+      "quantity": 1050,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900001-2-3",
+      "orderId": "Z9900001",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-15",
+      "shift": "晚班",
+      "quantity": 1050,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-0-0",
+      "orderId": "Z9900011",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-09",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-0-1",
+      "orderId": "Z9900011",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-09",
+      "shift": "晚班",
+      "quantity": 262,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-0-2",
+      "orderId": "Z9900011",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-10",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-0-3",
+      "orderId": "Z9900011",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-10",
+      "shift": "晚班",
+      "quantity": 264,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-1-0",
+      "orderId": "Z9900011",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-12",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-1-1",
+      "orderId": "Z9900011",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-12",
+      "shift": "晚班",
+      "quantity": 262,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-1-2",
+      "orderId": "Z9900011",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-14",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-1-3",
+      "orderId": "Z9900011",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-14",
+      "shift": "晚班",
+      "quantity": 264,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-2-0",
+      "orderId": "Z9900011",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-15",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-2-1",
+      "orderId": "Z9900011",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-15",
+      "shift": "晚班",
+      "quantity": 262,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-2-2",
+      "orderId": "Z9900011",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-16",
+      "shift": "白班",
+      "quantity": 262,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900011-2-3",
+      "orderId": "Z9900011",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-16",
+      "shift": "晚班",
+      "quantity": 264,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-0-0",
+      "orderId": "Z9900010",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-11",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-0-1",
+      "orderId": "Z9900010",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-11",
+      "shift": "晚班",
+      "quantity": 1928,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-0-2",
+      "orderId": "Z9900010",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-12",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-0-3",
+      "orderId": "Z9900010",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-12",
+      "shift": "晚班",
+      "quantity": 1930,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-1-0",
+      "orderId": "Z9900010",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-14",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-1-1",
+      "orderId": "Z9900010",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-14",
+      "shift": "晚班",
+      "quantity": 1928,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-1-2",
+      "orderId": "Z9900010",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-15",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-1-3",
+      "orderId": "Z9900010",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-15",
+      "shift": "晚班",
+      "quantity": 1930,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-2-0",
+      "orderId": "Z9900010",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-17",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-2-1",
+      "orderId": "Z9900010",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-17",
+      "shift": "晚班",
+      "quantity": 1928,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-2-2",
+      "orderId": "Z9900010",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-18",
+      "shift": "白班",
+      "quantity": 1928,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900010-2-3",
+      "orderId": "Z9900010",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-18",
+      "shift": "晚班",
+      "quantity": 1930,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-0-0",
+      "orderId": "Z9900013",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-14",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-0-1",
+      "orderId": "Z9900013",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-14",
+      "shift": "晚班",
+      "quantity": 1287,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-0-2",
+      "orderId": "Z9900013",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-15",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-0-3",
+      "orderId": "Z9900013",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-15",
+      "shift": "晚班",
+      "quantity": 1289,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-1-0",
+      "orderId": "Z9900013",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-16",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-1-1",
+      "orderId": "Z9900013",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-16",
+      "shift": "晚班",
+      "quantity": 1287,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-1-2",
+      "orderId": "Z9900013",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-17",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-1-3",
+      "orderId": "Z9900013",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-17",
+      "shift": "晚班",
+      "quantity": 1289,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-2-0",
+      "orderId": "Z9900013",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-19",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-2-1",
+      "orderId": "Z9900013",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-19",
+      "shift": "晚班",
+      "quantity": 1287,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-2-2",
+      "orderId": "Z9900013",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-21",
+      "shift": "白班",
+      "quantity": 1287,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900013-2-3",
+      "orderId": "Z9900013",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-21",
+      "shift": "晚班",
+      "quantity": 1289,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-0-0",
+      "orderId": "Z9900008",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-15",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-0-1",
+      "orderId": "Z9900008",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-15",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-0-2",
+      "orderId": "Z9900008",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-16",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-0-3",
+      "orderId": "Z9900008",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-16",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-1-0",
+      "orderId": "Z9900008",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-18",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-1-1",
+      "orderId": "Z9900008",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-18",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-1-2",
+      "orderId": "Z9900008",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-19",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-1-3",
+      "orderId": "Z9900008",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-19",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-2-0",
+      "orderId": "Z9900008",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-21",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-2-1",
+      "orderId": "Z9900008",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-21",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-2-2",
+      "orderId": "Z9900008",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-22",
+      "shift": "白班",
+      "quantity": 7000,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900008-2-3",
+      "orderId": "Z9900008",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-22",
+      "shift": "晚班",
+      "quantity": 7000,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-0-0",
+      "orderId": "Z9900012",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-17",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-0-1",
+      "orderId": "Z9900012",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-17",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-0-2",
+      "orderId": "Z9900012",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-18",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-0-3",
+      "orderId": "Z9900012",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-18",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-1-0",
+      "orderId": "Z9900012",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-21",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-1-1",
+      "orderId": "Z9900012",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-21",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-1-2",
+      "orderId": "Z9900012",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-22",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-1-3",
+      "orderId": "Z9900012",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-22",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-2-0",
+      "orderId": "Z9900012",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-23",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-2-1",
+      "orderId": "Z9900012",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-23",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-2-2",
+      "orderId": "Z9900012",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-24",
+      "shift": "白班",
+      "quantity": 3000,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900012-2-3",
+      "orderId": "Z9900012",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-24",
+      "shift": "晚班",
+      "quantity": 3000,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-0-0",
+      "orderId": "Z9900009",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-19",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-0-1",
+      "orderId": "Z9900009",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-19",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-0-2",
+      "orderId": "Z9900009",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-21",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-0-3",
+      "orderId": "Z9900009",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-21",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-1-0",
+      "orderId": "Z9900009",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-22",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-1-1",
+      "orderId": "Z9900009",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-22",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-1-2",
+      "orderId": "Z9900009",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-23",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-1-3",
+      "orderId": "Z9900009",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-23",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-2-0",
+      "orderId": "Z9900009",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-25",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-2-1",
+      "orderId": "Z9900009",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-25",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-2-2",
+      "orderId": "Z9900009",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-26",
+      "shift": "白班",
+      "quantity": 2588,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900009-2-3",
+      "orderId": "Z9900009",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-26",
+      "shift": "晚班",
+      "quantity": 2588,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-0-0",
+      "orderId": "Z9900002",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-10-06",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-0-1",
+      "orderId": "Z9900002",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-10-06",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-0-2",
+      "orderId": "Z9900002",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-10-07",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-0-3",
+      "orderId": "Z9900002",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-10-07",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-1-0",
+      "orderId": "Z9900002",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-10-09",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-1-1",
+      "orderId": "Z9900002",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-10-09",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-1-2",
+      "orderId": "Z9900002",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-10-10",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-1-3",
+      "orderId": "Z9900002",
+      "lineId": "heat-2",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-10-10",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-2-0",
+      "orderId": "Z9900002",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-10-12",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-2-1",
+      "orderId": "Z9900002",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-10-12",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-2-2",
+      "orderId": "Z9900002",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-10-13",
+      "shift": "白班",
+      "quantity": 3125,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900002-2-3",
+      "orderId": "Z9900002",
+      "lineId": "grind-4",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-10-13",
+      "shift": "晚班",
+      "quantity": 3125,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900005-0-0",
+      "orderId": "Z9900005",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-23",
+      "shift": "白班",
+      "quantity": 3500,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900005-0-1",
+      "orderId": "Z9900005",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-23",
+      "shift": "晚班",
+      "quantity": 3500,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900005-0-2",
+      "orderId": "Z9900005",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-24",
+      "shift": "白班",
+      "quantity": 3500,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900005-0-3",
+      "orderId": "Z9900005",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-24",
+      "shift": "晚班",
+      "quantity": 3500,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900007-0-0",
+      "orderId": "Z9900007",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-25",
+      "shift": "白班",
+      "quantity": 1125,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900007-0-1",
+      "orderId": "Z9900007",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-25",
+      "shift": "晚班",
+      "quantity": 1125,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900007-0-2",
+      "orderId": "Z9900007",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-26",
+      "shift": "白班",
+      "quantity": 1125,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900007-0-3",
+      "orderId": "Z9900007",
+      "lineId": "turn-3",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-26",
+      "shift": "晚班",
+      "quantity": 1125,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-0-0",
+      "orderId": "Z9900004",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-01",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-0-1",
+      "orderId": "Z9900004",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-01",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-0-2",
+      "orderId": "Z9900004",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-02",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-0-3",
+      "orderId": "Z9900004",
+      "lineId": "turn-1",
+      "stage": "车工",
+      "operation": "车削",
+      "date": "2026-09-02",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-1-0",
+      "orderId": "Z9900004",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-04",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-1-1",
+      "orderId": "Z9900004",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-04",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-1-2",
+      "orderId": "Z9900004",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-05",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 6,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-1-3",
+      "orderId": "Z9900004",
+      "lineId": "heat-1",
+      "stage": "热处理",
+      "operation": "淬火",
+      "date": "2026-09-05",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 7,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-2-0",
+      "orderId": "Z9900004",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-07",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 8,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-2-1",
+      "orderId": "Z9900004",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-07",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 9,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-2-2",
+      "orderId": "Z9900004",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-08",
+      "shift": "白班",
+      "quantity": 750,
+      "plannedHours": 4,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    },
+    {
+      "id": "Z9900004-2-3",
+      "orderId": "Z9900004",
+      "lineId": "grind-3",
+      "stage": "磨工",
+      "operation": "磨削",
+      "date": "2026-09-08",
+      "shift": "晚班",
+      "quantity": 750,
+      "plannedHours": 5,
+      "hoursSource": "synthetic-demo",
+      "componentName": null,
+      "materialName": null,
+      "materialCode": null,
+      "materialSpec": null
+    }
+  ],
+  "pending": [
+    {
+      "id": "pending-Z9900005-1",
+      "orderId": "Z9900005",
+      "stage": "热处理",
+      "operation": "淬火",
+      "quantity": 14000,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900005-2",
+      "orderId": "Z9900005",
+      "stage": "磨工",
+      "operation": "磨削",
+      "quantity": 14000,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900007-1",
+      "orderId": "Z9900007",
+      "stage": "热处理",
+      "operation": "淬火",
+      "quantity": 4500,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900007-2",
+      "orderId": "Z9900007",
+      "stage": "磨工",
+      "operation": "磨削",
+      "quantity": 4500,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900006-0",
+      "orderId": "Z9900006",
+      "stage": "车工",
+      "operation": "车削",
+      "quantity": 12500,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900006-1",
+      "orderId": "Z9900006",
+      "stage": "热处理",
+      "operation": "淬火",
+      "quantity": 12500,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900006-2",
+      "orderId": "Z9900006",
+      "stage": "磨工",
+      "operation": "磨削",
+      "quantity": 12500,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900003-0",
+      "orderId": "Z9900003",
+      "stage": "车工",
+      "operation": "车削",
+      "quantity": 50000,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900003-1",
+      "orderId": "Z9900003",
+      "stage": "热处理",
+      "operation": "淬火",
+      "quantity": 50000,
+      "reason": "示例未提供排入原因，待核实"
+    },
+    {
+      "id": "pending-Z9900003-2",
+      "orderId": "Z9900003",
+      "stage": "磨工",
+      "operation": "磨削",
+      "quantity": 50000,
+      "reason": "示例未提供排入原因，待核实"
+    }
+  ],
+  "hoursSource": "synthetic-demo",
+  "hoursNote": "工时仅为合成演示值，非客户生产数据。每项任务计划工时直接给定，含演示换型占用；产线工作日白晚班各7.5h，休息日0h。未从数量或任务数推算。",
+  "capacity": [
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-04",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-06",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-11",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-13",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-18",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-20",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-25",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-27",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-09-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-01",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-02",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-03",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-04",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-05",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-06",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-07",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-08",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-09",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-10",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-11",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-12",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-13",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-14",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-15",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-16",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-17",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-18",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-19",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-20",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-21",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-22",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-23",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-24",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-25",
+      "availableHours": 0,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-26",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-27",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-28",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-29",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-30",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-1",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "turn-3",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-1",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "heat-2",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-3",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    },
+    {
+      "lineId": "grind-4",
+      "date": "2026-10-31",
+      "availableHours": 15,
+      "source": "synthetic-demo"
+    }
+  ],
+  "orderDispatch": {
+    "schemaVersion": 1,
+    "snapshotId": "CB-ORDER-DISPATCH-DEMO-20260926",
+    "source": "synthetic-demo",
+    "sourceLabel": "受控订单—派工演示数据 · 非实时",
+    "systemNo": "731",
+    "asOf": "2026-09-26T17:30:00+08:00",
+    "displayRange": {
+      "start": "2026-09-01",
+      "end": "2026-10-13"
+    },
+    "story": {
+      "headline": "当前关联演示快照包含 13 个订单，其中 8 个存在派工在制任务；3 个未找到当前任务，另有 1 条运行中任务暂未取得来源订单。",
+      "focus": "以订单为主视角，区分派工在制、已完成、已关闭、未形成当前任务和任务来源未取得。"
+    },
+    "orders": [
+      {
+        "orderNo": "Z9900001",
+        "pdPlanGuid": "DEMO-PLAN-Z9900001",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "quantity": 4200,
+        "planStart": "2026-09-07",
+        "planEnd": "2026-09-15",
+        "scenario": "一单多任务，部分完成、部分在制"
+      },
+      {
+        "orderNo": "Z9900011",
+        "pdPlanGuid": "DEMO-PLAN-Z9900011",
+        "productNo": "BA.99.0002",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "quantity": 1050,
+        "planStart": "2026-09-09",
+        "planEnd": "2026-09-16",
+        "scenario": "当前任务已完成"
+      },
+      {
+        "orderNo": "Z9900010",
+        "pdPlanGuid": "DEMO-PLAN-Z9900010",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "quantity": 7714,
+        "planStart": "2026-09-11",
+        "planEnd": "2026-09-18",
+        "scenario": "一单多任务，部分完成、部分在制"
+      },
+      {
+        "orderNo": "Z9900013",
+        "pdPlanGuid": "DEMO-PLAN-Z9900013",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "quantity": 5150,
+        "planStart": "2026-09-14",
+        "planEnd": "2026-09-21",
+        "scenario": "多个任务同时运行"
+      },
+      {
+        "orderNo": "Z9900008",
+        "pdPlanGuid": "DEMO-PLAN-Z9900008",
+        "productNo": "BA.99.0005",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-1",
+        "quantity": 28000,
+        "planStart": "2026-09-15",
+        "planEnd": "2026-09-22",
+        "scenario": "同产线还有其他订单在制"
+      },
+      {
+        "orderNo": "Z9900012",
+        "pdPlanGuid": "DEMO-PLAN-Z9900012",
+        "productNo": "BA.99.0006",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-3",
+        "quantity": 12000,
+        "planStart": "2026-09-17",
+        "planEnd": "2026-09-24",
+        "scenario": "普通单任务在制"
+      },
+      {
+        "orderNo": "Z9900009",
+        "pdPlanGuid": "DEMO-PLAN-Z9900009",
+        "productNo": "BA.99.0007",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "quantity": 10352,
+        "planStart": "2026-09-19",
+        "planEnd": "2026-09-26",
+        "scenario": "普通单任务在制"
+      },
+      {
+        "orderNo": "Z9900002",
+        "pdPlanGuid": "DEMO-PLAN-Z9900002",
+        "productNo": "BA.99.0008",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "quantity": 12500,
+        "planStart": "2026-10-06",
+        "planEnd": "2026-10-13",
+        "scenario": "当前未找到任务"
+      },
+      {
+        "orderNo": "Z9900005",
+        "pdPlanGuid": "DEMO-PLAN-Z9900005",
+        "productNo": "BA.99.0009",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "quantity": 14000,
+        "planStart": "2026-09-23",
+        "planEnd": "2026-09-24",
+        "scenario": "当前任务已关闭"
+      },
+      {
+        "orderNo": "Z9900007",
+        "pdPlanGuid": "DEMO-PLAN-Z9900007",
+        "productNo": "BA.99.0010",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "quantity": 4500,
+        "planStart": "2026-09-25",
+        "planEnd": "2026-09-26",
+        "scenario": "普通单任务在制"
+      },
+      {
+        "orderNo": "Z9900006",
+        "pdPlanGuid": "DEMO-PLAN-Z9900006",
+        "productNo": "BA.99.0011",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "",
+        "quantity": 12500,
+        "planStart": "",
+        "planEnd": "",
+        "scenario": "最近版本有任务、当前版本未形成任务"
+      },
+      {
+        "orderNo": "Z9900003",
+        "pdPlanGuid": "DEMO-PLAN-Z9900003",
+        "productNo": "BA.99.0012",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "",
+        "quantity": 50000,
+        "planStart": "",
+        "planEnd": "",
+        "scenario": "尚未排入计划，未取得当前任务"
+      },
+      {
+        "orderNo": "Z9900004",
+        "pdPlanGuid": "DEMO-PLAN-Z9900004",
+        "productNo": "BA.99.0013",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "quantity": 3000,
+        "planStart": "2026-09-01",
+        "planEnd": "2026-09-08",
+        "scenario": "普通任务已完成"
+      }
+    ],
+    "plans": [
+      {
+        "planGuid": "DEMO-PLAN-Z9900001",
+        "planType": "normal",
+        "planNo": "Z9900001",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "planStart": "2026-09-07",
+        "planEnd": "2026-09-15",
+        "planQuantity": 4200
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900011",
+        "planType": "normal",
+        "planNo": "Z9900011",
+        "productNo": "BA.99.0002",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "planStart": "2026-09-09",
+        "planEnd": "2026-09-16",
+        "planQuantity": 1050
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900010",
+        "planType": "normal",
+        "planNo": "Z9900010",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "planStart": "2026-09-11",
+        "planEnd": "2026-09-18",
+        "planQuantity": 7714
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900013",
+        "planType": "normal",
+        "planNo": "Z9900013",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "planStart": "2026-09-14",
+        "planEnd": "2026-09-21",
+        "planQuantity": 5150
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900008",
+        "planType": "normal",
+        "planNo": "Z9900008",
+        "productNo": "BA.99.0005",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-1",
+        "planStart": "2026-09-15",
+        "planEnd": "2026-09-22",
+        "planQuantity": 28000
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900012",
+        "planType": "normal",
+        "planNo": "Z9900012",
+        "productNo": "BA.99.0006",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-3",
+        "planStart": "2026-09-17",
+        "planEnd": "2026-09-24",
+        "planQuantity": 12000
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900009",
+        "planType": "normal",
+        "planNo": "Z9900009",
+        "productNo": "BA.99.0007",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "planStart": "2026-09-19",
+        "planEnd": "2026-09-26",
+        "planQuantity": 10352
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900002",
+        "planType": "normal",
+        "planNo": "Z9900002",
+        "productNo": "BA.99.0008",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "planStart": "2026-10-06",
+        "planEnd": "2026-10-13",
+        "planQuantity": 12500
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900005",
+        "planType": "normal",
+        "planNo": "Z9900005",
+        "productNo": "BA.99.0009",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "planStart": "2026-09-23",
+        "planEnd": "2026-09-24",
+        "planQuantity": 14000
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900007",
+        "planType": "normal",
+        "planNo": "Z9900007",
+        "productNo": "BA.99.0010",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "planStart": "2026-09-25",
+        "planEnd": "2026-09-26",
+        "planQuantity": 4500
+      },
+      {
+        "planGuid": "DEMO-PLAN-Z9900004",
+        "planType": "normal",
+        "planNo": "Z9900004",
+        "productNo": "BA.99.0013",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "planStart": "2026-09-01",
+        "planEnd": "2026-09-08",
+        "planQuantity": 3000
+      }
+    ],
+    "dispatchTasks": [
+      {
+        "taskGuid": "TA-Z9900001-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900001",
+        "taskNo": "TA-Z9900001-01",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-07",
+        "taskEnd": "2026-09-15",
+        "taskQuantity": 2200,
+        "deliveryQuantity": 2200,
+        "status": "finish"
+      },
+      {
+        "taskGuid": "TA-Z9900001-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900001",
+        "taskNo": "TA-Z9900001-02",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-07",
+        "taskEnd": "2026-09-15",
+        "taskQuantity": 2000,
+        "deliveryQuantity": 1000,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900010-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900010",
+        "taskNo": "TA-Z9900010-01",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-11",
+        "taskEnd": "2026-09-18",
+        "taskQuantity": 3857,
+        "deliveryQuantity": 3857,
+        "status": "finish"
+      },
+      {
+        "taskGuid": "TA-Z9900010-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900010",
+        "taskNo": "TA-Z9900010-02",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-11",
+        "taskEnd": "2026-09-18",
+        "taskQuantity": 3857,
+        "deliveryQuantity": 1929,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900013-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900013",
+        "taskNo": "TA-Z9900013-01",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-14",
+        "taskEnd": "2026-09-21",
+        "taskQuantity": 2575,
+        "deliveryQuantity": 1104,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900013-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900013",
+        "taskNo": "TA-Z9900013-02",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-14",
+        "taskEnd": "2026-09-21",
+        "taskQuantity": 2575,
+        "deliveryQuantity": 0,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900011-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900011",
+        "taskNo": "TA-Z9900011-01",
+        "productNo": "BA.99.0002",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-09",
+        "taskEnd": "2026-09-16",
+        "taskQuantity": 1050,
+        "deliveryQuantity": 210,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900005-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900005",
+        "taskNo": "TA-Z9900005-01",
+        "productNo": "BA.99.0009",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-23",
+        "taskEnd": "2026-09-24",
+        "taskQuantity": 14000,
+        "deliveryQuantity": 14000,
+        "status": "close"
+      },
+      {
+        "taskGuid": "TA-Z9900008-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900008",
+        "taskNo": "TA-Z9900008-01",
+        "productNo": "BA.99.0005",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-15",
+        "taskEnd": "2026-09-22",
+        "taskQuantity": 28000,
+        "deliveryQuantity": 9333,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900012-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900012",
+        "taskNo": "TA-Z9900012-01",
+        "productNo": "BA.99.0006",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-17",
+        "taskEnd": "2026-09-24",
+        "taskQuantity": 12000,
+        "deliveryQuantity": 7636,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900004-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900004",
+        "taskNo": "TA-Z9900004-01",
+        "productNo": "BA.99.0013",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-01",
+        "taskEnd": "2026-09-08",
+        "taskQuantity": 3000,
+        "deliveryQuantity": 3000,
+        "status": "finish"
+      },
+      {
+        "taskGuid": "TA-Z9900009-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900009",
+        "taskNo": "TA-Z9900009-01",
+        "productNo": "BA.99.0007",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-19",
+        "taskEnd": "2026-09-26",
+        "taskQuantity": 10352,
+        "deliveryQuantity": 3982,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900007-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900007",
+        "taskNo": "TA-Z9900007-01",
+        "productNo": "BA.99.0010",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-25",
+        "taskEnd": "2026-09-26",
+        "taskQuantity": 4500,
+        "deliveryQuantity": 0,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA260918999-01",
+        "pdPlanGuid": "ORPHAN-20260918-01",
+        "taskNo": "TA260918999-01",
+        "productNo": "BA.01.03.0505",
+        "productName": "磨工-急单RQ03-22326 CR/GP_47D",
+        "lineId": "S03-1",
+        "taskStart": "2026-09-18",
+        "taskEnd": "2026-09-19",
+        "taskQuantity": 1200,
+        "deliveryQuantity": 300,
+        "status": "run"
+      }
+    ],
+    "latestTasks": [
+      {
+        "taskGuid": "TA-Z9900001-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900001",
+        "taskNo": "TA-Z9900001-01",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-07",
+        "taskEnd": "2026-09-15",
+        "taskQuantity": 2200,
+        "status": "finish",
+        "deliveryQuantity": 2200
+      },
+      {
+        "taskGuid": "TA-Z9900001-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900001",
+        "taskNo": "TA-Z9900001-02",
+        "productNo": "BA.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-07",
+        "taskEnd": "2026-09-15",
+        "taskQuantity": 2000,
+        "status": "run",
+        "deliveryQuantity": 1000
+      },
+      {
+        "taskGuid": "TA-Z9900010-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900010",
+        "taskNo": "TA-Z9900010-01",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-11",
+        "taskEnd": "2026-09-18",
+        "taskQuantity": 3857,
+        "status": "finish",
+        "deliveryQuantity": 3857
+      },
+      {
+        "taskGuid": "TA-Z9900010-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900010",
+        "taskNo": "TA-Z9900010-02",
+        "productNo": "BA.99.0003",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-11",
+        "taskEnd": "2026-09-18",
+        "taskQuantity": 3857,
+        "status": "run",
+        "deliveryQuantity": 1929
+      },
+      {
+        "taskGuid": "TA-Z9900013-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900013",
+        "taskNo": "TA-Z9900013-01",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-14",
+        "taskEnd": "2026-09-21",
+        "taskQuantity": 2575,
+        "status": "run",
+        "deliveryQuantity": 1104
+      },
+      {
+        "taskGuid": "TA-Z9900013-02",
+        "pdPlanGuid": "DEMO-PLAN-Z9900013",
+        "taskNo": "TA-Z9900013-02",
+        "productNo": "BA.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-14",
+        "taskEnd": "2026-09-21",
+        "taskQuantity": 2575,
+        "status": "run",
+        "deliveryQuantity": 0
+      },
+      {
+        "taskGuid": "TA-Z9900011-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900011",
+        "taskNo": "TA-Z9900011-01",
+        "productNo": "BA.99.0002",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-09",
+        "taskEnd": "2026-09-16",
+        "taskQuantity": 1050,
+        "status": "run",
+        "deliveryQuantity": 210
+      },
+      {
+        "taskGuid": "TA-Z9900005-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900005",
+        "taskNo": "TA-Z9900005-01",
+        "productNo": "BA.99.0009",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-23",
+        "taskEnd": "2026-09-24",
+        "taskQuantity": 14000,
+        "status": "close",
+        "deliveryQuantity": 14000
+      },
+      {
+        "taskGuid": "TA260918999-01",
+        "pdPlanGuid": "ORPHAN-20260918-01",
+        "taskNo": "TA260918999-01",
+        "productNo": "BA.01.03.0505",
+        "productName": "磨工-急单RQ03-22326 CR/GP_47D",
+        "lineId": "S03-1",
+        "taskStart": "2026-09-18",
+        "taskEnd": "2026-09-19",
+        "taskQuantity": 1200,
+        "status": "run"
+      },
+      {
+        "taskGuid": "TA-Z9900008-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900008",
+        "taskNo": "TA-Z9900008-01",
+        "productNo": "BA.99.0005",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-15",
+        "taskEnd": "2026-09-22",
+        "taskQuantity": 28000,
+        "status": "run",
+        "deliveryQuantity": 9333
+      },
+      {
+        "taskGuid": "TA-Z9900012-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900012",
+        "taskNo": "TA-Z9900012-01",
+        "productNo": "BA.99.0006",
+        "productName": "圆锥滚子 GC H-24032",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-17",
+        "taskEnd": "2026-09-24",
+        "taskQuantity": 12000,
+        "status": "run",
+        "deliveryQuantity": 7636
+      },
+      {
+        "taskGuid": "TA-Z9900004-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900004",
+        "taskNo": "TA-Z9900004-01",
+        "productNo": "BA.99.0013",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-01",
+        "taskEnd": "2026-09-08",
+        "taskQuantity": 3000,
+        "status": "finish",
+        "deliveryQuantity": 3000
+      },
+      {
+        "taskGuid": "TA-Z9900009-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900009",
+        "taskNo": "TA-Z9900009-01",
+        "productNo": "BA.99.0007",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-1",
+        "taskStart": "2026-09-19",
+        "taskEnd": "2026-09-26",
+        "taskQuantity": 10352,
+        "status": "run",
+        "deliveryQuantity": 3982
+      },
+      {
+        "taskGuid": "TA-Z9900007-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900007",
+        "taskNo": "TA-Z9900007-01",
+        "productNo": "BA.99.0010",
+        "productName": "球面滚子 RQ03-23256",
+        "lineId": "turn-3",
+        "taskStart": "2026-09-25",
+        "taskEnd": "2026-09-26",
+        "taskQuantity": 4500,
+        "status": "run",
+        "deliveryQuantity": 0
+      },
+      {
+        "taskGuid": "TA-Z9900006-HIST-01",
+        "pdPlanGuid": "DEMO-PLAN-Z9900006",
+        "taskNo": "TA-Z9900006-HIST-01",
+        "productNo": "BA.99.0011",
+        "productName": "球面滚子 RQ03-22248",
+        "lineId": "",
+        "taskStart": "2026-09-18",
+        "taskEnd": "2026-09-18",
+        "taskQuantity": 12500,
+        "status": "finish",
+        "version": "20260918",
+        "deliveryQuantity": 12500
+      }
+    ],
+    "limitations": [
+      "本场景为受控synthetic-demo，不代表实时业务库；订单组合、任务数量和状态分布用于展示业务关系。",
+      "派工在制依据关联当前任务状态为run且taskQuantity-deliveryQuantity大于0；订单状态、taskTag和统计指标由固定规则派生。",
+      "当前快照没有dispatcher_no、send_tag或流动卡证据，统一显示下发/流转状态未取得，不表示未派工。",
+      "任务来源未取得只描述当前快照事实，不计入订单总数；原因尚未查明。",
+      "本场景只读，不执行派单、下发、重排或数据库写入。"
+    ]
+  },
+  "materialReadiness": {
+    "schemaVersion": 2,
+    "snapshotId": "CB-MATERIAL-DEMO-20260926",
+    "source": "synthetic-demo",
+    "sourceLabel": "受控业务场景演示数据 · 字段/规则基于 示例MES",
+    "systemNo": "731",
+    "demandVer": "DEMO-20260926",
+    "asOf": "2026-09-26T17:30:00+08:00",
+    "planningRange": {
+      "start": "2026-09-01",
+      "end": "2026-10-13"
+    },
+    "dataClassification": {
+      "databaseOriginal": {
+        "label": "数据库原值/结构依据",
+        "status": "reference-only",
+        "examples": [
+          "T201_sale_order_detail.sale_order_guid/product_no/order_num/delivery_date",
+          "T205_stock_remain.remain_num/quality_state/destine_num/lock_num",
+          "T202_supply_order_detail.order_num/delivery_num/delivery_date/state_type/audit_tag",
+          "T200_quality_state.quality_state_name_cn/regular_type"
+        ]
+      },
+      "derived": {
+        "label": "按原系统字段和规则推导",
+        "status": "rule-derived",
+        "examples": [
+          "orderStatuses 由结果行 fullTag 和无结果状态汇总",
+          "materialImpactSummary 由订单 BOM 关系聚合",
+          "arrivalFeasible 按演示开工日期与供应到货日期比较"
+        ]
+      },
+      "mock": {
+        "label": "为演示业务价值而设计",
+        "status": "synthetic-demo",
+        "examples": [
+          "订单组合、数量、库存/供应配额、占用关系和齐套结果",
+          "scenarioId、riskCode、riskDetail 和页面风险说明"
+        ]
+      }
+    },
+    "ruleBasis": {
+      "database": "示例MES",
+      "procedure": "PA06_produce_plan_detail_active / PA06_produce_plan_detail_active_bySeg",
+      "resultTable": "TA06_produce_plan_detail_calc",
+      "resultView": "VA06_produce_plan_detail_calc",
+      "pageMenu": "F20230N · 装配物料齐套查询表",
+      "availabilityRule": "stock_type=check OR T200_quality_state.regular_type=quality",
+      "supplyRule": "state_type=run AND audit_tag=T AND order_num-delivery_num>0",
+      "allocationOrder": [
+        "先分配符合条件的库存",
+        "再按 delivery_date 顺序分配符合条件的供应"
+      ],
+      "fullTagRule": "累计本次库存使用量与供应使用量达到 materialNum 时标记 T，否则为 F；页面不把 F 直接翻译为已确认短缺。",
+      "pageComparison": "仅确认数据库菜单存在；原页面源码、接口配置和勾选代码未取得。"
+    },
+    "story": {
+      "headline": "13 个关联演示订单中，8 个已有齐套标记、4 个未获得齐套标记、1 个状态未取得；可用同一订单号继续核对计划与派工。",
+      "focus": "用同一份订单—BOM—库存/占用—供应—质量—齐套结果数据，展示可齐套、短缺、占用、晚到、质量冻结、无结果和共享物料影响。"
+    },
+    "orders": [
+      {
+        "calcGuid": "CALC-DEMO-001",
+        "orderId": "Z9900001",
+        "productNo": "A.99.0001",
+        "productName": "球面滚子 RQ03-23256",
+        "orderQuantity": 4200,
+        "dueDate": "2026-09-12 00:00:00",
+        "demandQuantity": 4200,
+        "startDate": "2026-09-07 00:00:00",
+        "sourcePlannedEnd": "2026-09-15 00:00:00",
+        "orderSequence": 1,
+        "scenarioId": "S01-all-ready",
+        "scenarioLabel": "全部物料齐套",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项主物料均有合格库存覆盖，结果行均为 T。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-007",
+        "orderId": "Z9900011",
+        "productNo": "A.99.0007",
+        "productName": "球面滚子 RQ03-22248",
+        "orderQuantity": 1050,
+        "dueDate": "2026-09-19 00:00:00",
+        "demandQuantity": 1050,
+        "startDate": "2026-09-09 00:00:00",
+        "sourcePlannedEnd": "2026-09-16 00:00:00",
+        "orderSequence": 2,
+        "scenarioId": "S07-shared-material",
+        "scenarioLabel": "多个订单共用同一关键物料",
+        "dataLayer": "mock",
+        "riskCode": "shared-material",
+        "riskLabel": "共享物料影响范围已识别",
+        "riskDetail": "C.02.02.0010 同时出现在 12 个订单 BOM 中；本订单获得演示分配，但调整它可能影响其他订单。",
+        "evidenceRef": [
+          "T201_sale_part_bom字段结构",
+          "materialImpactSummary派生规则",
+          "共享物料分配为演示设计"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900010",
+        "orderId": "Z9900010",
+        "productNo": "A.99.0008",
+        "productName": "圆锥滚子 GC H-24032",
+        "orderQuantity": 7714,
+        "dueDate": "2026-09-21 00:00:00",
+        "demandQuantity": 7714,
+        "startDate": "2026-09-11 00:00:00",
+        "sourcePlannedEnd": "2026-09-18 00:00:00",
+        "orderSequence": 3,
+        "scenarioId": "S08-standard-ready-01",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900013",
+        "orderId": "Z9900013",
+        "productNo": "A.99.0009",
+        "productName": "球面滚子 RQ03-23256",
+        "orderQuantity": 5150,
+        "dueDate": "2026-09-18 00:00:00",
+        "demandQuantity": 5150,
+        "startDate": "2026-09-14 00:00:00",
+        "sourcePlannedEnd": "2026-09-21 00:00:00",
+        "orderSequence": 4,
+        "scenarioId": "S08-standard-ready-02",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900008",
+        "orderId": "Z9900008",
+        "productNo": "A.99.0010",
+        "productName": "球面滚子 RQ03-22248",
+        "orderQuantity": 28000,
+        "dueDate": "2026-09-25 00:00:00",
+        "demandQuantity": 28000,
+        "startDate": "2026-09-15 00:00:00",
+        "sourcePlannedEnd": "2026-09-22 00:00:00",
+        "orderSequence": 5,
+        "scenarioId": "S08-standard-ready-03",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900012",
+        "orderId": "Z9900012",
+        "productNo": "A.99.0011",
+        "productName": "圆锥滚子 GC H-24032",
+        "orderQuantity": 12000,
+        "dueDate": "2026-09-27 00:00:00",
+        "demandQuantity": 12000,
+        "startDate": "2026-09-17 00:00:00",
+        "sourcePlannedEnd": "2026-09-24 00:00:00",
+        "orderSequence": 6,
+        "scenarioId": "S08-standard-ready-04",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900009",
+        "orderId": "Z9900009",
+        "productNo": "A.99.0012",
+        "productName": "球面滚子 RQ03-23256",
+        "orderQuantity": 10352,
+        "dueDate": "2026-09-24 00:00:00",
+        "demandQuantity": 10352,
+        "startDate": "2026-09-19 00:00:00",
+        "sourcePlannedEnd": "2026-09-26 00:00:00",
+        "orderSequence": 7,
+        "scenarioId": "S08-standard-ready-05",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-002",
+        "orderId": "Z9900002",
+        "productNo": "A.99.0002",
+        "productName": "球面滚子 RQ03-22248",
+        "orderQuantity": 12500,
+        "dueDate": "2026-10-16 00:00:00",
+        "demandQuantity": 12500,
+        "startDate": "2026-10-06 00:00:00",
+        "sourcePlannedEnd": "2026-10-13 00:00:00",
+        "orderSequence": 8,
+        "scenarioId": "S02-key-shortage",
+        "scenarioLabel": "一个关键物料短缺",
+        "dataLayer": "mock",
+        "riskCode": "key-shortage",
+        "riskLabel": "关键物料余量不足",
+        "riskDetail": "C.02.02.0010 存在 9500 的受控演示缺口。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "TA06_mr_calc_half_demand字段结构",
+          "PA06库存优先分配规则"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-005",
+        "orderId": "Z9900005",
+        "productNo": "A.99.0005",
+        "productName": "圆锥滚子 GC H-24032",
+        "orderQuantity": 14000,
+        "dueDate": "2026-10-03 00:00:00",
+        "demandQuantity": 14000,
+        "startDate": "2026-09-23 00:00:00",
+        "sourcePlannedEnd": "2026-09-24 00:00:00",
+        "orderSequence": 9,
+        "scenarioId": "S05-quality-blocked",
+        "scenarioLabel": "物料处于质检/冻结状态",
+        "dataLayer": "mock",
+        "riskCode": "quality-blocked",
+        "riskLabel": "库存存在，但质量状态不可用",
+        "riskDetail": "演示批次有 BHG/DCZ 质量状态，合格可用量为 0；不能把原始库存总量直接视为可用库存。",
+        "evidenceRef": [
+          "T205_stock_remain.quality_state",
+          "T200_quality_state.regular_type",
+          "示例MES原始质量状态样本"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-004",
+        "orderId": "Z9900007",
+        "productNo": "A.99.0004",
+        "productName": "球面滚子 RQ03-23256",
+        "orderQuantity": 4500,
+        "dueDate": "2026-09-30 00:00:00",
+        "demandQuantity": 4500,
+        "startDate": "2026-09-25 00:00:00",
+        "sourcePlannedEnd": "2026-09-26 00:00:00",
+        "orderSequence": 10,
+        "scenarioId": "S04-supply-late",
+        "scenarioLabel": "在途供应晚于开工日期",
+        "dataLayer": "mock",
+        "riskCode": "supply-late",
+        "riskLabel": "供应存在，但到货晚于开工",
+        "riskDetail": "采购供应满足数量条件，但预计 2026-09-29 到货，晚于演示开工日期 2026-09-25。",
+        "evidenceRef": [
+          "T202_supply_order_detail字段结构",
+          "PA06供应状态/审核过滤规则",
+          "到货日期比较为演示派生"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-003",
+        "orderId": "Z9900006",
+        "productNo": "A.99.0003",
+        "productName": "球面滚子 RQ03-22248",
+        "orderQuantity": 12500,
+        "dueDate": "2026-10-07 00:00:00",
+        "demandQuantity": 12500,
+        "startDate": "",
+        "sourcePlannedEnd": "",
+        "orderSequence": 11,
+        "scenarioId": "S03-stock-occupied",
+        "scenarioLabel": "总库存够但被其他订单占用",
+        "dataLayer": "mock",
+        "riskCode": "stock-occupied",
+        "riskLabel": "库存存在，但当前订单可分配量不足",
+        "riskDetail": "总合格库存足够，但演示分配关系保留给其他订单；该订单只有计算可分配余量。",
+        "evidenceRef": [
+          "T205_stock_remain字段结构",
+          "TA06_mr_calc_half_demand.remain_occupy_num",
+          "订单级占用关系为演示设计"
+        ]
+      },
+      {
+        "calcGuid": "CALC-DEMO-006",
+        "orderId": "Z9900003",
+        "productNo": "A.99.0006",
+        "productName": "圆锥滚子 GC H-24032",
+        "orderQuantity": 50000,
+        "dueDate": "2026-10-09 00:00:00",
+        "demandQuantity": 50000,
+        "startDate": "",
+        "sourcePlannedEnd": "",
+        "orderSequence": 12,
+        "scenarioId": "S06-readiness-unknown",
+        "scenarioLabel": "齐套结果尚未计算",
+        "dataLayer": "mock",
+        "riskCode": "readiness-unknown",
+        "riskLabel": "暂无法确认",
+        "riskDetail": "当前演示快照没有该订单的齐套结果，因此不生成短缺、库存或到货原因。",
+        "evidenceRef": [
+          "TA06_produce_plan_detail_calc无结果的边界",
+          "页面未知状态口径"
+        ]
+      },
+      {
+        "calcGuid": "CALC-LINK-Z9900004",
+        "orderId": "Z9900004",
+        "productNo": "A.99.0013",
+        "productName": "球面滚子 RQ03-23256",
+        "orderQuantity": 3000,
+        "dueDate": "2026-09-06 00:00:00",
+        "demandQuantity": 3000,
+        "startDate": "2026-09-01 00:00:00",
+        "sourcePlannedEnd": "2026-09-08 00:00:00",
+        "orderSequence": 13,
+        "scenarioId": "S08-standard-ready-06",
+        "scenarioLabel": "普通齐套标记核对",
+        "dataLayer": "mock",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料的快照结果均为 T；仅说明齐套标记。",
+        "evidenceRef": [
+          "T201_sale_order_detail字段结构",
+          "PA06_produce_plan_detail_active规则"
+        ]
+      }
+    ],
+    "orderStatuses": [
+      {
+        "orderId": "Z9900001",
+        "scenarioId": "S01-all-ready",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项物料均已覆盖。"
+      },
+      {
+        "orderId": "Z9900011",
+        "scenarioId": "S07-shared-material",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "shared-material",
+        "riskLabel": "共享物料影响范围已识别",
+        "riskDetail": "本订单已有演示覆盖，但物料调整会影响其他订单。"
+      },
+      {
+        "orderId": "Z9900010",
+        "scenarioId": "S08-standard-ready-01",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      },
+      {
+        "orderId": "Z9900013",
+        "scenarioId": "S08-standard-ready-02",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      },
+      {
+        "orderId": "Z9900008",
+        "scenarioId": "S08-standard-ready-03",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      },
+      {
+        "orderId": "Z9900012",
+        "scenarioId": "S08-standard-ready-04",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      },
+      {
+        "orderId": "Z9900009",
+        "scenarioId": "S08-standard-ready-05",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      },
+      {
+        "orderId": "Z9900002",
+        "scenarioId": "S02-key-shortage",
+        "status": "full_tag_F",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 1,
+        "dataLayer": "derived",
+        "riskCode": "key-shortage",
+        "riskLabel": "关键物料余量不足",
+        "riskDetail": "C.02.02.0010 存在 9500 的受控演示缺口。"
+      },
+      {
+        "orderId": "Z9900005",
+        "scenarioId": "S05-quality-blocked",
+        "status": "full_tag_F",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 1,
+        "dataLayer": "derived",
+        "riskCode": "quality-blocked",
+        "riskLabel": "质量状态不可用",
+        "riskDetail": "BHG/DCZ 不作为普通合格库存使用。"
+      },
+      {
+        "orderId": "Z9900007",
+        "scenarioId": "S04-supply-late",
+        "status": "full_tag_F",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 1,
+        "dataLayer": "derived",
+        "riskCode": "supply-late",
+        "riskLabel": "供应到货晚于开工",
+        "riskDetail": "供应日期晚于演示开工日期。"
+      },
+      {
+        "orderId": "Z9900006",
+        "scenarioId": "S03-stock-occupied",
+        "status": "full_tag_F",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 1,
+        "dataLayer": "derived",
+        "riskCode": "stock-occupied",
+        "riskLabel": "库存存在但当前可分配量不足",
+        "riskDetail": "订单级占用关系为受控 mock，不是持久化库存锁定事实。"
+      },
+      {
+        "orderId": "Z9900003",
+        "scenarioId": "S06-readiness-unknown",
+        "status": "status_not_obtained",
+        "readinessRowCount": 0,
+        "fullTagTRowCount": 0,
+        "dataLayer": "derived",
+        "riskCode": "readiness-unknown",
+        "riskLabel": "暂无法确认",
+        "riskDetail": "没有齐套结果，不推断短缺原因。"
+      },
+      {
+        "orderId": "Z9900004",
+        "scenarioId": "S08-standard-ready-06",
+        "status": "full_tag_T",
+        "readinessRowCount": 2,
+        "fullTagTRowCount": 2,
+        "dataLayer": "derived",
+        "riskCode": "none",
+        "riskLabel": "已有齐套标记（演示）",
+        "riskDetail": "两项演示物料均有 T 标记，不据此判断现场可开工。"
+      }
+    ],
+    "productBomMaterials": [
+      {
+        "productNo": "A.99.0001",
+        "productProduceNo": "A.99.0001",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 4200,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S01-all-ready",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0001",
+        "productProduceNo": "A.99.0001",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 4200,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S01-all-ready",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0002",
+        "productProduceNo": "A.99.0002",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 12500,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S02-key-shortage",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0002",
+        "productProduceNo": "A.99.0002",
+        "bomLevel": "003",
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "inputNum": 971,
+        "materialRate": 0.0777,
+        "mainTag": "T",
+        "scenarioId": "S02-key-shortage",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0003",
+        "productProduceNo": "A.99.0003",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "inputNum": 4398,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S03-stock-occupied",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0003",
+        "productProduceNo": "A.99.0003",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 2344,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S03-stock-occupied",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0004",
+        "productProduceNo": "A.99.0004",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "inputNum": 1764,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S04-supply-late",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0004",
+        "productProduceNo": "A.99.0004",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 4500,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S04-supply-late",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0005",
+        "productProduceNo": "A.99.0005",
+        "bomLevel": "002",
+        "materialNo": "BA.01.03.0169",
+        "materialName": "BA.01.03.0169 · 质量状态演示",
+        "inputNum": 14000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S05-quality-blocked",
+        "dataLayer": "mock",
+        "evidenceRef": "T205_stock_remain/T200_quality_state字段结构"
+      },
+      {
+        "productNo": "A.99.0005",
+        "productProduceNo": "A.99.0005",
+        "bomLevel": "003",
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "inputNum": 1452,
+        "materialRate": 0.1037,
+        "mainTag": "T",
+        "scenarioId": "S05-quality-blocked",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0006",
+        "productProduceNo": "A.99.0006",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 50000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S06-readiness-unknown",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0006",
+        "productProduceNo": "A.99.0006",
+        "bomLevel": "003",
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "inputNum": 50000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S06-readiness-unknown",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0007",
+        "productProduceNo": "A.99.0007",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 1050,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S07-shared-material",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0007",
+        "productProduceNo": "A.99.0007",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "inputNum": 1050,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S07-shared-material",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0008",
+        "productProduceNo": "A.99.0008",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 7714,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-01",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0008",
+        "productProduceNo": "A.99.0008",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 7714,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-01",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0009",
+        "productProduceNo": "A.99.0009",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 5150,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-02",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0009",
+        "productProduceNo": "A.99.0009",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 5150,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-02",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0010",
+        "productProduceNo": "A.99.0010",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 28000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-03",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0010",
+        "productProduceNo": "A.99.0010",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 28000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-03",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0011",
+        "productProduceNo": "A.99.0011",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 12000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-04",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0011",
+        "productProduceNo": "A.99.0011",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 12000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-04",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0012",
+        "productProduceNo": "A.99.0012",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 10352,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-05",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0012",
+        "productProduceNo": "A.99.0012",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 10352,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-05",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0013",
+        "productProduceNo": "A.99.0013",
+        "bomLevel": "002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "inputNum": 3000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-06",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      },
+      {
+        "productNo": "A.99.0013",
+        "productProduceNo": "A.99.0013",
+        "bomLevel": "003",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "inputNum": 3000,
+        "materialRate": 1,
+        "mainTag": "T",
+        "scenarioId": "S08-standard-ready-06",
+        "dataLayer": "mock",
+        "evidenceRef": "T201_sale_part_bom字段结构"
+      }
+    ],
+    "readinessResults": [
+      {
+        "orderId": "Z9900001",
+        "productNo": "A.99.0001",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-001",
+        "calcGuid": "CALC-DEMO-001",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 4200,
+        "remainNum": 5200,
+        "thisRemainNum": 4200,
+        "totalRemainNum": 4200,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S01-all-ready",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "合格库存可覆盖本订单需求。",
+        "stockEligibleNum": 5200,
+        "grossStockNum": 5200,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900001",
+        "productNo": "A.99.0001",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-002",
+        "calcGuid": "CALC-DEMO-001",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 4200,
+        "remainNum": 4200,
+        "thisRemainNum": 4200,
+        "totalRemainNum": 4200,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S01-all-ready",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "合格库存可覆盖本订单需求。",
+        "stockEligibleNum": 4200,
+        "grossStockNum": 4200,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900002",
+        "productNo": "A.99.0002",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-003",
+        "calcGuid": "CALC-DEMO-002",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 12500,
+        "remainNum": 3000,
+        "thisRemainNum": 3000,
+        "totalRemainNum": 3000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "F",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S02-key-shortage",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock-insufficient",
+        "riskCode": "key-shortage",
+        "riskLabel": "关键物料余量不足",
+        "riskDetail": "本订单演示需求 12500，可分配合格库存 3000，缺口 9500。",
+        "stockEligibleNum": 3000,
+        "grossStockNum": 3000,
+        "lackNum": 9500,
+        "allocationStatus": "insufficient",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": false,
+        "evidenceRef": "T205_stock_remain.remain_num + PA06库存分配规则"
+      },
+      {
+        "orderId": "Z9900002",
+        "productNo": "A.99.0002",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-004",
+        "calcGuid": "CALC-DEMO-002",
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "materialNum": 971,
+        "remainNum": 1000,
+        "thisRemainNum": 971,
+        "totalRemainNum": 971,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S02-key-shortage",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "该物料不是本订单当前风险来源。",
+        "stockEligibleNum": 1000,
+        "grossStockNum": 1000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900006",
+        "productNo": "A.99.0003",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-005",
+        "calcGuid": "CALC-DEMO-003",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "materialNum": 4398,
+        "remainNum": 10000,
+        "thisRemainNum": 2000,
+        "totalRemainNum": 10000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "F",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S03-stock-occupied",
+        "dataLayer": "mock",
+        "evidenceType": "calculation-only-occupancy",
+        "riskCode": "stock-occupied",
+        "riskLabel": "库存存在但当前可分配量不足",
+        "riskDetail": "合格库存中可分配给本订单 2000，演示需求 4398，缺口 2398；占用关系仅为受控 mock。",
+        "stockEligibleNum": 10000,
+        "grossStockNum": 10000,
+        "reservedByOtherNum": 8000,
+        "reservedByOtherOrderIds": [
+          "OTHER-ORDER-001",
+          "OTHER-ORDER-002"
+        ],
+        "allocationStatus": "partially-allocated-to-other-orders",
+        "allocationEvidence": "calculation-only; persistent T205_stock_remain_occupy is empty",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": false,
+        "lackNum": 2398,
+        "evidenceRef": "TA06_mr_calc_half_demand.remain_occupy_num字段结构；订单级占用为mock"
+      },
+      {
+        "orderId": "Z9900006",
+        "productNo": "A.99.0003",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-006",
+        "calcGuid": "CALC-DEMO-003",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 2344,
+        "remainNum": 5200,
+        "thisRemainNum": 2344,
+        "totalRemainNum": 5200,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S03-stock-occupied",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "该物料有足够演示库存。",
+        "stockEligibleNum": 5200,
+        "grossStockNum": 5200,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900007",
+        "productNo": "A.99.0004",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-007",
+        "calcGuid": "CALC-DEMO-004",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "materialNum": 1764,
+        "remainNum": 0,
+        "thisRemainNum": 0,
+        "totalRemainNum": 0,
+        "supplyOrderNo": "PO-DEMO-2404",
+        "supplyDeliveryDate": "2026-09-29 00:00:00",
+        "fullTag": "F",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S04-supply-late",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-supply-late",
+        "riskCode": "supply-late",
+        "riskLabel": "供应到货晚于开工",
+        "riskDetail": "本订单演示需求 1764；供应单 2026-09-29 到货，晚于 2026-09-25 计划开工。",
+        "stockEligibleNum": 0,
+        "grossStockNum": 0,
+        "supplyOrderNum": 6000,
+        "supplyOrderOccupyNum": 0,
+        "supplyOrderState": "run",
+        "supplyAuditTag": "T",
+        "supplyOpenNum": 6000,
+        "allocationStatus": "supply-arrives-after-start",
+        "allocationEvidence": "mock-derived-from-PA06-supply-rule",
+        "arrivalFeasible": false,
+        "arrivalStatus": "after-start",
+        "startDate": "2026-09-25 00:00:00",
+        "lackNum": 1764,
+        "evidenceRef": "T202_supply_order_detail字段结构 + 到货日期比较为mock派生"
+      },
+      {
+        "orderId": "Z9900007",
+        "productNo": "A.99.0004",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-008",
+        "calcGuid": "CALC-DEMO-004",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 4500,
+        "remainNum": 12000,
+        "thisRemainNum": 11200,
+        "totalRemainNum": 11200,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S04-supply-late",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "该物料有足够演示库存。",
+        "stockEligibleNum": 12000,
+        "grossStockNum": 12000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900005",
+        "productNo": "A.99.0005",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-009",
+        "calcGuid": "CALC-DEMO-005",
+        "materialNo": "BA.01.03.0169",
+        "materialName": "BA.01.03.0169 · 质量状态演示",
+        "materialNum": 14000,
+        "remainNum": 13,
+        "thisRemainNum": 0,
+        "totalRemainNum": 0,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "F",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S05-quality-blocked",
+        "dataLayer": "mock",
+        "evidenceType": "quality-blocked",
+        "riskCode": "quality-blocked",
+        "riskLabel": "质量状态不可用",
+        "riskDetail": "原始库存 13，其中 BHG=10、DCZ=3，合格可用量为 0。",
+        "stockEligibleNum": 0,
+        "grossStockNum": 13,
+        "qualityBlockedNum": 13,
+        "qualityStatesObserved": [
+          {
+            "qualityState": "BHG",
+            "qualityStateName": "不合格",
+            "remainNum": 10
+          },
+          {
+            "qualityState": "DCZ",
+            "qualityStateName": "待处置",
+            "remainNum": 3
+          }
+        ],
+        "allocationStatus": "quality-blocked",
+        "allocationEvidence": "mock-derived-from-T200_quality_state",
+        "qualityState": "BHG/DCZ",
+        "qualityStateName": "不合格/待处置",
+        "arrivalFeasible": false,
+        "lackNum": 14000,
+        "evidenceRef": "示例MES.T205_stock_remain + T200_quality_state实际状态样本"
+      },
+      {
+        "orderId": "Z9900005",
+        "productNo": "A.99.0005",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-010",
+        "calcGuid": "CALC-DEMO-005",
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "materialNum": 1452,
+        "remainNum": 1452,
+        "thisRemainNum": 1452,
+        "totalRemainNum": 1452,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S05-quality-blocked",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖",
+        "riskDetail": "该物料有足够合格库存。",
+        "stockEligibleNum": 1452,
+        "grossStockNum": 1452,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900011",
+        "productNo": "A.99.0007",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-011",
+        "calcGuid": "CALC-DEMO-007",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 1050,
+        "remainNum": 5200,
+        "thisRemainNum": 1500,
+        "totalRemainNum": 5200,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S07-shared-material",
+        "dataLayer": "mock",
+        "evidenceType": "shared-material",
+        "riskCode": "shared-material",
+        "riskLabel": "共享物料影响范围已识别",
+        "riskDetail": "C.02.02.0010 同时出现在 12 个订单 BOM 中，本订单获得演示覆盖。",
+        "stockEligibleNum": 5200,
+        "grossStockNum": 5200,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-shared-material-allocation",
+        "sharedOrderCount": 12,
+        "arrivalFeasible": true,
+        "evidenceRef": "materialImpactSummary派生 + T201_sale_part_bom字段结构"
+      },
+      {
+        "orderId": "Z9900011",
+        "productNo": "A.99.0007",
+        "systemNo": "731",
+        "detailGuid": "RD-DEMO-012",
+        "calcGuid": "CALC-DEMO-007",
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "materialNum": 1050,
+        "remainNum": 10000,
+        "thisRemainNum": 1500,
+        "totalRemainNum": 10000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S07-shared-material",
+        "dataLayer": "mock",
+        "evidenceType": "shared-material",
+        "riskCode": "shared-material",
+        "riskLabel": "共享物料影响范围已识别",
+        "riskDetail": "该物料同时被其他订单使用，页面只展示影响订单集合，不推断调整结果。",
+        "stockEligibleNum": 10000,
+        "grossStockNum": 10000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-shared-material-allocation",
+        "sharedOrderCount": 3,
+        "arrivalFeasible": true,
+        "evidenceRef": "materialImpactSummary派生 + T201_sale_part_bom字段结构"
+      },
+      {
+        "orderId": "Z9900010",
+        "productNo": "A.99.0008",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900010-1",
+        "calcGuid": "CALC-LINK-Z9900010",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 7714,
+        "remainNum": 15428,
+        "thisRemainNum": 7714,
+        "totalRemainNum": 7714,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-01",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 15428,
+        "grossStockNum": 15428,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900010",
+        "productNo": "A.99.0008",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900010-2",
+        "calcGuid": "CALC-LINK-Z9900010",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 7714,
+        "remainNum": 15428,
+        "thisRemainNum": 7714,
+        "totalRemainNum": 7714,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-01",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 15428,
+        "grossStockNum": 15428,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900013",
+        "productNo": "A.99.0009",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900013-1",
+        "calcGuid": "CALC-LINK-Z9900013",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 5150,
+        "remainNum": 10300,
+        "thisRemainNum": 5150,
+        "totalRemainNum": 5150,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-02",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 10300,
+        "grossStockNum": 10300,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900013",
+        "productNo": "A.99.0009",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900013-2",
+        "calcGuid": "CALC-LINK-Z9900013",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 5150,
+        "remainNum": 10300,
+        "thisRemainNum": 5150,
+        "totalRemainNum": 5150,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-02",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 10300,
+        "grossStockNum": 10300,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900008",
+        "productNo": "A.99.0010",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900008-1",
+        "calcGuid": "CALC-LINK-Z9900008",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 28000,
+        "remainNum": 56000,
+        "thisRemainNum": 28000,
+        "totalRemainNum": 28000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-03",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 56000,
+        "grossStockNum": 56000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900008",
+        "productNo": "A.99.0010",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900008-2",
+        "calcGuid": "CALC-LINK-Z9900008",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 28000,
+        "remainNum": 56000,
+        "thisRemainNum": 28000,
+        "totalRemainNum": 28000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-03",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 56000,
+        "grossStockNum": 56000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900012",
+        "productNo": "A.99.0011",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900012-1",
+        "calcGuid": "CALC-LINK-Z9900012",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 12000,
+        "remainNum": 24000,
+        "thisRemainNum": 12000,
+        "totalRemainNum": 12000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-04",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 24000,
+        "grossStockNum": 24000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900012",
+        "productNo": "A.99.0011",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900012-2",
+        "calcGuid": "CALC-LINK-Z9900012",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 12000,
+        "remainNum": 24000,
+        "thisRemainNum": 12000,
+        "totalRemainNum": 12000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-04",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 24000,
+        "grossStockNum": 24000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900009",
+        "productNo": "A.99.0012",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900009-1",
+        "calcGuid": "CALC-LINK-Z9900009",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 10352,
+        "remainNum": 20704,
+        "thisRemainNum": 10352,
+        "totalRemainNum": 10352,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-05",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 20704,
+        "grossStockNum": 20704,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900009",
+        "productNo": "A.99.0012",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900009-2",
+        "calcGuid": "CALC-LINK-Z9900009",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 10352,
+        "remainNum": 20704,
+        "thisRemainNum": 10352,
+        "totalRemainNum": 10352,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-05",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 20704,
+        "grossStockNum": 20704,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900004",
+        "productNo": "A.99.0013",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900004-1",
+        "calcGuid": "CALC-LINK-Z9900004",
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "materialNum": 3000,
+        "remainNum": 6000,
+        "thisRemainNum": 3000,
+        "totalRemainNum": 3000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-06",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 6000,
+        "grossStockNum": 6000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      },
+      {
+        "orderId": "Z9900004",
+        "productNo": "A.99.0013",
+        "systemNo": "731",
+        "detailGuid": "RD-LINK-Z9900004-2",
+        "calcGuid": "CALC-LINK-Z9900004",
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "materialNum": 3000,
+        "remainNum": 6000,
+        "thisRemainNum": 3000,
+        "totalRemainNum": 3000,
+        "supplyOrderNo": "",
+        "supplyDeliveryDate": "1900-01-01 00:00:00",
+        "fullTag": "T",
+        "demandVer": "DEMO-20260926",
+        "scenarioId": "S08-standard-ready-06",
+        "dataLayer": "mock",
+        "evidenceType": "eligible-stock",
+        "riskCode": "none",
+        "riskLabel": "库存覆盖（演示）",
+        "riskDetail": "受控演示库存可覆盖本订单演示需求；不代表实时库存。",
+        "stockEligibleNum": 6000,
+        "grossStockNum": 6000,
+        "allocationStatus": "assigned-to-this-order",
+        "allocationEvidence": "mock-derived-from-PA06-rule",
+        "qualityState": "HG",
+        "qualityStateName": "合格",
+        "arrivalFeasible": true,
+        "evidenceRef": "T205_stock_remain字段结构 + PA06库存过滤规则"
+      }
+    ],
+    "materialImpactSummary": [
+      {
+        "materialNo": "C.02.02.0010",
+        "materialName": "SKF4-28",
+        "orderCount": 12,
+        "orderIds": [
+          "Z9900001",
+          "Z9900002",
+          "Z9900006",
+          "Z9900007",
+          "Z9900003",
+          "Z9900011",
+          "Z9900010",
+          "Z9900013",
+          "Z9900008",
+          "Z9900012",
+          "Z9900009",
+          "Z9900004"
+        ],
+        "bomRowCount": 12,
+        "dataLayer": "derived",
+        "derivation": "productBomMaterials按materialNo聚合"
+      },
+      {
+        "materialNo": "C.02.02.0031",
+        "materialName": "SKF4-56",
+        "orderCount": 7,
+        "orderIds": [
+          "Z9900001",
+          "Z9900010",
+          "Z9900013",
+          "Z9900008",
+          "Z9900012",
+          "Z9900009",
+          "Z9900004"
+        ],
+        "bomRowCount": 7,
+        "dataLayer": "derived",
+        "derivation": "productBomMaterials按materialNo聚合"
+      },
+      {
+        "materialNo": "C.01.01.0001",
+        "materialName": "南钢SUJ2S1-21.4",
+        "orderCount": 3,
+        "orderIds": [
+          "Z9900002",
+          "Z9900005",
+          "Z9900003"
+        ],
+        "bomRowCount": 3,
+        "dataLayer": "derived",
+        "derivation": "productBomMaterials按materialNo聚合"
+      },
+      {
+        "materialNo": "C.02.02.0004",
+        "materialName": "SKF4-36",
+        "orderCount": 3,
+        "orderIds": [
+          "Z9900006",
+          "Z9900007",
+          "Z9900011"
+        ],
+        "bomRowCount": 3,
+        "dataLayer": "derived",
+        "derivation": "productBomMaterials按materialNo聚合"
+      },
+      {
+        "materialNo": "BA.01.03.0169",
+        "materialName": "BA.01.03.0169 · 质量状态演示",
+        "orderCount": 1,
+        "orderIds": [
+          "Z9900005"
+        ],
+        "bomRowCount": 1,
+        "dataLayer": "derived",
+        "derivation": "productBomMaterials按materialNo聚合"
+      }
+    ],
+    "validation": {
+      "expectedOrderCount": 13,
+      "expectedStatusCounts": {
+        "full_tag_T": 8,
+        "full_tag_F": 4,
+        "status_not_obtained": 1
+      },
+      "checks": [
+        {
+          "name": "order-status-reconcile",
+          "status": "required",
+          "rule": "orderStatuses与orders一一对应，readinessRowCount等于结果明细数"
+        },
+        {
+          "name": "unknown-does-not-invent-shortage",
+          "status": "required",
+          "rule": "status_not_obtained订单不生成readinessResults或短缺原因"
+        },
+        {
+          "name": "summary-detail-reconcile",
+          "status": "required",
+          "rule": "页面summary由orderStatuses和结果明细可重新聚合"
+        },
+        {
+          "name": "mock-boundary",
+          "status": "required",
+          "rule": "订单组合、占用关系、到货可行性和fullTag均标注synthetic-demo或mock"
+        }
+      ]
+    },
+    "limitations": [
+      "本场景为受控synthetic-demo，不代表实时业务库；字段结构和规则依据来自示例MES只读调查。",
+      "fullTag是演示中按PA06规则设计的结果，应用层只展示，不重新计算APS齐套。",
+      "fullTag=F不直接等同于已确认短缺；页面同时展示riskCode和证据边界。",
+      "S03的订单级占用、S04的可赶工判断和S07的共享分配是mock/派生场景，不是持久化数据库事实。",
+      "S06没有齐套结果，页面显示暂无法确认，不补写库存、供应或短缺原因。",
+      "当前只确认F20230N菜单存在，原系统页面源码、接口配置和勾选实现未取得。",
+      "不执行采购、补料、排程、派单或数据库写入。"
+    ]
+  }
+}

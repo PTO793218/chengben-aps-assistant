@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+**/node_modules
+**/bin
+**/obj
+**/dist
+**/TestResults
+**/test-results
+temp
+publish
+tests
+docs
+*.log

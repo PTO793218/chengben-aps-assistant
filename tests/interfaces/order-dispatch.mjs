@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+
+const base = process.env.BASE_URL || 'http://localhost:19440';
+const response = await fetch(base + '/api/agent/tools/order-dispatch-status', { signal: AbortSignal.timeout(15000) });
+assert.equal(response.status, 200);
+const result = await response.json();
+assert.equal(result.success, true);
+assert.equal(result.agentContext.source, 'synthetic-demo');
+assert.equal(result.agentContext.orderCount, 13);
+assert.equal(result.agentContext.dispatchInProgressOrderCount, 8);
+assert.equal(result.agentContext.completedOrderCount, 1);
+assert.equal(result.agentContext.closedOrderCount, 1);
+assert.equal(result.agentContext.taskNotGeneratedOrderCount, 3);
+assert.equal(result.agentContext.unmatchedTaskCount, 1);
+const block = result.uiPayload[0];
+assert.equal(block.type, 'order-dispatch');
+assert.equal(block.title, '订单—派工在制核对');
+assert.equal(block.spec.metrics.find(item => item.label === '订单总数').value, '13');
+assert.equal(block.spec.metrics.find(item => item.label === '派工在制').value, '8');
+assert.equal(block.spec.orderRows.length, 13);
+assert.equal(block.spec.taskRows.length, 14);
+assert.equal(block.spec.detailGroups.unmatchedTask.length, 1);
+assert.equal(block.spec.releaseStatusNote, '当前快照未取得（不代表未下发）');
+assert.ok(block.spec.limitations.some(item => item.includes('现场下发或流转凭证')));
+assert.ok(block.spec.limitations.every(item => !item.includes('taskTag')));
+assert.ok(!JSON.stringify(result).includes('已派给某人'));
+assert.equal((await fetch(base + '/api/agent/tools/plan-task-alignment')).status, 404);
+console.log('PASS: order-dispatch API counts, detail rows, risk boundary and removed new-entry route.');

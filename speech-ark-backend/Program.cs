@@ -1,0 +1,14 @@
+using WePilot.Speech.Options;
+using WePilot.Speech.Services;
+var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentVariables();
+builder.WebHost.UseUrls(builder.Configuration["ASPNETCORE_URLS"] ?? "http://127.0.0.1:18442");
+builder.Services.Configure<ArkSpeechOptions>(builder.Configuration.GetSection("ArkSpeech"));
+builder.Services.AddControllers();
+builder.Services.AddHttpClient();
+builder.Services.AddSingleton<VolcengineAsrProtocol>();
+builder.Services.AddScoped<VolcengineTtsService>();
+var app = builder.Build();
+app.UseWebSockets(new WebSocketOptions { KeepAliveInterval = TimeSpan.FromSeconds(20) });
+app.MapControllers();
+app.Run();

@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+<PropertyGroup><TargetFramework>net6.0</TargetFramework><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><NoWarn>$(NoWarn);SKEXP0010;NETSDK1138</NoWarn><SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings></PropertyGroup>
+<ItemGroup><PackageReference Include="Microsoft.SemanticKernel" Version="1.45.0" /></ItemGroup>
+<ItemGroup><EmbeddedResource Include="Data/production-demo.json" /></ItemGroup>
+</Project>
