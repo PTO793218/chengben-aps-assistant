@@ -1,23 +1,23 @@
 <template>
-  <article class="aps-card" :class="{ compact }">
+  <article class="aps-card" :class="{ compact, 'business-gantt':hideMetadata }">
     <header class="aps-card-header">
       <div>
         <small>{{ spec.eyebrow }}</small>
         <h3>{{ block.title }}</h3>
       </div>
       <div class="aps-card-actions">
-        <span>{{ spec.sourceLabel }}</span>
+        <span v-if="!hideMetadata">{{ spec.sourceLabel }}</span>
         <button v-if="compact" type="button" @click="openViewer">展开查看 <b>↗</b></button>
       </div>
     </header>
 
     <p class="aps-headline">{{ spec.headline }}</p>
-    <div class="aps-snapshot">
+    <div v-if="!hideMetadata" class="aps-snapshot">
       快照 {{ spec.snapshotId }} · 取数时间 {{ formatTime(spec.asOf) }}
       <template v-if="spec.range"> · 范围 {{ spec.range.start }} 至 {{ spec.range.end }}</template>
     </div>
 
-    <section class="aps-metrics" aria-label="关键指标">
+    <section v-if="spec.metrics?.length" class="aps-metrics" aria-label="关键指标">
       <div v-for="metric in spec.metrics || []" :key="metric.label">
         <strong>{{ metric.value }}<small>{{ metric.unit }}</small></strong>
         <span>{{ metric.label }}</span>
@@ -92,7 +92,7 @@
       </div>
     </section>
 
-    <footer v-if="!compact" class="aps-boundary">
+    <footer v-if="!compact&&!hideMetadata" class="aps-boundary">
       <strong>数据与能力边界</strong>
       <span v-for="item in spec.limitations || []" :key="item">{{ item }}</span>
     </footer>
@@ -109,7 +109,7 @@ import LineLoadPanel from "./LineLoadPanel.vue";
 
 echarts.use([BarChart, GridComponent, TooltipComponent, CanvasRenderer]);
 
-const props = defineProps({ block: { type: Object, required: true }, compact: { type: Boolean, default: false } });
+const props = defineProps({ block: { type: Object, required: true }, compact: { type: Boolean, default: false }, hideMetadata: Boolean });
 const emit = defineEmits(["open"]);
 const chartEl = ref();
 let chart;

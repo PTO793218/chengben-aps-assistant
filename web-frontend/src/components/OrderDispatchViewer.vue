@@ -4,13 +4,14 @@
       <div><button class="icon-button" aria-label="关闭订单派工在制核对详情" @click="$emit('close')"><Icon name="close" /></button><div><small>CHENGBEN · ORDER DISPATCH CHECK</small><h2>{{ item.title }}</h2></div></div>
       <span>受控演示 · 只读查看</span>
     </header>
-    <div class="aps-viewer-body"><OrderDispatchCard :block="item.block" :initial-filter="item.filter" :initial-line="item.line" /></div>
+    <div class="aps-viewer-body"><OrderDispatchCard :block="item.block" :initial-filter="item.filter" :initial-line="item.line" /><DemoWorkspaceContext :workspace="item.block.spec.workspace" @ask="$emit('ask',$event)" /></div>
   </section>
 </template>
 
 <script setup>
 import Icon from './Icon.vue';
 import OrderDispatchCard from './OrderDispatchCard.vue';
+import DemoWorkspaceContext from './DemoWorkspaceContext.vue';
 defineProps({ item: { type: Object, required: true } });
-defineEmits(['close']);
+defineEmits(['close','ask']);
 </script>

@@ -30,7 +30,11 @@ public sealed class BusinessOrderDispatch
         ToolResult result;
         try
         {
-            result = Build(Snapshot, lineId, orderId);
+            result = _context?.RealSourceRequested == true
+                ? Fail("真实订单派工尚未接入。", "未用模拟结果替代真实来源请求。")
+                : DemoWorkspaceProjection.Applies(_context?.DemoPlan,orderId)
+                    ? DemoWorkspaceProjection.Dispatch(_context!.DemoPlan!,lineId,(orderId??"").Trim().ToUpperInvariant())
+                    : Build(Snapshot, lineId, orderId);
         }
         catch (JsonException ex)
         {

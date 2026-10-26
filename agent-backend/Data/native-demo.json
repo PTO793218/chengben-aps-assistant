@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 4,
+  "demandVersion": "SIM-261019-13C",
+  "sourceVersion": "261016902",
+  "start": "2026-10-19",
+  "end": "2026-12-31",
+  "orders": [
+    {
+      "orderId": "Z9900021",
+      "productNo": "A.01.0119",
+      "quantity": 3100.0,
+      "dueDate": "2026-10-22",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-03"
+    },
+    {
+      "orderId": "Z9900006",
+      "productNo": "A.01.0433",
+      "quantity": 4200.0,
+      "dueDate": "2026-10-22",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-03"
+    },
+    {
+      "orderId": "Z9900012",
+      "productNo": "A.01.0447",
+      "quantity": 5150.0,
+      "dueDate": "2026-10-22",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-03"
+    },
+    {
+      "orderId": "Z9900009",
+      "productNo": "A.01.0549",
+      "quantity": 7714.0,
+      "dueDate": "2026-10-22",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-03"
+    },
+    {
+      "orderId": "Z9900025",
+      "productNo": "A.01.0083",
+      "quantity": 15860.0,
+      "dueDate": "2026-10-23",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-04"
+    },
+    {
+      "orderId": "Z9900010",
+      "productNo": "A.01.0396",
+      "quantity": 1050.0,
+      "dueDate": "2026-10-23",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-04"
+    },
+    {
+      "orderId": "Z9900026",
+      "productNo": "A.01.0167",
+      "quantity": 144000.0,
+      "dueDate": "2026-10-24",
+      "taskTag": "T",
+      "templateDueDate": "2026-07-05"
+    },
+    {
+      "orderId": "Z9900024",
+      "productNo": "A.03.0033",
+      "quantity": 3500.0,
+      "dueDate": "2026-10-25",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-06"
+    },
+    {
+      "orderId": "Z9900019",
+      "productNo": "A.01.0099",
+      "quantity": 31600.0,
+      "dueDate": "2026-10-29",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-10"
+    },
+    {
+      "orderId": "Z9900020",
+      "productNo": "A.01.0118",
+      "quantity": 20000.0,
+      "dueDate": "2026-10-29",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-10"
+    },
+    {
+      "orderId": "Z9900022",
+      "productNo": "A.01.0127",
+      "quantity": 25000.0,
+      "dueDate": "2026-10-29",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-10"
+    },
+    {
+      "orderId": "Z9900023",
+      "productNo": "A.01.0130",
+      "quantity": 9400.0,
+      "dueDate": "2026-10-29",
+      "taskTag": "F",
+      "templateDueDate": "2026-07-10"
+    }
+  ],
+  "baselineOrderIds": [
+    "Z9900021",
+    "Z9900006",
+    "Z9900012",
+    "Z9900009",
+    "Z9900025",
+    "Z9900010",
+    "Z9900026",
+    "Z9900024",
+    "Z9900019",
+    "Z9900020",
+    "Z9900022",
+    "Z9900023"
+  ],
+  "baselineResultId": "9132ab045dc24b71bc2ac19f6aed2fbf",
+  "baselineMrpResultId": "a8c4eb8518404d328497a75d73475ecf",
+  "mrpSource": "Synthetic sales demand aligned with planning input; independent unnumbered MRP",
+  "fixtureId": "SIM-NATIVE-INPUT-003",
+  "businessDate": "2026-10-19",
+  "inventoryDate": "2026-10-18",
+  "templatePlanningStart": "2026-10-16",
+  "supply": {
+    "material": "C.02.02.0031",
+    "stock": 500,
+    "inTransit": 2000,
+    "unit": "KG",
+    "purchaseOrder": "SIM-NATIVE-PO-001",
+    "arrival": "2026-10-21"
+  },
+  "inputFingerprint": "e2bc5871329d25d719ca3871b26950f7658878430ba10df770e221d4cc09cd89",
+  "insertionOrders": [
+    {
+      "orderId": "Z99100014",
+      "saleOrderGuid": "SIM-URGENT-26101901",
+      "templateOrderId": "Z9900010",
+      "productNo": "A.01.0396",
+      "quantity": 1050,
+      "dueDate": "2026-10-23",
+      "taskTag": "F",
+      "receivedDate": "2026-10-19"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 const groupKeys = {
   'all-orders': 'allOrders',
+  'all-tasks': 'allTasks',
   'dispatch-in-progress': 'dispatchInProgress',
   'dispatch-completed': 'dispatchCompleted',
   'dispatch-closed': 'dispatchClosed',
@@ -13,6 +14,7 @@ const groupKeys = {
 
 const labels = {
   'all-orders': '全部订单',
+  'all-tasks': '全部模拟任务',
   'dispatch-in-progress': '派工在制订单',
   'dispatch-completed': '已完成订单',
   'dispatch-closed': '已关闭订单',

@@ -55,7 +55,7 @@
 
     <footer class="material-boundary">
       <strong>先说明口径</strong>
-      <span>“未获得齐套标记”不是“已确认短缺”；没有返回结果的订单显示为“状态未取得”。</span>
+      <span>{{ spec.workspace?'本地共享分配已计算需求、库存、在途和缺口；未来供应覆盖须先等到货，不是原APS齐套标记。':'“未获得齐套标记”不是“已确认短缺”；没有返回结果的订单显示为“状态未取得”。' }}</span>
     </footer>
   </article>
 </template>

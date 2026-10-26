@@ -27,7 +27,7 @@ test('partially missing hours only changes the affected day color, preserving ot
 });
 
 test('every line/day reconciles task IDs and planned hours across both views, with filters',()=>{
- for(const filter of [{},{orderId:'Z9900001'},{lineId:'turn-1'},{scope:'risk'},{stage:'磨工'},{scope:'pending'}]){
+ for(const filter of [{},{orderId:'Z9900006'},{lineId:'turn-1'},{scope:'risk'},{stage:'磨工'},{scope:'pending'}]){
   const schedule=makeProductionScene(data,'schedule',filter,{start:data.coverageStart,end:data.coverageEnd});
   const calendar=makeProductionScene(data,'calendar',filter);
   for(const day of calendar.cells){

@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {initialDemoPlan,adoptDemoPlan,resetDemoPlan} from '../../web-frontend/src/services/demo-plan.js';
+import {businessHeadline,operationState} from '../../web-frontend/src/services/business-presentation.js';
+function inserted(p){const proposedPlan={...structuredClone(p),revision:p.revision+1,orderIds:['Z99100014',...p.orderIds],nativeResultId:'d'.repeat(32)};return{native:true,view:'insert',orderId:'Z99100014',demandVersion:p.demandVersion,baseRevision:p.revision,baseState:structuredClone(p),proposedPlan,calculationId:proposedPlan.nativeResultId,changes:proposedPlan.orderIds.map(orderId=>({orderId,added:orderId==='Z99100014'})),orders:proposedPlan.orderIds.map(orderId=>({orderId}))};}
+test('insertion adopts thirteen orders and restores twelve',()=>{const p=initialDemoPlan(),c=inserted(p),next=adoptDemoPlan(p,c);assert.equal(next.orderIds.length,13);assert.equal(next.orderIds[0],'Z99100014');assert.equal(next.nativeMrpResultId,p.nativeMrpResultId);assert.equal(operationState(c,next).key,'adopted');assert.equal(resetDemoPlan(next).orderIds.length,12);assert.throws(()=>adoptDemoPlan(next,c));});
+test('insert adoption rejects missing existing orders or unknown additions',()=>{const p=initialDemoPlan();for(const ids of [['Z99100014',...p.orderIds.slice(1)],['UNKNOWN',...p.orderIds]]){const c=inserted(p);c.proposedPlan.orderIds=ids;assert.throws(()=>adoptDemoPlan(p,c));}});
+test('confirmation explains a newly entering order',()=>{assert.match(businessHeadline({view:'insert',prepare:true,orders:Array(12),orderId:'Z99100014'}),/订单/);});

@@ -23,7 +23,7 @@
     </section>
 
     <template v-if="!compact">
-      <section class="alignment-charts">
+      <section v-if="!spec.workspace" class="alignment-charts">
         <div class="alignment-chart-panel">
           <div class="aps-section-heading"><div><i></i><strong>订单到派工状态关系</strong></div><small>点击节点查看订单明细</small></div>
           <OrderDispatchFlowChart v-if="spec.orderFlow?.available" :flow="spec.orderFlow" @select="openDetail" />
@@ -49,7 +49,7 @@
         <div v-if="!rows.length" class="aps-empty">当前筛选没有记录。</div>
         <div v-else class="aps-table-wrap">
           <table>
-            <thead><tr><th>类型</th><th>订单号</th><th>任务号</th><th>产品</th><th>产线</th><th>关联当前任务数</th><th>在制任务数</th><th>当前核对状态</th><th>核对结论</th></tr></thead>
+            <thead><tr><th>类型</th><th>订单号</th><th>任务号</th><th>产品</th><th>产线</th><th>关联当前任务数</th><th>在制任务数</th><th>当前核对状态</th><th>核对结论</th><th v-if="spec.workspace">任务数量 / 来源</th></tr></thead>
             <tbody><tr v-for="row in visibleRows" :key="row.rowType + '-' + row.id">
               <td>{{ row.rowType === 'order' ? '订单' : '当前任务' }}</td>
               <td>{{ row.orderNo || (row.rowType === 'order' ? row.number || row.id : '—') }}</td>
@@ -60,6 +60,7 @@
               <td>{{ formatCell(row.inProgressTaskCount) }}</td>
               <td :class="{ danger: row.risk === 'attention' }">{{ row.rowType === 'order' ? (row.status || '—') : (row.taskStatus || row.status || '—') }}</td>
               <td :class="{ danger: row.risk === 'attention' }">{{ row.reason || '—' }}</td>
+              <td v-if="spec.workspace"><template v-if="row.sourceCalculationId">{{ formatCell(row.taskQuantity) }}件 · 报工{{ formatCell(row.deliveryQuantity) }}<details><summary>{{ row.sourceCalculationId }} · {{ row.sourcePlanRecordIds?.length }}条计划记录</summary><p v-for="id in row.sourcePlanRecordIds" :key="id">{{ id }}</p></details></template><span v-else>查看模拟任务核对来源</span></td>
             </tr></tbody>
           </table>
         </div>
@@ -69,7 +70,7 @@
         <div><strong>来源核对提示</strong><p>{{ spec.dataCheck?.message || '当前没有需要核对的来源订单记录。' }}</p></div>
         <button v-if="spec.dataCheck?.unmatchedTaskCount" type="button" @click="openDetail('unmatched-task')">查看待核对任务</button>
       </section>
-      <p class="order-dispatch-status-note"><strong>现场下发状态</strong>：{{ spec.releaseStatusNote || '当前快照未取得（不代表未下发）' }}</p>
+      <p class="order-dispatch-status-note"><strong>{{ spec.workspace?'模拟下达状态':'现场下发状态' }}</strong>：{{ spec.releaseStatusNote || '当前快照未取得（不代表未下发）' }}</p>
 
       <section class="order-dispatch-risk">
         <div><strong>风险说明</strong><p>{{ spec.risk?.headline || '当前没有额外风险说明。' }}</p></div>
@@ -101,14 +102,14 @@ const visibleRows = computed(() => showAll.value ? rows.value : rows.value.slice
 const lineStatus = computed(() => buildTaskStatusByLine(spec.value));
 const activeLabel = computed(() => orderDispatchFilterLabel(activeFilter.value));
 const tableTitle = computed(() => activeLabel.value + (activeLine.value ? ' · ' + activeLine.value : '') + (rows.value.length > 10 && !showAll.value ? '（前10条）' : ''));
-const filters = [
+const filters = computed(()=>spec.value.workspace?[{key:'all-orders',label:'全部订单'},{key:'all-tasks',label:'全部模拟任务'}]:[
   { key: 'all-orders', label: '全部订单' },
   { key: 'dispatch-in-progress', label: '派工在制' },
   { key: 'task-not-generated', label: '未形成当前任务' },
   { key: 'dispatch-completed', label: '已完成' },
   { key: 'dispatch-closed', label: '已关闭' },
   { key: 'unmatched-task', label: '任务来源未取得' },
-];
+]);
 function selectFilter(filter, line = '') { activeFilter.value = filter; activeLine.value = line; showAll.value = false; }
 function openDetail(filter, line = '') {
   if (!props.compact) { selectFilter(filter || 'all-orders', line); return; }

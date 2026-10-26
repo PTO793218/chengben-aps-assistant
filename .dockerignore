@@ -12,3 +12,8 @@ publish
 tests
 docs
 *.log
+
+.env[0-9]*
+runtime
+output
+**/__pycache__

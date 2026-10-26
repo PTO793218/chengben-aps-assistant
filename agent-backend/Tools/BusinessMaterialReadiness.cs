@@ -23,7 +23,7 @@ public sealed class BusinessMaterialReadiness
     [Description("只读查询内置业务场景演示数据中的订单—物料齐套标记、BOM物料和库存/供应证据。all=查看范围摘要；order=查看指定订单；material=按物料名称或物料号追查影响订单。不得在应用层重新计算齐套。")]
     public string GetMaterialReadiness(
         [Description("all=范围摘要；order=指定订单；material=按物料名称或物料号查影响订单")] string scope = "all",
-        [Description("scope=order时填写订单号，例如Z9900001；不要要求用户记忆内部物料号")] string orderId = "",
+        [Description("scope=order时填写订单号，例如Z9900006；不要要求用户记忆内部物料号")] string orderId = "",
         [Description("scope=material时填写用户说的物料名称或物料号，例如SKF4-56、钢材；支持快照内包含的文本")] string materialQuery = "",
         [Description("可选APS需求版本；留空使用快照当前版本")] string version = "")
         => Execute(scope, orderId, materialQuery, version).ToModelJson();
@@ -34,7 +34,11 @@ public sealed class BusinessMaterialReadiness
         ToolResult result;
         try
         {
-            result = Build(Snapshot, scope, orderId, materialQuery, version);
+            result = _context?.RealSourceRequested == true
+                ? Fail("真实物料齐套尚未接入。", "未用模拟结果替代真实来源请求。")
+                : DemoWorkspaceProjection.Applies(_context?.DemoPlan,orderId)
+                    ? DemoWorkspaceProjection.Material(_context!.DemoPlan!,scope,(orderId??"").Trim().ToUpperInvariant(),materialQuery,version)
+                    : Build(Snapshot, scope, orderId, materialQuery, version);
         }
         catch (JsonException ex)
         {

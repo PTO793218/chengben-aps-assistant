@@ -68,8 +68,8 @@ test('frontend fallback reads the same snapshot as the embedded backend data', (
 
 test('frontend rows expose scenario risk and evidence provenance for the detail view', () => {
   const model = buildMaterialReadinessModel(snapshot);
-  const occupied = model.rows.find((row) => row.orderId === 'Z9900006');
-  const lateSupply = model.rows.find((row) => row.orderId === 'Z9900007');
+  const occupied = model.rows.find((row) => row.orderId === 'Z9900003');
+  const lateSupply = model.rows.find((row) => row.orderId === 'Z9900004');
   assert.equal(occupied.risk.riskCode, 'stock-occupied');
   assert.match(occupied.risk.riskLabel, /可分配量不足/);
   assert.match(occupied.risk.riskDetail, /受控 mock/);

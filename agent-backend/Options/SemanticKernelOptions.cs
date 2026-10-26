@@ -13,4 +13,8 @@ public sealed class SemanticKernelOptions
     public int MaxOutputTokens { get; set; } = 1600;
 
     public double Temperature { get; set; } = 0.2;
+
+    public bool ThinkingEnabled { get; set; } = true;
+
+    public string ReasoningEffort { get; set; } = "high";
 }

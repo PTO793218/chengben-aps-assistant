@@ -19,9 +19,8 @@ public sealed class ApsAnalysisTools
     [Description("查看未完工订单的排程总览。返回简短事实给AI，并把完整指标、二维甘特图和订单明细直接交给前端渲染。只读，不重排。")]
     public string GetPlanOverview(
         [Description("可选开始日期 YYYY-MM-DD；空值使用示例默认范围")] string startDate = "",
-        [Description("可选结束日期 YYYY-MM-DD；空值使用示例默认范围")] string endDate = "",
-        [Description("all=全部未完工订单；incomplete=仅部分已排或尚未排入的订单，不推断原因")] string scheduleScope = "all")
-        => Execute("overview", "", startDate, endDate, scheduleScope: scheduleScope).ToModelJson();
+        [Description("可选结束日期 YYYY-MM-DD；空值使用示例默认范围")] string endDate = "")
+        => Execute("overview", "", startDate, endDate).ToModelJson();
 
     [KernelFunction("get_delivery_risks")]
     [Description("查看计划交期风险订单。返回风险结论，并把风险订单甘特图和交期明细直接交给前端。只读，不承诺交付。")]
@@ -31,9 +30,9 @@ public sealed class ApsAnalysisTools
         => Execute("risk", "", startDate, endDate).ToModelJson();
 
     [KernelFunction("get_order_schedule")]
-    [Description("查看一个订单已有的排程记录、工段、日期、班次和产线，并附相关产线整线负载、本单占用、工作日历理论工时，界面支持年/月/日。默认真实业务快照；仅明确要合成演示才传source=demo。不判断齐套、完工或排入完整性。")]
+    [Description("查看一个订单已有的排程记录、工序、日期、班次和产线。实际可见功能以当次返回能力为准：当前工作区只提供工序排程；部分历史快照另含负载与日期视图，不能通用声称已提供。当前工作区传source=demo，明确真实业务快照才用business。不判断齐套、完工或排入完整性。")]
     public string GetOrderSchedule(
-        [Description("完整订单号，例如 Z9900001")] string orderId,
+        [Description("完整订单号，例如 Z9900006")] string orderId,
         [Description("可选开始日期 YYYY-MM-DD；真实查询空值取订单最早计划日期")] string startDate = "",
         [Description("可选结束日期 YYYY-MM-DD；真实查询空值取订单最晚计划日期")] string endDate = "",
         [Description("可选需求版本号；空值使用已加载快照版本，不存在的版本报错")] string version = "",
@@ -42,6 +41,7 @@ public sealed class ApsAnalysisTools
 
     public ToolResult Execute(string viewType, string orderId = "", string startDate = "", string endDate = "", string version = "", string source = "", string scheduleScope = "all")
     {
+        if (_context.RealSourceRequested) source = "business";
         var watch = System.Diagnostics.Stopwatch.StartNew();
         var result = ExecuteCore(viewType, orderId, startDate, endDate, version, source, scheduleScope);
         _context.ToolCalls.Add(new()
@@ -60,13 +60,19 @@ public sealed class ApsAnalysisTools
         scheduleScope = (scheduleScope ?? "all").Trim().ToLowerInvariant();
         if (viewType is not ("overview" or "risk" or "order"))
             return Fail("不支持的分析类型。", "viewType 使用 overview/risk/order。");
-        if (scheduleScope is not ("all" or "incomplete") || viewType != "overview" && scheduleScope != "all")
-            return Fail("不支持的排入状态筛选。", "生产计划总览的 scheduleScope 使用 all 或 incomplete。");
+        if (scheduleScope != "all")
+            return Fail("订单未排完整场景已移除。", "请查询生产计划、指定订单安排或物料核对；不再提供排入完整性筛选。");
         if (viewType == "order" && orderId.Length == 0)
-            return Fail("查看单订单排程需要订单号。", "请提供完整订单号，例如 Z9900001。");
+            return Fail("查看单订单排程需要订单号。", "请提供完整订单号，例如 Z9900006。");
         source = (source ?? "").Trim().ToLowerInvariant();
         if (source is not ("" or "business" or "demo")) return Fail("数据来源无效。", "source使用business或demo。");
         if (source == "business" && viewType != "order") return Fail("真实总览与风险查询尚未接入。", "当前仅支持真实单订单查询。");
+        if (source!="business" && DemoWorkspaceProjection.Applies(_context.DemoPlan,orderId))
+        {
+            var current=DemoWorkspaceProjection.Schedule(_context.DemoPlan!,viewType,orderId,startDate,endDate,version,scheduleScope);
+            if (_emitted.Add($"workspace|{viewType}|{orderId}|{startDate}|{endDate}|{scheduleScope}")) _context.UiPayload.AddRange(current.UiPayload);
+            return current;
+        }
         if (viewType == "order" && (source == "business" || source == "" && _business?.IsConfigured == true))
         {
             var real = _business?.Execute(orderId, version.Trim(), startDate, endDate)

@@ -1,0 +1,40 @@
+using System.Text.Json;
+using WePilot.Agent.Tools;
+using WePilot.Agent.Tools.Results;
+using WePilot.Agent.Agents;
+var output=Environment.GetEnvironmentVariable("PLAN_OPERATION_OUTPUT")??"output/verification/urgent-insert-20261019/tool-flow.json";
+var p=new DemoPlanState{SchemaVersion=4,DemandVersion=NativeDemoWorkspace.Version,OrderIds=NativeDemoWorkspace.Ids,SupplyScenario="frozen",NativeResultId=NativeDemoGateway.Config.GetProperty("baselineResultId").GetString()!,NativeMrpResultId=NativeDemoGateway.Config.GetProperty("baselineMrpResultId").GetString()!};
+var context=new ToolExecutionContext{DemoPlan=p};var tools=new InteractiveDemoTools(context);var records=new List<object>();var checks=new List<string>();
+void Check(bool ok,string message){if(!ok)throw new InvalidOperationException(message);checks.Add(message);}
+JsonElement Add(string label,ToolResult result){Check(result.Success,label+":"+result.Summary);records.Add(new{label,result,reply=NativeReplyGuard.Present(result.Summary,result.UiPayload,label)});return JsonSerializer.SerializeToElement(result.UiPayload.Single().Spec,NativeDemoGateway.Json);}
+ToolResult Act(string action,string id="")=>tools.Execute(action,id,1,quantity:0,scenario:"frozen",plan:p,version:p.DemandVersion);
+void Adopt(JsonElement s){p=JsonSerializer.Deserialize<DemoPlanState>(s.GetProperty("proposedPlan"),NativeDemoGateway.Json)!;context.DemoPlan=p;Check(NativeDemoWorkspace.Valid(p),"采用/保存后的状态有效");}
+Add("overview",NativeDemoWorkspace.Query(p,"overview"));
+Add("prepare-insert",Act("prepare-insert","Z99100014"));
+var trial=Add("insert",Act("insert","Z99100014"));
+Check(p.OrderIds.Length==12,"试排未自动改变当前12单");
+Check(trial.GetProperty("orders").GetArrayLength()==13,"新增单进入13单整批试排");
+var added=trial.GetProperty("changes").EnumerateArray().Single(x=>x.GetProperty("orderId").GetString()=="Z99100014");
+Check(added.GetProperty("added").GetBoolean()&&added.GetProperty("beforeEnd").ValueKind==JsonValueKind.Null,"新增单原来未入排，未虚构前日期");
+Check(trial.GetProperty("chart").GetProperty("items").EnumerateArray().Any(x=>x.GetProperty("orderId").GetString()=="Z99100014"),"原过程为新增单生成实际工序计划");
+Adopt(trial);Check(p.OrderIds.Length==13&&p.OrderIds[0]=="Z99100014","采用后确切13单及急单输入顺序生效");
+Check(!Act("prepare-insert","Z99100014").Success,"拒绝重复插入");
+Check(!Act("prepare-insert","Z99999999").Success,"拒绝未知订单");
+Add("overview-after",NativeDemoWorkspace.Query(p,"overview"));
+var risk=Add("risk",NativeDemoWorkspace.Query(p,"risk"));
+Check(risk.GetProperty("orders").GetArrayLength()==NativeDemoWorkspace.Orders(NativeDemoGateway.Read(p.NativeResultId)).Count(o=>o.Risk),"13单风险由新计划自然计算");
+var pending=Add("material-pending",NativeDemoWorkspace.Query(p,"material","Z99100014"));
+Check(pending.GetProperty("mrpRows").GetArrayLength()==0&&pending.GetProperty("mrpPendingOrderIds").GetArrayLength()==1,"不把原12单MRP冒充新增单核算");
+Add("prepare-mrp",Act("prepare-mrp","Z99100014"));
+var planId=p.NativeResultId;var mrp=Add("mrp",Act("mrp","Z99100014"));Adopt(mrp);
+Check(p.NativeResultId==planId,"保存13单独立MRP不改变生产计划");
+Check(NativeDemoGateway.Read(p.NativeMrpResultId,true).GetProperty("inputOrderIds").GetArrayLength()==13,"MRP核算完整13单");
+var material=Add("material",NativeDemoWorkspace.Query(p,"material","Z99100014"));
+Check(material.GetProperty("mrpRows").GetArrayLength()>0&&material.GetProperty("materialRows").GetArrayLength()>0,"新增单独立MRP与计划用料均可核对");
+Add("order",NativeDemoWorkspace.Query(p,"order","Z99100014"));
+var tasks=Add("dispatch",NativeDemoWorkspace.Query(p,"dispatch","Z99100014"));Check(tasks.GetProperty("tasks").GetArrayLength()==0,"新增订单不虚构派工任务");
+Add("prepare-release",Act("prepare-release"));
+var release=Add("release",Act("release"));Check(release.GetProperty("receipt").GetProperty("sourceResultId").GetString()==planId,"下发承接已采用13单结果，不重算");Adopt(release);
+Check(!Act("prepare-insert","Z99100014").Success,"下发后禁止再插入");
+Directory.CreateDirectory(Path.GetDirectoryName(output)!);File.WriteAllText(output,JsonSerializer.Serialize(new{status="PASS",paidModelCalls=0,checks,records,plan=p},new JsonSerializerOptions(NativeDemoGateway.Json){WriteIndented=true}));
+Console.WriteLine($"PASS {checks.Count} checks; 12 -> 13 orders; model calls 0");

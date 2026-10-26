@@ -9,12 +9,13 @@
     </header>
 
     <div class="material-viewer-body">
+      <DemoWorkspaceContext :workspace="spec.workspace" @ask="$emit('ask',$event)" />
       <section class="material-scope-strip" aria-label="快照范围">
-        <div><small>APS版本</small><strong>{{ model.snapshotId }}</strong></div>
+        <div><small>{{ spec.workspace?'模拟需求版本':'APS版本' }}</small><strong>{{ spec.demandVersion||model.snapshotId }}</strong></div>
         <div><small>系统</small><strong>{{ model.systemNo }}</strong></div>
         <div><small>覆盖订单</small><strong>{{ model.summary.totalOrders }} <em>单</em></strong></div>
         <div><small>已取得齐套结果</small><strong>{{ resultCount }} <em>单 / {{ model.summary.coveragePercent }}%</em></strong></div>
-        <div class="scope-note"><Icon name="info" /><span>以下内容只按快照已有字段展示，未重新计算齐套。</span></div>
+        <div class="scope-note"><Icon name="info" /><span>{{ spec.workspace?'本地共享物料分配计算；未来在途须先到货再排程，不是原APS齐套记录。':'以下内容只按快照已有字段展示，未重新计算齐套。' }}</span></div>
       </section>
 
       <section class="material-viewer-intro">
@@ -34,7 +35,7 @@
 
       <section class="material-legend" aria-label="状态说明">
         <span v-for="item in legend" :key="item.key"><i :class="`legend-${item.tone}`"></i>{{ item.label }}</span>
-        <span class="legend-note">F 只按原系统含义展示，不改称“短缺”</span>
+        <span class="legend-note">{{ spec.workspace?'模拟覆盖状态来自整批共享分配，含未来供应。':'F 只按原系统含义展示，不改称“短缺”' }}</span>
       </section>
 
       <section class="material-workspace">
@@ -65,7 +66,7 @@
                   <td v-for="cell in row.materials" :key="cell.materialNo" :class="{ selected: isSelected(row, cell), 'not-applicable-cell': cell.status.key === 'not-applicable' }">
                     <button type="button" class="matrix-cell" :disabled="cell.status.key === 'not-applicable'" :aria-label="`${row.orderId} ${cell.materialName} ${cell.status.label}`" @click="selectCell(row, cell)">
                       <span class="material-status" :class="`status-${cell.status.tone}`">{{ cell.status.shortLabel }}</span>
-                      <small v-if="cell.evidence">{{ formatQuantity(cell.evidence.remainNum) }} 可用</small>
+                      <small v-if="cell.evidence">{{ formatQuantity(cell.evidence.remainNum) }} {{ spec.workspace?'库存分配':'可用' }}</small>
                       <small v-else-if="cell.status.key === 'unknown'">暂无结果</small>
                       <small v-else-if="cell.status.key === 'not-applicable'">—</small>
                     </button>
@@ -86,15 +87,16 @@
             <div class="selected-material"><span>{{ selectedCell.cell.label }}</span><strong>{{ selectedCell.cell.materialName }}</strong><small>{{ selectedCell.cell.materialNo }}</small></div>
             <dl class="material-facts">
               <div><dt>本订单物料需求</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.materialNum) }}</dd></div>
-              <div><dt>可用余量</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.remainNum) }}</dd></div>
-              <div><dt>本订单余量</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.thisRemainNum) }}</dd></div>
-              <div><dt>总余量</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.totalRemainNum) }}</dd></div>
+              <div><dt>{{ spec.workspace?'本单库存分配kg':'可用余量' }}</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.remainNum) }}</dd></div>
+              <div><dt>{{ spec.workspace?'本单在途分配kg':'本订单余量' }}</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.thisRemainNum) }}</dd></div>
+              <div><dt>{{ spec.workspace?'本单物料缺口kg':'总余量' }}</dt><dd>{{ formatQuantity(selectedCell.cell.evidence?.totalRemainNum) }}</dd></div>
               <div><dt>供应单号</dt><dd>{{ selectedCell.cell.evidence?.supplyOrderNo || '当前结果未带供应单' }}</dd></div>
               <div><dt>供应到货日期</dt><dd>{{ supplyDate(selectedCell.cell.evidence?.supplyDeliveryDate) }}</dd></div>
             </dl>
             <div class="material-evidence-callout" :class="`callout-${selectedCell.cell.status.tone}`">
               <strong>{{ selectedCell.cell.status.label }}</strong>
-              <p v-if="selectedCell.cell.status.key === 'not-obtained'">当前快照返回了 APS 齐套结果，但该结果的标记为 F；页面不把它进一步解释为已确认短缺。</p>
+              <p v-if="spec.workspace">本地模拟分配结果：{{ selectedCell.cell.status.key==='ready'?'已由库存和指定在途覆盖，依所需物料全部到货日排程；不代表今天可开工。':'仍有明确数量缺口，尚无补足日期，阻止完整排入计划。' }}这些是模拟计算证据，不是原系统fullTag。</p>
+              <p v-else-if="selectedCell.cell.status.key === 'not-obtained'">当前快照返回了 APS 齐套结果，但该结果的标记为 F；页面不把它进一步解释为已确认短缺。</p>
               <p v-else-if="selectedCell.cell.status.key === 'ready'">当前快照返回了 APS 齐套结果，标记为 T；页面不在前端重新计算。</p>
               <p v-else>当前快照没有这笔订单—物料的齐套结果，页面不补写库存、供应或短缺结论。</p>
               <div v-if="selectedCell.cell.evidence?.riskLabel" class="material-risk-explanation"><b>{{ selectedCell.cell.evidence.riskLabel }}</b><span>{{ selectedCell.cell.evidence.riskDetail }}</span><small>证据层：{{ selectedCell.cell.evidence.dataLayer || 'snapshot' }}<template v-if="selectedCell.cell.evidence.evidenceRef"> · {{ selectedCell.cell.evidence.evidenceRef }}</template></small></div>
@@ -111,7 +113,8 @@
 
       <section class="material-boundary-panel">
         <div class="material-boundary-title"><Icon name="info" /><div><strong>本页能回答什么</strong><span>先定位订单和物料，再决定是否回原 APS 核对</span></div></div>
-        <div class="material-boundary-grid">
+        <div v-if="spec.workspace" class="material-boundary-grid"><p><b>能看</b>同一版本12单共享钢材的需求、分配、缺口和到货对排程的影响；8张已开工保留模拟锁定物料与作业，4张未开工可调序。</p><p><b>下一步</b>调整模拟供应或订单顺序后试算整批影响，采用后所有查询同步。</p><p><b>边界</b>本地模拟；不连接真实库存、不下采购单，未来到货不等于今天可开工。</p></div>
+        <div v-else class="material-boundary-grid">
           <p><b>能看</b>订单范围、BOM 材料、已有齐套标记、快照返回的库存/供应证据。</p>
           <p><b>不能直接看</b>前端重算后的短缺原因、准确的订单级物料分配、供应晚到对工序的确定影响。</p>
           <p><b>下一步</b>点击具体单元查看证据；若要做影响分析，需要原系统接口或补充关联字段。</p>
@@ -124,10 +127,11 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 import Icon from './Icon.vue';
+import DemoWorkspaceContext from './DemoWorkspaceContext.vue';
 import { formatMaterialQuantity } from '../services/material-readiness.js';
 
 const props = defineProps({ item: { type: Object, required: true } });
-defineEmits(['close']);
+defineEmits(['close','ask']);
 const spec = computed(() => props.item.block?.spec || {});
 const model = computed(() => spec.value.model || { columns: [], rows: [], summary: {} });
 const activeFilter = ref('all');
@@ -135,18 +139,18 @@ const query = ref('');
 const selectedOrderId = ref('');
 const selectedMaterialNo = ref('');
 
-const filters = [
+const filters = computed(()=>[
   { key: 'all', label: '全部' },
-  { key: 'ready', label: '已有齐套标记' },
-  { key: 'not-obtained', label: '未获得齐套标记' },
+  { key: 'ready', label: spec.value.workspace?'模拟供应已覆盖':'已有齐套标记' },
+  { key: 'not-obtained', label: spec.value.workspace?'模拟物料缺口':'未获得齐套标记' },
   { key: 'unknown', label: '状态未取得' },
-];
-const legend = [
-  { key: 'ready', label: '已有齐套标记', tone: 'ready' },
-  { key: 'not-obtained', label: '未获得齐套标记', tone: 'not-obtained' },
+]);
+const legend = computed(()=>[
+  { key: 'ready', label: spec.value.workspace?'模拟供应已覆盖':'已有齐套标记', tone: 'ready' },
+  { key: 'not-obtained', label: spec.value.workspace?'模拟物料缺口':'未获得齐套标记', tone: 'not-obtained' },
   { key: 'unknown', label: '状态未取得', tone: 'unknown' },
   { key: 'not-applicable', label: '不适用', tone: 'not-applicable' },
-];
+]);
 
 const filteredRows = computed(() => {
   const text = query.value.trim().toLowerCase();

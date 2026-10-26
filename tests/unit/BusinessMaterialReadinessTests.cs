@@ -33,7 +33,7 @@ public sealed class BusinessMaterialReadinessTests
             && evidence.GetProperty("scenarioId").GetString() == "S04-supply-late"
             && evidence.GetProperty("riskCode").GetString() == "supply-late");
 
-        var focused = BusinessMaterialReadiness.Build(snapshot, scope: "order", orderId: "Z9900001");
+        var focused = BusinessMaterialReadiness.Build(snapshot, scope: "order", orderId: "Z9900006");
         Assert.True(focused.Success);
         Assert.Contains("2 条物料结果", focused.Summary);
         var focusedContext = JsonSerializer.SerializeToElement(focused.AgentContext);

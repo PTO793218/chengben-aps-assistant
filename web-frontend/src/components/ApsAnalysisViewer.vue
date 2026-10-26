@@ -9,6 +9,7 @@
     </header>
     <div class="aps-viewer-body">
       <ApsAnalysisCard :block="item.block" />
+      <DemoWorkspaceContext :workspace="item.block.spec.workspace" @ask="$emit('ask',$event)" />
     </div>
   </section>
 </template>
@@ -16,6 +17,7 @@
 <script setup>
 import Icon from "./Icon.vue";
 import ApsAnalysisCard from "./ApsAnalysisCard.vue";
+import DemoWorkspaceContext from './DemoWorkspaceContext.vue';
 defineProps({ item: { type: Object, required: true } });
-defineEmits(["close"]);
+defineEmits(["close","ask"]);
 </script>

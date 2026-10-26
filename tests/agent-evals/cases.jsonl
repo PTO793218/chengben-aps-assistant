@@ -1,0 +1,16 @@
+{"id":"sample-bar","input":"请调用示例工具，用柱状图显示数据，并告诉我合计。","chartType":"bar","mustContain":["320","示例"]}
+{"id":"sample-line","input":"请调用示例工具，用折线图展示数据。","chartType":"line","mustContain":["示例"]}
+{"id":"sample-pie","input":"请调用示例工具，用饼图展示数据。","chartType":"pie","mustContain":["示例"]}
+{"id":"aps-overview","input":"查看合成示例的生产计划总览。","viewType":"overview","source":"synthetic-demo","tool":"get_plan_overview","toolCount":1,"mustContain":["12"]}
+{"id":"aps-incomplete-removed","input":"演示数据里哪些订单还没有完整排入计划？","noTool":true,"mustContain":["移除"]}
+{"id":"aps-risk","input":"合成示例中哪些订单有计划交期风险？","viewType":"risk","source":"synthetic-demo","tool":"get_delivery_risks","toolCount":1,"mustContain":["风险"]}
+{"id":"aps-demo-order","input":"查询演示订单 Z9900006 的排程。","viewType":"order","source":"synthetic-demo","orderId":"Z9900006","tool":"get_order_schedule","toolCount":1,"mustContain":["Z9900006"]}
+{"id":"aps-real-order","input":"查询真实订单 Z9900027 的排程，版本 260904001，不指定日期。","viewType":"order","source":"business-snapshot","orderId":"Z9900027","version":"260904001","tool":"get_order_schedule","recordCount":4,"mustContain":["Z9900027","260904001"],"mustNotContain":["合成","已排完整","齐套已"]}
+{"id":"aps-real-range","input":"查询真实订单 Z9900027，版本260904001，只看2026-09-19至2026-09-20的计划。","viewType":"order","source":"business-snapshot","orderId":"Z9900027","version":"260904001","startDate":"2026-09-19","endDate":"2026-09-20","tool":"get_order_schedule","recordCount":2,"mustContain":["Z9900027"]}
+{"id":"aps-missing-version","input":"查询真实订单 Z9900027，需求版本999999999。","tool":"get_order_schedule","failure":true,"mustContain":["260904001"]}
+{"id":"aps-real-overview-unavailable","input":"查询真实业务的所有订单交期风险，不要合成示例。","noTool":true,"mustContain":[]}
+{"id":"aps-write-unavailable","input":"把订单 Z9900027 插到第一位并重排下发。","noTool":true,"mustContain":[]}
+{"id":"aps-order-load","input":"真实订单Z9900027，版本260904001，用到的产线负载如何？看看理论工时和本单占用。","viewType":"order","source":"business-snapshot","orderId":"Z9900027","version":"260904001","tool":"get_order_schedule","recordCount":4,"lineLoad":true,"mustContain":["负载"],"mustNotContain":["尚未接入","无法查询产能","已排完整"]}
+{"id":"order-dispatch-status","input":"哪些订单已经形成派工？重点看看派工在制和暂未取得来源订单的任务。","tool":"get_order_dispatch_status","blockType":"order-dispatch","toolCount":1,"mustContain":["派工","任务"],"mustNotContain":["尚未生成对应任务","孤立任务"]}
+{"id":"order-dispatch-one","input":"演示订单 Z9900006 派工了吗？","tool":"get_order_dispatch_status","blockType":"order-dispatch","orderId":"Z9900006","toolCount":1,"mustContain":["Z9900006","派工"]}
+{"id":"material-readiness","input":"这周要排的单里，哪些料还没齐？先把可能开不了工的订单列出来。","tool":"get_material_readiness","blockType":"material-readiness","scope":"all","source":"synthetic-demo","toolCount":1,"mustContain":["未获得","齐套"],"mustNotContain":["物料齐备，可开工","数据同步","齐套检查尚未完成","物料维度确认无问题"]}

@@ -24,13 +24,13 @@ public sealed class ProductionToolTests
     {
         var context = new ToolExecutionContext(); var tool = new ProductionTools(context);
         tool.Execute(); tool.Execute(); Assert.Single(context.UiPayload);
-        tool.Execute("Z9900001"); Assert.Equal(2, context.UiPayload.Count);
+        tool.Execute("Z9900006"); Assert.Equal(2, context.UiPayload.Count);
     }
     [Fact]
     public void UnscheduledOrderHasNoInventedDatesAndUnknownOrderHasNoMatches()
     {
         var tool = new ProductionTools(new());
-        using var json = JsonDocument.Parse(tool.Execute("Z9900006").ToModelJson());
+        using var json = JsonDocument.Parse(tool.Execute("Z9900003").ToModelJson());
         var facts = json.RootElement.GetProperty("agentContext");
         Assert.Equal(1, facts.GetProperty("orderCount").GetInt32());
         Assert.Equal(0, facts.GetProperty("tasks").GetArrayLength());

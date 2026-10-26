@@ -10,6 +10,7 @@ WORKDIR /src
 COPY web-frontend/ ./web-frontend/
 # material-readiness.js imports this verified demo snapshot at build time.
 COPY agent-backend/Data/production-demo.json ./agent-backend/Data/production-demo.json
+COPY agent-backend/Data/native-demo.json ./agent-backend/Data/native-demo.json
 WORKDIR /src/web-frontend
 RUN pnpm build
 FROM ${NGINX_IMAGE}

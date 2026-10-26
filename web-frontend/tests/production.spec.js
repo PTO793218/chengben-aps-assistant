@@ -21,18 +21,18 @@ test('chat previews open only on click, filters and order followup survive retur
  await expect(page.locator('.production-scene canvas')).toBeVisible();
  await page.waitForTimeout(450);
  await page.screenshot({path:'../temp/screenshots/production-schedule.png',fullPage:true});
- await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900001');
+ await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900006');
  await expect(page.locator('.production-count')).toHaveText('1 个订单');
  await page.getByRole('button',{name:'班次明细',exact:true}).click();
  await expect(page.locator('.production-task-list button')).toHaveCount(12);
  await page.locator('.production-task-list button').first().click();
  await expect(page.getByText('工段 / 工序',{exact:true})).toBeVisible();
  await page.getByRole('button',{name:'回到聊天，继续问这个订单',exact:true}).click();
- await expect(page.getByRole('textbox',{name:'输入问题'})).toHaveValue(/Z9900001/);
+ await expect(page.getByRole('textbox',{name:'输入问题'})).toHaveValue(/Z9900006/);
  await expect(page.getByRole('region',{name:'生产计划全景'})).toHaveCount(0);
  expect(await page.locator('.message-scroll').evaluate(el=>el.scrollTop)).toBeCloseTo(scroll,0);
  await page.getByRole('button',{name:'查看订单排程全景',exact:true}).click();
- await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900006');
+ await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900003');
  await page.getByRole('button',{name:'待排 3',exact:true}).click();
  await expect(page.locator('.production-pending-list button')).toHaveCount(3);
   await expect(page.locator('.production-empty-overlay')).toContainText('当前日期范围没有已排任务');
@@ -106,7 +106,7 @@ test('both scenes provide readable plane labels, separate shifts and optional ro
 
 test('shift hover provides material fields and spacing moves labels without fitting back',async({page})=>{
  await page.getByRole('button',{name:'查看订单排程全景',exact:true}).click();
- await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900001');
+ await page.getByLabel('订单筛选',{exact:true}).selectOption('Z9900006');
  await page.getByLabel('产线筛选',{exact:true}).selectOption('turn-1');
  await page.getByLabel('开始日期').fill('2026-09-07');
  await page.getByLabel('结束日期').fill('2026-09-07');

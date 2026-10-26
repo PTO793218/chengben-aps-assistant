@@ -14,3 +14,9 @@ playwright-report/
 *.log
 .DS_Store
 Thumbs.db
+
+.env[0-9]*
+runtime/
+__pycache__/
+*.pyc
+.playwright-cli/

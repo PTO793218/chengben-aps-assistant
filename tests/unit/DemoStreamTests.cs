@@ -78,14 +78,17 @@ public sealed class DemoStreamTests
             }
 
             var incomplete = await Ask("哪些订单还没有完整排入计划？");
-            Assert.Contains("\"scheduleScope\":\"incomplete\"", incomplete);
+            var incompleteText = string.Concat(incomplete.Split('\n', StringSplitOptions.RemoveEmptyEntries)
+                .Where(line => line.StartsWith("data: {\"text\":", StringComparison.Ordinal))
+                .Select(line => JsonDocument.Parse(line["data: ".Length..].Trim()).RootElement.GetProperty("text").GetString()));
+            Assert.Contains("订单未排完整场景已移除", incompleteText);
             using var incompletePayload = JsonDocument.Parse(incomplete.Split('\n', StringSplitOptions.RemoveEmptyEntries)
                 .First(line => line.StartsWith("data: {\"blocks\":", StringComparison.Ordinal))["data: ".Length..].Trim());
-            Assert.Equal(4, incompletePayload.RootElement.GetProperty("blocks")[0].GetProperty("spec").GetProperty("detail").GetProperty("rows").GetArrayLength());
+            Assert.Empty(incompletePayload.RootElement.GetProperty("blocks").EnumerateArray());
 
-            var oneOrder = await Ask("订单 Z9900001 派工了吗？");
+            var oneOrder = await Ask("订单 Z9900006 派工了吗？");
             Assert.Contains("\"toolName\":\"get_order_dispatch_status\"", oneOrder);
-            Assert.Contains("\"orderId\":\"Z9900001\"", oneOrder);
+            Assert.Contains("\"orderId\":\"Z9900006\"", oneOrder);
             using var dispatchPayload = JsonDocument.Parse(oneOrder.Split('\n', StringSplitOptions.RemoveEmptyEntries)
                 .First(line => line.StartsWith("data: {\"blocks\":", StringComparison.Ordinal))["data: ".Length..].Trim());
             Assert.Single(dispatchPayload.RootElement.GetProperty("blocks")[0].GetProperty("spec").GetProperty("orderRows").EnumerateArray());

@@ -49,17 +49,17 @@ test('order dispatch demo contains thirteen linked orders and consistent status 
   assert.equal(counts.task_not_generated.length, 3);
   assert.equal(counts.dispatch_status_unknown, undefined);
   assert.deepEqual(
-    derived.find(row => row.orderNo === 'Z9900001'),
-    { orderNo: 'Z9900001', status: 'dispatch_in_progress' },
-  );
-  assert.deepEqual(
-    derived.find(row => row.orderNo === 'Z9900002'),
-    { orderNo: 'Z9900002', status: 'task_not_generated' },
-  );
-  assert.deepEqual(
     derived.find(row => row.orderNo === 'Z9900006'),
-    { orderNo: 'Z9900006', status: 'task_not_generated' },
+    { orderNo: 'Z9900006', status: 'dispatch_in_progress' },
+  );
+  assert.deepEqual(
+    derived.find(row => row.orderNo === 'Z9900005'),
+    { orderNo: 'Z9900005', status: 'task_not_generated' },
+  );
+  assert.deepEqual(
+    derived.find(row => row.orderNo === 'Z9900003'),
+    { orderNo: 'Z9900003', status: 'task_not_generated' },
   );
   assert.equal(currentTaskIds.size, snapshot.dispatchTasks.length);
-  assert.ok(snapshot.latestTasks.some(task => task.taskNo === 'TA-Z9900006-HIST-01'));
+  assert.ok(snapshot.latestTasks.some(task => task.taskNo === 'TA-Z9900003-HIST-01'));
 });

@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import fs from "node:fs";
-test("homepage order suggestion uses the controlled demo order", async ({ page }) => {
+test("single order query remains available from chat", async ({ page }) => {
   const requests = [];
   await page.route("**/api/agent/chat/stream", route => {
     requests.push(route.request().postDataJSON());
@@ -10,10 +10,11 @@ test("homepage order suggestion uses the controlled demo order", async ({ page }
     });
   });
   await page.goto("/");
-  await page.getByRole("button", { name: /演示订单 Z9900001 怎么安排/ }).click();
+  await page.getByRole("textbox", { name: "输入问题", exact: true }).fill("查询演示订单 Z9900006 的排程");
+  await page.getByRole("button", { name: "发送消息", exact: true }).click();
   await expect(page.getByText("已读取演示数据", { exact: true })).toBeVisible();
   expect(requests).toHaveLength(1);
-  expect(requests[0].message).toBe("查询演示订单 Z9900001 的排程");
+  expect(requests[0].message).toBe("查询演示订单 Z9900006 的排程");
 });
 test("homepage and about text state the supported data scope", async ({ page }) => {
   const requests = [];
@@ -26,7 +27,9 @@ test("homepage and about text state the supported data scope", async ({ page }) 
   });
   await page.goto("/");
   await expect(page.getByRole("button", { name: /哪些订单有计划交期风险/ })).toBeVisible();
-  await expect(page.getByRole("button", { name: /演示订单 Z9900001 怎么安排/ })).toBeVisible();
+  await expect(page.locator(".suggestion-grid > button")).toHaveCount(5);
+  await expect(page.getByRole("button", { name: /演示订单 Z9900006 怎么安排/ })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /哪些订单已经形成派工/ })).toHaveCount(0);
   const material = page.getByRole("button", { name: /哪些订单的物料齐套状态需核对/ });
   await expect(material).toBeVisible();
   await page.getByRole("button", { name: "打开用户菜单" }).click();
@@ -123,7 +126,7 @@ test("settings, sidebar and image workspace", async ({
   expect(errors).toEqual([]);
 });
 
-test("welcome shortcuts include the order dispatch check", async ({ page }) => {
+test("order dispatch remains available from chat after shortcut removal", async ({ page }) => {
   const requests = [];
   await page.route("**/api/agent/chat/stream", (route) => {
     requests.push(route.request().postDataJSON());
@@ -133,8 +136,10 @@ test("welcome shortcuts include the order dispatch check", async ({ page }) => {
     });
   });
   await page.goto("/");
-  await expect(page.locator(".suggestion-grid > button")).toHaveCount(6);
-  await page.getByRole("button", { name: /哪些订单已经形成派工/ }).click();
+  await expect(page.locator(".suggestion-grid > button")).toHaveCount(5);
+  await expect(page.getByRole("button", { name: /哪些订单已经形成派工/ })).toHaveCount(0);
+  await page.getByRole("textbox", { name: "输入问题", exact: true }).fill("哪些订单已经形成派工？请重点看派工在制和暂未取得来源订单的任务。");
+  await page.getByRole("button", { name: "发送消息", exact: true }).click();
   await expect(page.locator(".message.user")).toContainText(
     "哪些订单已经形成派工？请重点看派工在制和暂未取得来源订单的任务。",
   );

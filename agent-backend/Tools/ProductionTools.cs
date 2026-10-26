@@ -23,7 +23,7 @@ public sealed class ProductionTools
     [KernelFunction("get_production_plan")]
     [Description("封存兼容工具：查询本地合成生产计划示例并返回旧三维视图。仅供历史会话兼容，不作为当前模型业务工具。")]
     public string GetProductionPlan(
-        [Description("订单号，例如 Z9900001；不筛选时为空")] string orderId = "",
+        [Description("订单号，例如 Z9900006；不筛选时为空")] string orderId = "",
         [Description("生产线ID或完整名称；不筛选时为空")] string lineId = "",
         [Description("all=全部未完工，risk=计划交期风险，pending=含待排任务的订单")] string scope = "all",
         [Description("可选具体日期 YYYY-MM-DD；不筛选时为空")] string date = "")

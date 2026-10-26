@@ -3,6 +3,7 @@ import { createId } from "../services/id.js";
 const KEY = "wepilot-conversations-v1",
   SETTINGS = "wepilot-settings-v1";
 const snapshot = (value) => JSON.parse(JSON.stringify(value));
+const writes = new Map(), deleted = new Set();
 const empty = () => ({
   id: createId(),
   title: "新对话",
@@ -68,21 +69,25 @@ export const useChatStore = defineStore("chat", {
       if (this.conversations.length)
         this.current = snapshot(this.conversations[0]);
     },
-    async persist() {
-      if (!this.current.messages.length) return;
-      this.current.updatedAt = Date.now();
-      if (this.current.title === "新对话")
-        this.current.title = (
-          this.current.messages.find((m) => m.role === "user")?.content ||
+    async persist(conversation = this.current, {touch = true} = {}) {
+      if (!conversation.messages.length || deleted.has(conversation.id)) return;
+      if(touch) conversation.updatedAt = Date.now();
+      if (conversation.title === "新对话")
+        conversation.title = (
+          conversation.messages.find((m) => m.role === "user")?.content ||
           "图片会话"
         ).slice(0, 24);
-      const item = snapshot(this.current);
-      this.conversations = [
+      const item = snapshot(conversation);
+      this.conversations = !touch && this.conversations.some(c=>c.id===item.id)
+        ? this.conversations.map(c=>c.id===item.id?item:c)
+        : [
         item,
         ...this.conversations.filter((c) => c.id !== item.id),
       ];
       try {
-        await dbAction("readwrite", (s) => s.put(item));
+        const write = (writes.get(item.id) || Promise.resolve()).catch(() => {}).then(() => deleted.has(item.id) ? undefined : dbAction("readwrite", (s) => s.put(item)));
+        writes.set(item.id, write);
+        await write;
         this.persistenceWarning = "";
       } catch {
         try {
@@ -93,15 +98,34 @@ export const useChatStore = defineStore("chat", {
         }
       }
     },
+    findConversation(id) {
+      return deleted.has(id) ? null : this.current.id === id ? this.current : this.conversations.find(c => c.id === id);
+    },
+    async appendResult(id, message) {
+      const conversation = this.findConversation(id);
+      if (!conversation) return;
+      conversation.messages.push(message);
+      await this.persist(conversation);
+    },
+    async persistBlockUi(id, block) {
+      const conversation = this.findConversation(id);
+      if (!conversation) return;
+      const target = conversation.messages.flatMap(m => m.uiBlocks || []).find(b => b.uiState?.operationId === block.uiState?.operationId);
+      if (target) target.uiState = snapshot(block.uiState);
+      await this.persist(conversation,{touch:false});
+    },
     async create() {
-      await this.persist();
+      await this.persist(this.current,{touch:false});
       this.current = empty();
     },
     async select(id) {
+      await this.persist(this.current,{touch:false});
       const item = this.conversations.find((c) => c.id === id);
       if (item) this.current = snapshot(item);
     },
     async remove(id) {
+      deleted.add(id);
+      await writes.get(id)?.catch(() => {});
       await dbAction("readwrite", (s) => s.delete(id)).catch(() => {});
       this.conversations = this.conversations.filter((c) => c.id !== id);
       if (this.current.id === id)
@@ -113,6 +137,8 @@ export const useChatStore = defineStore("chat", {
       } catch {}
     },
     async clear() {
+      for (const c of [...this.conversations, this.current]) deleted.add(c.id);
+      await Promise.allSettled([...writes.values()]);
       await dbAction("readwrite", (s) => s.clear()).catch(() => {});
       this.conversations = [];
       this.current = empty();

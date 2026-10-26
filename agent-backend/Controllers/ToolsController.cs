@@ -4,6 +4,12 @@ namespace WePilot.Agent.Controllers;
 [ApiController, Route("api/tools")]
 public sealed class ToolsController : ControllerBase
 {
+    [HttpPost("interactive-demo")]
+    public IActionResult InteractiveDemo([FromServices] WePilot.Agent.Tools.Results.ToolExecutionContext context, [FromBody] InteractiveDemoRequest request)
+    {
+        var result = new InteractiveDemoTools(context).Execute(request.Action, request.OrderId ?? "", request.Position, request.Quantity, request.Scenario, request.Plan, request.Version);
+        return result.Success ? Ok(result) : BadRequest(result);
+    }
     [HttpGet("production")]
     public IActionResult Production([FromServices] ProductionTools tools, [FromQuery] string? orderId = null,
         [FromQuery] string? lineId = null, [FromQuery] string? scope = null, [FromQuery] string? date = null)
@@ -39,4 +45,15 @@ public sealed class ToolsController : ControllerBase
         var result = tools.Execute(chartType);
         return result.Success ? Ok(result) : BadRequest(result);
     }
+}
+
+public sealed class InteractiveDemoRequest
+{
+    public string Action { get; set; } = "reschedule";
+    public string? OrderId { get; set; }
+    public int Position { get; set; } = 1;
+    public int Quantity { get; set; } = 12500;
+    public string Scenario { get; set; } = "stock";
+    public string Version { get; set; } = InteractiveDemoTools.Version;
+    public DemoPlanState? Plan { get; set; }
 }

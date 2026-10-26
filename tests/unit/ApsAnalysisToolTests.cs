@@ -27,14 +27,14 @@ public sealed class ApsAnalysisToolTests
     {
         var tool = new ApsAnalysisTools(new());
         var risk = tool.Execute("risk");
-        var order = tool.Execute("order", "Z9900001");
+        var order = tool.Execute("order", "Z9900006");
 
         Assert.True(risk.Success);
         Assert.True(order.Success);
-        var completed = tool.Execute("order", "Z9900004");
+        var completed = tool.Execute("order", "Z9900001");
         Assert.True(completed.Success);
         Assert.Contains("2026-09-01", JsonSerializer.Serialize(completed.AgentContext));
-        var future = tool.Execute("order", "Z9900002");
+        var future = tool.Execute("order", "Z9900005");
         Assert.True(future.Success);
         Assert.Contains("2026-10-13", JsonSerializer.Serialize(future.AgentContext));
         Assert.DoesNotContain("范围内有 0 条", future.Summary);
@@ -57,26 +57,17 @@ public sealed class ApsAnalysisToolTests
     }
 
     [Fact]
-    public void IncompleteOverviewShowsOnlyPartialAndUnscheduledOrders()
+    public void RemovedIncompleteSceneRejectsItsOldScopeWithoutEmittingAView()
     {
         var context = new ToolExecutionContext();
         var tool = new ApsAnalysisTools(context);
         tool.Execute("overview");
         var result = tool.Execute("overview", scheduleScope: "incomplete");
 
-        Assert.True(result.Success);
-        Assert.Equal(2, context.UiPayload.Count);
-        Assert.Contains("4", result.Summary);
-        Assert.Contains("Z9900005", result.Summary);
-        Assert.Contains("Z9900003", result.Summary);
-        Assert.Contains("原因", result.Summary);
-        var model = JsonSerializer.SerializeToElement(result.AgentContext);
-        Assert.Equal(4, model.GetProperty("orderCount").GetInt32());
-        Assert.Equal("incomplete", model.GetProperty("scheduleScope").GetString());
-        var spec = JsonSerializer.SerializeToElement(result.UiPayload[0].Spec);
-        var rows = spec.GetProperty("detail").GetProperty("rows").EnumerateArray().ToArray();
-        Assert.Equal(4, rows.Length);
-        Assert.All(rows, row => Assert.Contains(row.GetProperty("scheduleStatus").GetString(), new[] { "部分已排", "尚未排入" }));
+        Assert.False(result.Success);
+        Assert.Single(context.UiPayload);
+        Assert.Empty(result.UiPayload);
+        Assert.Contains("移除", result.Summary);
         Assert.False(tool.Execute("overview", scheduleScope: "unknown").Success);
     }
 }

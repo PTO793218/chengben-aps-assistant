@@ -86,7 +86,7 @@ test('material evidence, current tasks and shared material links reconcile with 
   }
   const unmatched = dispatch.dispatchTasks.filter(task => !ordersByPlan.has(task.pdPlanGuid));
   assert.equal(unmatched.length, 1, 'one intentional source-unavailable task');
-  const history = dispatch.latestTasks.find(task => task.taskNo === 'TA-Z9900006-HIST-01');
+  const history = dispatch.latestTasks.find(task => task.taskNo === 'TA-Z9900003-HIST-01');
   assert.equal(history.taskStart, '2026-09-18');
   assert.equal(history.taskEnd, '2026-09-18');
   assert.equal(history.deliveryQuantity, history.taskQuantity);

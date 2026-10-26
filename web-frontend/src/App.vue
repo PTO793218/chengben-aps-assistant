@@ -55,7 +55,7 @@
           title="查询生产计划"
           @click="send('生产计划怎么样？')"
         >
-          <Icon name="cube" /><span>生产计划</span><small>示例</small>
+          <Icon name="cube" /><span>生产计划</span>
         </button>
         <button
           v-if="isCollapsed && !viewer"
@@ -165,12 +165,13 @@
         >
       </div>
     </aside>
-    <ApsAnalysisViewer v-if="viewer?.type === 'aps-analysis'" :key="viewer.id" :item="viewer" @close="closeViewer" />
-    <OrderDispatchViewer v-else-if="viewer?.type === 'order-dispatch'" :key="viewer.id" :item="viewer" @close="closeViewer" />
-    <PlanTaskAlignmentViewer v-else-if="viewer?.type === 'plan-task-alignment'" :key="viewer.id" :item="viewer" @close="closeViewer" />
-    <MaterialReadinessViewer v-else-if="viewer?.type === 'material-readiness'" :key="viewer.id" :item="viewer" @close="closeViewer" />
+    <InteractiveDemoViewer v-if="viewer?.type === 'interactive-demo'" :key="viewer.id" :item="viewer" :current-plan="currentPlan" :conversation-id="store.current.id" :apply-plan="applyDemoPlan" :restore-plan="restoreDemoPlan" :save-mrp="saveMrpDemand" :persist-ui="persistPresentation" :resolve-plan="resolveCurrentPlan" :accept-result="appendDemoResult" @ask="askLinked" @close="closeViewer" @result="appendDemoResult" />
+    <ApsAnalysisViewer v-else-if="viewer?.type === 'aps-analysis'" :key="viewer.id" :item="viewer" @ask="askLinked" @close="closeViewer" />
+    <OrderDispatchViewer v-else-if="viewer?.type === 'order-dispatch'" :key="viewer.id" :item="viewer" @ask="askLinked" @close="closeViewer" />
+    <PlanTaskAlignmentViewer v-else-if="viewer?.type === 'plan-task-alignment'" :key="viewer.id" :item="viewer" @ask="askLinked" @close="closeViewer" />
+    <MaterialReadinessViewer v-else-if="viewer?.type === 'material-readiness'" :key="viewer.id" :item="viewer" @ask="askLinked" @close="closeViewer" />
     <ProductionPanorama v-else-if="viewer?.type === 'production'" :key="viewer.id" :item="viewer" @close="closeViewer" @ask="askFromPanorama" />
-    <ContentViewer v-else-if="viewer" :item="viewer" @close="closeViewer" />
+    <ContentViewer v-else-if="viewer" :item="viewer" @ask="askLinked" @close="closeViewer" />
 
     <main v-show="!viewer" class="chat-main">
       <header class="main-header">
@@ -190,11 +191,7 @@
           <span class="connection-state"
             ><i :class="{ offline: !health }"></i
             >{{
-              health
-                ? health.mode === "demo"
-                  ? "演示模式"
-                  : "已连接模型"
-                : healthError ? "连接失败" : "连接中"
+              health ? "" : healthError ? "连接失败" : "连接中"
             }}</span
           ><button v-if="healthError" class="alignment-more" type="button" @click="checkHealth">重新连接</button><button
             class="icon-button"
@@ -208,11 +205,12 @@
       </header>
       <div class="message-scroll" ref="scrollEl" @scroll="trackScroll">
         <section v-if="!store.current.messages.length" class="welcome">
-          <div class="welcome-eyebrow"><span></span> CHENGBEN PLANNING</div>
           <div class="welcome-logo"><Icon name="spark" /></div>
-          <h1>让想法，从对话开始。</h1>
+          <h1>今天需要安排哪些订单？</h1>
           <p>从生产计划聊起，让订单、产线与每一天的安排清晰可见。</p>
           <div class="suggestion-grid">
+            <button @click="send('把尚未排入计划的订单加入当前计划，先让我核对')"><span class="suggestion-icon blue"><Icon name="spark" /></span><strong>调整生产计划</strong><small>加入订单 · 调整顺序 · 重新安排</small><Icon name="chevron" /></button>
+            <button @click="send('计算这批订单的物料需求')"><span class="suggestion-icon teal"><Icon name="cube" /></span><strong>计算物料需求</strong><small>需求分解 · 库存与在途抵扣</small><Icon name="chevron" /></button>
             <button @click="send('生产计划怎么样？')">
               <span class="suggestion-icon blue"><Icon name="chat" /></span
               ><strong>生产计划怎么样？</strong
@@ -223,32 +221,12 @@
               ><strong>哪些订单有计划交期风险？</strong
               ><small>查看风险订单的计划结束与交期</small
               ><Icon name="chevron" /></button
-            ><button @click="send('查询演示订单 Z9900001 的排程')">
-              <span class="suggestion-icon violet"><Icon name="cube" /></span
-              ><strong>演示订单 Z9900001 怎么安排？</strong
-              ><small>按工段查看已有计划日期、班次与产线</small
-              ><Icon name="chevron" /></button
-            ><button @click="send('哪些订单还没有完整排入计划？')">
-              <span class="suggestion-icon amber"><Icon name="cube" /></span
-              ><strong>哪些订单没有排完整？</strong
-              ><small>仅按订单排入状态查看，不推断缺失原因</small
-              ><Icon name="chevron" />
-            </button
-            ><button @click="send('演示快照中哪些订单的物料齐套状态需要核对？')">
+            ><button @click="send('查看这批订单的物料需求和抵扣依据')">
               <span class="suggestion-icon red"><Icon name="cube" /></span
               ><strong>哪些订单的物料齐套状态需核对？</strong
-              ><small>按订单—物料矩阵核对快照中的齐套标记</small
-              ><Icon name="chevron" />
-            </button
-            ><button @click="send('哪些订单已经形成派工？请重点看派工在制和暂未取得来源订单的任务。')">
-              <span class="suggestion-icon violet"><Icon name="spark" /></span
-              ><strong>哪些订单已经形成派工？</strong
-              ><small>核对订单派工在制、任务状态与来源记录</small
+              ><small>{{ currentPlan ? '查看需求、库存与在途抵扣依据' : '按订单—物料矩阵核对快照中的齐套标记' }}</small
               ><Icon name="chevron" />
             </button>
-          </div>
-          <div class="welcome-foot">
-            <span class="blue-dot"></span>当前入口使用演示数据 · 真实订单可查询只读快照
           </div>
         </section>
         <div v-else class="message-list">
@@ -273,7 +251,7 @@
                 <span v-else-if="message.retryOf" class="subtle-badge">重新查询</span>
               </div>
               <div class="message-content">
-                <MarkdownContent :content="message.content" />
+                <MarkdownContent :content="visibleAssistantText(message)" />
                 <div
                   v-if="message.status === 'streaming' && !message.content"
                   class="thinking"
@@ -287,11 +265,14 @@
               </div>
               <div v-for="(block, i) in message.uiBlocks" :key="i">
                 <MessageChart v-if="block.type === 'chart'" :block="block" />
+                <InteractiveDemoCard v-else-if="block.type === 'interactive-demo'" :block="block" compact :current-plan="currentPlan" :conversation-id="store.current.id" :apply-plan="applyDemoPlan" :restore-plan="restoreDemoPlan" :save-mrp="saveMrpDemand" :persist-ui="persistPresentation" :resolve-plan="resolveCurrentPlan" :accept-result="appendDemoResult" @open="openViewer" @result="appendDemoResult" @ask="askLinked" />
                 <ApsAnalysisCard v-else-if="block.type === 'aps-analysis'" :block="block" compact @open="openViewer" />
                 <OrderDispatchCard v-else-if="block.type === 'order-dispatch'" :block="block" compact @open="openViewer" />
                 <PlanTaskAlignmentCard v-else-if="block.type === 'plan-task-alignment'" :block="block" compact @open="openViewer" />
                 <MaterialReadinessCard v-else-if="block.type === 'material-readiness'" :block="block" compact @open="openViewer" />
                 <ProductionCard v-else-if="block.type === 'production-plan'" :block="block" @open="openViewer" @ask="send" />
+                <DemoWorkspaceContext v-if="block.spec?.workspace && block.spec.native && !block.spec.prepare" :workspace="block.spec.workspace" @ask="askLinked" />
+                <p v-else-if="currentPlan && ['aps-analysis','material-readiness','order-dispatch'].includes(block.type)" class="historical-scope-note">这条记录来自历史计划，保留查询当时的结果。</p>
               </div>
               <div class="message-images" v-if="message.images?.length">
                 <button
@@ -320,7 +301,7 @@
                   class="icon-button"
                   title="复制回答"
                   aria-label="复制回答"
-                  @click="copy(message.content)"
+                  @click="copy(visibleAssistantText(message))"
                 >
                   <Icon name="copy" /></button
                 ><button
@@ -328,7 +309,7 @@
                   title="朗读回答"
                   aria-label="朗读回答"
                   :disabled="!speechHealth?.configured"
-                  @click="readAnswer(message.content)"
+                  @click="readAnswer(visibleAssistantText(message))"
                 >
                   <Icon name="volume" /></button
                 ><button
@@ -515,6 +496,7 @@
         </div>
         <div class="settings-section">
           <h3>本地数据</h3>
+          <div class="settings-row"><span>历史计划查询<small>另开对话查看已保存的业务记录</small></span><button @click="settingsOpen=false;createConversation(true)">打开查询</button></div>
           <div class="settings-row">
             <span>清空对话记录<small>仅删除当前浏览器保存的对话</small></span
             ><button class="danger-button" @click="clearConversations">
@@ -571,6 +553,10 @@ import MessageChart from "./components/MessageChart.vue";
 import ContentViewer from "./components/ContentViewer.vue";
 import ProductionCard from "./components/ProductionCard.vue";
 import ApsAnalysisCard from "./components/ApsAnalysisCard.vue";
+import InteractiveDemoCard from "./components/InteractiveDemoCard.vue";
+import InteractiveDemoViewer from "./components/InteractiveDemoViewer.vue";
+import { usePlanStore } from "./stores/plan.js";
+import DemoWorkspaceContext from './components/DemoWorkspaceContext.vue';
 import ApsAnalysisViewer from "./components/ApsAnalysisViewer.vue";
 import OrderDispatchCard from "./components/OrderDispatchCard.vue";
 import OrderDispatchViewer from "./components/OrderDispatchViewer.vue";
@@ -584,6 +570,8 @@ import './material-readiness.css';
 const ProductionPanorama = defineAsyncComponent(() => import('./components/ProductionPanorama.vue'));
 import { useChatStore } from "./stores/chat";
 import { readSse } from "./services/sse";
+import { visibleAssistantText } from "./services/business-presentation.js";
+import { cancelConversationOperations } from "./services/business-operations.js";
 import { createId } from "./services/id.js";
 import { createVoiceCapture } from "./services/voice";
 import {
@@ -607,6 +595,8 @@ const store = useChatStore(),
   speechHealth = ref(null),
   voiceState = ref("idle"),
   pendingImages = ref([]);
+const planStore = usePlanStore();
+const currentPlan = computed(() => store.current.dataView === 'historical' ? null : planStore.current);
 const fileInput = ref(),
   scrollEl = ref(),
   inputEl = ref(),
@@ -615,7 +605,7 @@ let controller,
   activeTask,
   persistTimer,
   followScroll = true;
-let viewerScrollTop = 0;
+let viewerScrollTop = 0, viewerTrigger;
 const demoImage = {
     id: "sample-image",
     type: "image",
@@ -673,15 +663,51 @@ async function scroll() {
     scrollEl.value.scrollTop = scrollEl.value.scrollHeight;
 }
 function openViewer(item) {
-  if (!viewer.value) viewerScrollTop = scrollEl.value?.scrollTop || 0;
+  if (!viewer.value) { viewerScrollTop = scrollEl.value?.scrollTop || 0; viewerTrigger = document.activeElement; }
   viewer.value = item;
   userMenu.value = false;
   voice.cancel();
+  nextTick(() => document.querySelector('.aps-analysis-viewer button')?.focus({preventScroll:true}));
 }
 function closeViewer() {
   viewer.value = null;
-  nextTick(() => { if (scrollEl.value) scrollEl.value.scrollTop = viewerScrollTop; });
+  nextTick(() => { if (scrollEl.value) scrollEl.value.scrollTop = viewerScrollTop; if (viewerTrigger?.isConnected) viewerTrigger.focus({preventScroll:true}); });
 }
+async function resolveCurrentPlan(conversation = store.current) {
+  if (conversation.dataView === 'historical') return null;
+  return await planStore.refresh();
+}
+async function appendDemoResult(result, options = {}) {
+  const owner = result.originConversationId || store.current.id;
+  // Plain notices follow an already committed mutation; they cannot change a plan.
+  if(result.uiPayload?.length)requireActiveOwner(owner,options.signal);
+  const released = result.uiPayload?.find(b => b.type === 'interactive-demo' && b.spec?.view === 'release' && b.spec?.receipt);
+  if (released) await planStore.apply(released.spec, options);
+  await store.appendResult(owner, { id:createId(), role:'assistant', content:result.summary, uiBlocks:JSON.parse(JSON.stringify(result.uiPayload)), createdAt:Date.now(), status:'done' });
+  if (store.current.id === owner) { closeViewer(); followScroll = true; scroll(); }
+}
+async function applyDemoPlan(spec, owner = store.current.id) {
+  requireActiveOwner(owner);
+  if (busy.value) throw new Error('请等待当前查询完成后再采用方案。');
+  await planStore.apply(spec);
+  await appendDemoResult({originConversationId:owner,summary:'已采用这次试排方案，后续对话也会继续使用这份计划。',uiPayload:[]});
+}
+async function restoreDemoPlan(spec, owner = store.current.id) {
+  requireActiveOwner(owner);
+  if (busy.value) throw new Error('请等待当前查询完成后再撤销。');
+  await planStore.undo(spec);
+  await appendDemoResult({originConversationId:owner,summary:'已撤销这次采用，恢复到调整前的计划。',uiPayload:[]});
+}
+async function saveMrpDemand(spec, owner = store.current.id) {
+  requireActiveOwner(owner);
+  if (busy.value) throw new Error('请等待当前查询完成后再保存核算结果。');
+  await planStore.apply(spec);
+  await appendDemoResult({originConversationId:owner,summary:'本次物料核算已保存，后续对话可继续核对，生产计划保持不变。',uiPayload:[]});
+}
+async function persistPresentation(owner, block) { await store.persistBlockUi(owner, block); }
+function requireActiveOwner(owner,signal){if(signal?.aborted||store.current.id!==owner||!store.findConversation(owner))throw new Error('对话已删除或离开，已取消此次操作，当前计划未改变。');}
+function refreshWorkspace() { if (planStore.ready) planStore.refresh().catch(e => notice.value = e.message); }
+function askLinked(question) { closeViewer(); send(question); }
 function askFromPanorama(question) {
   closeViewer();
   input.value = question;
@@ -711,14 +737,18 @@ function stopRequest() {
   stopReading();
 }
 async function finishRequest() {
+  cancelConversationOperations(store.current.id);
   stopRequest();
   if (activeTask) await activeTask;
   voice.cancel();
   stopReading();
 }
-async function createConversation() {
+async function createConversation(historical=false) {
   await finishRequest();
   await store.create();
+  store.current.dataView=historical===true?'historical':'coupled';
+  await planStore.refresh().catch(e => notice.value = e.message);
+  await store.persist();
   input.value = "";
   pendingImages.value = [];
   viewer.value = null;
@@ -727,6 +757,7 @@ async function createConversation() {
 async function selectConversation(id) {
   await finishRequest();
   await store.select(id);
+  await planStore.refresh().catch(e => notice.value = e.message);
   pendingImages.value = [];
   viewer.value = null;
   followScroll = true;
@@ -734,13 +765,15 @@ async function selectConversation(id) {
 }
 async function removeConversation(item) {
   if (confirm(`删除“${item.title}”？`)) {
-    await finishRequest();
+    cancelConversationOperations(item.id);
+    if(item.id===store.current.id){await finishRequest();viewer.value=null;}
     await store.remove(item.id);
   }
 }
 async function clearConversations() {
   if (confirm("清空此浏览器中的全部对话记录？")) {
     await finishRequest();
+    for(const conversation of store.conversations)cancelConversationOperations(conversation.id);
     await store.clear();
     viewer.value = null;
   }
@@ -784,6 +817,7 @@ function send(value) {
   return activeTask;
 }
 async function performSend(value, retryIndex = -1) {
+  const conversation = store.current;
   const text = String(value || "").trim();
   const retrying = retryIndex >= 0;
   if (!text && !pendingImages.value.length) return;
@@ -793,17 +827,17 @@ async function performSend(value, retryIndex = -1) {
   notice.value = "";
   followScroll = true;
   viewer.value = null;
-  const previousMessages = retrying ? store.current.messages.slice(0, retryIndex) : store.current.messages;
+  const previousMessages = retrying ? conversation.messages.slice(0, retryIndex) : conversation.messages;
   const eligibleHistory = previousMessages
     .filter((m) => m.content?.trim() && !m.superseded && !["error", "interrupted"].includes(m.status) && ["user", "assistant"].includes(m.role))
     .map(({ role, content }) => ({ role, content }));
   const droppedHistory = Math.max(0, eligibleHistory.length - 180),
     history = eligibleHistory.slice(droppedHistory);
-  const images = retrying ? store.current.messages[retryIndex].images || [] : pendingImages.value;
+  const images = retrying ? conversation.messages[retryIndex].images || [] : pendingImages.value;
   if (!retrying) {
     pendingImages.value = [];
     input.value = "";
-    store.current.messages.push({
+    conversation.messages.push({
       id: createId(),
       role: "user",
       content: text || "查看图片",
@@ -812,7 +846,7 @@ async function performSend(value, retryIndex = -1) {
     });
   }
   if (!text) {
-    await store.persist();
+    await store.persist(conversation);
     busy.value = false;
     openViewer(images[0]);
     return;
@@ -824,16 +858,16 @@ async function performSend(value, retryIndex = -1) {
     uiBlocks: [],
     createdAt: Date.now(),
     status: "streaming",
-    retryOf: retrying ? store.current.messages[retryIndex].id : null,
+    retryOf: retrying ? conversation.messages[retryIndex].id : null,
   };
-  store.current.messages.push(answer);
+  conversation.messages.push(answer);
   // Read the reactive proxy so stream updates render immediately.
-  const target = store.current.messages.at(-1);
+  const target = conversation.messages.at(-1);
   controller = new AbortController();
   const signal = controller.signal;
   const deadline = setTimeout(() => controller?.abort("timeout"), 180000);
   try {
-    await store.persist();
+    await store.persist(conversation);
     scroll();
     if (store.settings.autoSpeak) {
       void primeVolcTtsAudio().catch(() => {
@@ -844,13 +878,14 @@ async function performSend(value, retryIndex = -1) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        conversationId: store.current.id,
+        conversationId: conversation.id,
+        demoPlan: await resolveCurrentPlan(conversation),
         message: text,
         history,
-        summary: store.current.summary,
+        summary: conversation.summary,
         summarizedMessageCount: Math.max(
           0,
-          store.current.summarizedMessageCount - droppedHistory,
+          conversation.summarizedMessageCount - droppedHistory,
         ),
       }),
       signal,
@@ -861,29 +896,33 @@ async function performSend(value, retryIndex = -1) {
         target.content += data.text || "";
         scroll();
         clearTimeout(persistTimer);
-        persistTimer = setTimeout(() => store.persist(), 500);
+        persistTimer = setTimeout(() => store.persist(conversation), 500);
       }
       if (event === "summary") {
-        store.current.summary = data.text || "";
-        store.current.summarizedMessageCount =
+        conversation.summary = data.text || "";
+        conversation.summarizedMessageCount =
           droppedHistory + (Number(data.summarizedMessageCount) || 0);
       }
       if (event === "ui_payload") {
         target.uiBlocks.push(...(data.blocks || []));
         scroll();
       }
-      if (event === "done") target.status = "done";
+      if (event === "done") {
+        target.status = "done";
+        const execution = { modelInvoked: data.modelInvoked === true, mode: data.mode || data.configuredMode, toolCalls: data.toolCalls || [], requestId: data.requestId };
+        for (const block of target.uiBlocks) if (block.type === 'interactive-demo') block.execution = execution;
+      }
       if (event === "error")
         throw new Error(data.message || "服务暂时不可用。");
     });
     if (target.status !== "done") throw new Error("响应未完成，请重试。");
     if (retrying) {
-      for (const previous of store.current.messages.slice(retryIndex + 1, -1)) {
+      for (const previous of conversation.messages.slice(retryIndex + 1, -1)) {
         if (previous.role === "assistant") previous.superseded = true;
       }
     }
     if (store.settings.autoSpeak && speechHealth.value?.configured)
-      void readAnswer(target.content);
+      void readAnswer(visibleAssistantText(target));
   } catch (error) {
     target.status =
       signal.aborted && signal.reason !== "timeout" ? "interrupted" : "error";
@@ -895,7 +934,7 @@ async function performSend(value, retryIndex = -1) {
     clearTimeout(persistTimer);
     controller = null;
     busy.value = false;
-    await store.persist();
+    await store.persist(conversation);
     scroll();
   }
 }
@@ -973,6 +1012,8 @@ async function checkHealth() {
 }
 onMounted(async () => {
   await store.init();
+  await planStore.init(store.conversations).catch(e => notice.value = e.message);
+  window.addEventListener("focus", refreshWorkspace);
   scroll();
   document.addEventListener("pointerdown", outside);
   document.addEventListener("keydown", escape);
@@ -988,6 +1029,7 @@ watch(
   },
 );
 onBeforeUnmount(() => {
+  window.removeEventListener("focus", refreshWorkspace);
   controller?.abort();
   clearTimeout(persistTimer);
   voice.cancel();
@@ -996,3 +1038,7 @@ onBeforeUnmount(() => {
   document.removeEventListener("keydown", escape);
 });
 </script>
+
+<style scoped>
+.historical-scope-note{font-size:12px;color:#6a7c90;padding:6px 14px}
+</style>
