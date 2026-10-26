@@ -20,3 +20,14 @@ runtime/
 __pycache__/
 *.pyc
 .playwright-cli/
+
+# Local delivery notes and workstation acceptance helpers
+/docs/current-version.md
+/docs/verification.md
+/tests/browser/*.cli.js
+/tests/native_demo/insert_flow/
+/tests/native_demo/shared_plan_flow/
+/tests/native_demo/tool_flow/
+/tests/native_demo/verify_runtime.py
+/tests/native_demo/verify_final_state.py
+/tests/agent-evals/deepseek-single-business.ps1
