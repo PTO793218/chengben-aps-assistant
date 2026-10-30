@@ -33,19 +33,26 @@ def fixture_inputs(config):
     result = {key: config[key] for key in fields}
     if config.get('insertionOrders'):
         result['insertionOrders'] = config['insertionOrders']
+    if config.get('simulationPolicy'):
+        result['simulationPolicy'] = config['simulationPolicy']
     start = date.fromisoformat(result['start'])
     if result['businessDate'] != result['start'] or date.fromisoformat(result['inventoryDate']) > start:
         raise ValueError('业务日、起排日与库存日期不一致')
     if date.fromisoformat(result['supply']['arrival']) < start:
         raise ValueError('采购在途到货日早于业务日')
     original = min(date.fromisoformat(o['templateDueDate']) for o in result['orders'])
-    for order in result['orders']:
+    for order in result['orders'] + [o for o in result.get('insertionOrders', []) if o.get('sourceExisting')]:
         if {'risk', 'late', 'expectedRisk', 'expectedFinish'} & order.keys():
             raise ValueError('输入不得预设排程或交期结论')
         expected = start + timedelta(days=3) + (date.fromisoformat(order['templateDueDate']) - original)
         if order['dueDate'] != expected.isoformat():
             raise ValueError('订单交期未遵循事先固定的相对间隔')
     return result
+
+
+def runtime_identity(config):
+    return {'datasetId': config.get('datasetId', 'small13'), 'demandVersion': config['demandVersion'],
+            'fixtureId': config['fixtureId'], 'inputFingerprint': input_fingerprint(config)}
 
 
 def input_fingerprint(config):
@@ -56,7 +63,8 @@ def simulation_sql(config):
     """Overlay on the local clone only, within build_sql's rollback transaction."""
     data = fixture_inputs(config)
     supply = data['supply']
-    values = ','.join(f"({sql_value(o['orderId'])},{o['quantity']},{sql_value(o['dueDate'])})" for o in data['orders'])
+    overlays = data['orders'] + [o for o in data.get('insertionOrders', []) if o.get('sourceExisting')]
+    values = ','.join(f"({sql_value(o['orderId'])},{o['quantity']},{sql_value(o['dueDate'])})" for o in overlays)
     sql = f"""
 DECLARE @SimStart date={sql_value(data['start'])},@SimStockDate date={sql_value(data['inventoryDate'])},@SimArrivalDate date={sql_value(supply['arrival'])};
 DECLARE @SimStockQty float={supply['stock']},@SimTransitQty float={supply['inTransit']};
@@ -65,7 +73,9 @@ INSERT @SimOrders VALUES {values};
 IF NOT EXISTS(SELECT 1 FROM TA05_work_calendar_detail WHERE work_date>=@SimStart AND work_date<=DATEADD(day,14,@SimStart))
  THROW 51000,'Simulation calendar coverage missing',1;
 """
-    sql += Path(__file__).with_name('fixture.sql').read_text(encoding='utf-8')
+    policy = data.get('simulationPolicy', {})
+    if policy.get('addFixedSupply', True):
+        sql += Path(__file__).with_name('fixture.sql').read_text(encoding='utf-8')
     # Update BOM need dates before changing each order's delivery date, preserving lead-time offsets.
     for suffix in ('F20122E', 'F201220'):
         sql += f"""
@@ -83,9 +93,21 @@ UPDATE d SET delivery_date=i.due_date,ship_date=i.due_date,reaudit_date=i.due_da
 UPDATE m SET input_date=DATEADD(day,-7,@SimStart),edit_date=DATEADD(day,-7,@SimStart)
  FROM T201_sale_order_master m JOIN @SimOrders i ON i.order_id=m.sale_order_no;
 -- Existing stock quantities/quality/units and purchase quantities retain their verified semantics.
-UPDATE T205_stock_remain SET input_date=@SimStockDate,first_input_date=@SimStockDate,production_date=@SimStockDate;
+"""
+    if policy:
+        for table, columns, anchor, target in [
+            ('T205_stock_remain', ('input_date', 'first_input_date', 'production_date'), policy['inventorySourceAnchor'], '@SimStockDate'),
+            ('T202_supply_order_detail', ('delivery_date', 'ship_date', 'input_date'), policy['purchaseSourceAnchor'], '@SimArrivalDate'),
+            ('T202_supply_order_master', ('edit_date', 'input_date'), policy['purchaseSourceAnchor'], '@SimArrivalDate')]:
+            date.fromisoformat(anchor)
+            changes = ','.join(f"{col}=CASE WHEN {col}>'1900-01-02' THEN DATEADD(day,DATEDIFF(day,{sql_value(anchor)},{target}),{col}) ELSE {col} END" for col in columns)
+            sql += f'UPDATE {table} SET {changes};\n'
+    else:
+        sql += """UPDATE T205_stock_remain SET input_date=@SimStockDate,first_input_date=@SimStockDate,production_date=@SimStockDate;
 UPDATE T202_supply_order_detail SET delivery_date=@SimArrivalDate,ship_date=@SimArrivalDate,input_date=@SimStockDate;
 UPDATE T202_supply_order_master SET edit_date=@SimStockDate,input_date=@SimStockDate;
+"""
+    sql += """
 -- Preserve actual task identities, states and plan links. Do not invent tasks per order.
 UPDATE t SET input_date=@SimStockDate,work_date=@SimStart,
  start_time=CASE WHEN start_time>'1900-01-02' THEN CAST(@SimStockDate AS datetime) ELSE start_time END,
@@ -139,6 +161,8 @@ def validate_request(request, ids, candidates=()):
 def urgent_source_sql(config):
     sql = ''
     for item in config.get('insertionOrders', []):
+        if item.get('sourceExisting'):
+            continue
         sql += f"""
 DECLARE @UrgentOrder varchar(40)={sql_value(item['orderId'])},@UrgentGuid varchar(40)={sql_value(item['saleOrderGuid'])},@UrgentTemplate varchar(40)={sql_value(item['templateOrderId'])};
 DECLARE @UrgentQty float={item['quantity']},@UrgentDue date={sql_value(item['dueDate'])},@UrgentInput date={sql_value(config['businessDate'])};
@@ -216,6 +240,7 @@ def build_sql(request, ids, prior=None, config=None):
     action = request['action']
     order = request.get('orderIds', ids)
     sql = 'SET NOCOUNT ON; SET XACT_ABORT ON;\nCREATE TABLE #Output(payload nvarchar(max));\nBEGIN TRANSACTION;\n'
+    sql += "DECLARE @NativeLock int; EXEC @NativeLock=sys.sp_getapplock @Resource='APS_NATIVE_DEMO',@LockMode='Exclusive',@LockOwner='Transaction',@LockTimeout=120000; IF @NativeLock<0 THROW 51000,'Isolated calculation is busy; no result adopted',1;\n"
     sql += simulation_sql(config)
     sql += urgent_source_sql(config)
     if set(order) - set(ids):
@@ -292,6 +317,7 @@ def process(request, config, root, docker, job_id):
     if prior is not None and (prior.get('fixtureId') != config['fixtureId'] or prior.get('inputFingerprint') != input_fingerprint(config)):
         raise ValueError('旧样例计划不能在新输入中下发，请新建对话')
     payload = execute_sql(docker, build_sql(request, ids, prior, config), folder)
+    validate_result_orders(payload, request.get('orderIds', ids))
     payload.update(resultId=job_id, action=request['action'], inputOrderIds=request.get('orderIds', ids), source='isolated-demo', sourceVersion=SOURCE_VERSION, asOf=config['businessDate']+'T09:00:00+08:00', originalApiInvoked=False, originalProcedureInvoked=True, rolledBack=True, fixtureId=config['fixtureId'], inputFingerprint=input_fingerprint(config), simulationInputs=fixture_inputs(config), fixedDemoInputs=config['supply'])
     payload['planSourceVersion'] = SOURCE_VERSION
     if request['action']=='mrp':
@@ -313,11 +339,19 @@ def process(request, config, root, docker, job_id):
     return payload
 
 
-def recover_response(root, job_id, request, ids):
+def validate_result_orders(payload, expected):
+    actual = [row['sale_order_no'] for row in payload.get('orders', [])]
+    if len(actual) != len(set(actual)) or set(actual) != set(expected):
+        missing = ','.join(sorted(set(expected) - set(actual)))
+        raise ValueError('原提取未保留本批完整订单，结果未发布：' + (missing or '重复或范围外订单'))
+
+
+def recover_response(root, job_id, request, ids, config=None):
+    config = config or fixture_config()
     result = root / 'results' / (job_id+'.json')
     if result.exists():
         payload = json.loads(result.read_text(encoding='utf-8'))
-        if payload.get('resultId') != job_id or payload.get('action') != request['action'] or payload.get('inputOrderIds') != request.get('orderIds', ids) or payload.get('source') != 'isolated-demo' or payload.get('rolledBack') is not True or payload.get('fixtureId') != fixture_config()['fixtureId'] or payload.get('inputFingerprint') != input_fingerprint(fixture_config()):
+        if payload.get('resultId') != job_id or payload.get('action') != request['action'] or payload.get('inputOrderIds') != request.get('orderIds', ids) or payload.get('source') != 'isolated-demo' or payload.get('rolledBack') is not True or payload.get('fixtureId') != config['fixtureId'] or payload.get('inputFingerprint') != input_fingerprint(config):
             raise ValueError('既有结果与请求不匹配，未覆盖或重新计算')
         if request['action']=='release' and payload.get('sourceResultId') != request.get('resultId'):
             raise ValueError('既有下发结果来源不一致')
@@ -366,6 +400,9 @@ def main():
     for name in ['requests', 'results', 'responses', 'evidence']:
         (root / name).mkdir(parents=True, exist_ok=True)
     lock = acquire_worker_lock(root)
+    identity = root / 'identity.tmp'
+    identity.write_text(json.dumps(runtime_identity(config), ensure_ascii=False), encoding='utf-8')
+    identity.replace(root / 'identity.json')
     stop = threading.Event()
     threading.Thread(target=heartbeat_loop, args=(root, stop), daemon=True).start()
     while True:
@@ -379,7 +416,7 @@ def main():
             try:
                 ids = [o['orderId'] for o in config['orders']]
                 request = validate_request(json.loads(path.read_text(encoding='utf-8')),ids,[o['orderId'] for o in config.get('insertionOrders', [])])
-                response = recover_response(root,job_id,request,ids)
+                response = recover_response(root,job_id,request,ids,config=config)
                 if response is None:
                     payload = process(request, config, root, args.docker, job_id)
                     result = root / 'results' / path.name

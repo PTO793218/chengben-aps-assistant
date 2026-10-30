@@ -26,6 +26,7 @@ public sealed class BusinessOrderDispatch
 
     public ToolResult Execute(string lineId = "", string orderId = "")
     {
+        lineId = (lineId ?? "").Trim();
         var watch = System.Diagnostics.Stopwatch.StartNew();
         ToolResult result;
         try

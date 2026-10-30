@@ -7,7 +7,7 @@ try {
  const errors=[];let requests=0;
  page.on('pageerror',e=>errors.push(e.message));
  page.on('request',r=>{if(r.url().includes('/api/agent/'))requests++;});
- await page.goto(process.env.BASE_URL||'http://localhost:18440');
+ await page.goto(process.env.BASE_URL||'http://localhost:19440');
  await page.getByRole('textbox',{name:'输入问题'}).fill('查询真实订单 Z9900027 的排程，版本260904001');
  await page.getByRole('button',{name:'发送消息',exact:true}).click();
  await page.locator('.line-load-panel').waitFor({timeout:150000});

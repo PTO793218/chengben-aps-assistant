@@ -1,5 +1,5 @@
 import productionDemo from '../../../agent-backend/Data/production-demo.json' with {type:'json'};
-import nativeDemo from '../../../agent-backend/Data/native-demo.json' with {type:'json'};
+import {nativeDemo} from './native-dataset.js';
 const lockedIds=productionDemo.orders.filter(o=>o.productionStatus==='inProgress').map(o=>o.id);
 const pendingIds=productionDemo.orders.filter(o=>o.productionStatus==='notStarted').map(o=>o.id);
 const ids=[...lockedIds,...pendingIds];

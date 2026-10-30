@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 
-const base = process.env.BASE_URL || 'http://localhost:18440';
+const base = process.env.BASE_URL || 'http://localhost:19440';
 const response = await fetch(base + '/api/agent/tools/order-dispatch-status', { signal: AbortSignal.timeout(15000) });
 assert.equal(response.status, 200);
 const result = await response.json();

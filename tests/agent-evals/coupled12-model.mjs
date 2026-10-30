@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {readSse} from '../../web-frontend/src/services/sse.js';
 import {initialDemoPlan,adoptDemoPlan,saveDemoMrp} from '../../web-frontend/src/services/demo-plan.js';
-const base=process.env.BASE_URL||'http://127.0.0.1:18440',records=[];
+const base=process.env.BASE_URL||'http://127.0.0.1:19440',records=[];
 fs.mkdirSync('output/verification',{recursive:true});
 const record=()=>fs.writeFileSync('output/verification/coupled12-model.json',JSON.stringify({complete:false,records},null,2));
 async function ask(message,plan,tool,{action,type}={}){

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const base=process.env.BASE_URL||'http://localhost:18440';
+const base=process.env.BASE_URL||'http://localhost:19440';
 async function get(query=''){const r=await fetch(base+'/api/agent/tools/production'+query,{signal:AbortSignal.timeout(15000)});assert.equal(r.status,200);return r.json();}
 const full=await get();assert.equal(full.agentContext.orderCount,12);assert.equal(full.uiPayload[0].type,'production-plan');
 assert.equal(full.agentContext.pendingCount,10);assert.equal(full.uiPayload[0].spec.snapshot.source,'synthetic-demo');

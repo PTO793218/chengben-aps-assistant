@@ -11,7 +11,11 @@ COPY web-frontend/ ./web-frontend/
 # material-readiness.js imports this verified demo snapshot at build time.
 COPY agent-backend/Data/production-demo.json ./agent-backend/Data/production-demo.json
 COPY agent-backend/Data/native-demo.json ./agent-backend/Data/native-demo.json
+COPY agent-backend/Data/datasets/large85/native-demo.json ./agent-backend/Data/datasets/large85/native-demo.json
+COPY dev-config/native-demo/dataset.json dev-config/native-demo/dataset-selection.mjs ./dev-config/native-demo/
 WORKDIR /src/web-frontend
+ARG APS_DEMO_DATASET
+ENV APS_DEMO_DATASET=${APS_DEMO_DATASET}
 RUN pnpm build
 FROM ${NGINX_IMAGE}
 COPY dev-config/nginx.conf /etc/nginx/conf.d/default.conf

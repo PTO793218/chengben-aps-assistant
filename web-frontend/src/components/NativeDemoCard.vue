@@ -97,27 +97,36 @@ watch(()=>props.focusOrderId,id=>{selectedOrderId.value=id||spec.value.orderId||
 function open(focus=''){emit('open',{id:'plan-'+spec.value.calculationId+'-'+spec.value.view,type:'interactive-demo',title:title.value,block:props.block,focusOrderId:focus});}
 function selectOrder(row){if(props.compact)open(row.orderId);else{selectedOrderId.value=row.orderId;ganttOpen.value=!materialView.value;}}
 function updatePageRows(rows){pageRows.value=rows;if(selectedOrderId.value&&!rows.some(row=>row.orderId===selectedOrderId.value))selectedOrderId.value='';}
-function cancel(){const waiting=loading.value;saveUi({cancelled:true,pending:false});shared.controller?.abort('user');status.value=waiting?'已取消等待，当前计划没有变化。':'已取消此次操作。';}
+function cancel(){const waiting=loading.value;if(waiting&&!shared.controller){status.value='操作已提交，正在保存完成记录。';return;}saveUi({cancelled:true,pending:false});shared.controller?.abort('user');status.value=waiting?'已取消等待，当前计划没有变化。':'已取消此次操作。';}
 function reprepare(){if(!canReprepare.value)return;saveUi({cancelled:false});status.value='';error.value='';}
 function prepareAgain(){emit('ask',spec.value.view==='insert'?'把新订单 '+orderId.value+' 插入当前计划，放在第1位试排':spec.value.view==='mrp'?'计算'+(orderId.value?'订单 '+orderId.value:'这批订单')+'的物料需求':spec.value.view==='release'?'准备下发当前计划，先让我确认':'把订单 '+orderId.value+' 调整到第'+position.value+'位试排');}
 async function calculate(){
  if(loading.value||!phase.value.canExecute)return;
- loading.value=true;error.value='';status.value='';const active=new AbortController();shared.controller=markRaw(active);saveUi({pending:true});const timer=setTimeout(()=>active.abort('timeout'),180000);let unlock;
+ loading.value=true;error.value='';status.value='';const active=new AbortController();shared.controller=markRaw(active);saveUi({pending:true});const timer=setTimeout(()=>active.abort('timeout'),180000);let unlock,committed=false;
+ const onCommitted=()=>{committed=true;clearTimeout(timer);shared.controller=null;saveUi({pending:false,cancelled:false});};
  try{
-  const plan=await props.resolvePlan();
+  const plan=await props.resolvePlan(undefined,{signal:active.signal});
   if(active.signal.aborted)return;
   if(!samePlanBase(plan,spec.value.baseState))throw Error('计划或物料信息已更新，请按当前方案重新准备。');
   unlock=claimOperation(JSON.stringify([nativePlanKey(plan),spec.value.view,orderId.value,position.value]));
   const result=await requestDemo({action:spec.value.view,orderId:spec.value.view==='release'?'':orderId.value,position:position.value,quantity:0,scenario:'frozen',version:spec.value.demandVersion,plan:JSON.parse(JSON.stringify(plan)),conversationId:ownerConversationId},active.signal);
   if(active.signal.aborted)return;
   const owned={...result,originConversationId:ownerConversationId};
-  if(props.acceptResult)await props.acceptResult(owned,{signal:active.signal});else emit('result',owned);
+  if(props.acceptResult)await props.acceptResult(owned,{signal:active.signal,onCommitted});else emit('result',owned);
+  if(active.signal.aborted&&!committed)return;
   saveUi({completed:true});status.value='已完成，请查看新的结果。';
- }catch(e){if(active.signal.reason==='user')status.value='已取消等待，当前计划没有变化。';else error.value=active.signal.reason==='timeout'?'处理时间较长，请稍后重试。当前计划已保留。':e.message;}
+ }catch(e){if(committed)error.value='计划已下发，完成记录暂未保存，请刷新后核对当前计划。';else if(active.signal.reason==='user')status.value='已取消等待，当前计划没有变化。';else error.value=active.signal.reason==='timeout'?'处理时间较长，请稍后重试。当前计划已保留。':e.message;}
  finally{unlock?.();clearTimeout(timer);loading.value=false;shared.controller=null;saveUi({pending:false});}
 }
-async function adopt(){if(loading.value||!phase.value.canExecute)return;loading.value=true;error.value='';try{await(spec.value.view==='mrp'?props.saveMrp(spec.value,ownerConversationId):props.applyPlan(spec.value,ownerConversationId));status.value=spec.value.view==='mrp'?'核算结果已保存，生产计划不变。':'方案已采用。';}catch(e){error.value=e.message;}finally{loading.value=false;}}
-async function restore(){if(!canUndo.value)return;try{await props.restorePlan(spec.value,ownerConversationId);}catch(e){error.value=e.message;}}
+async function runMutation(handler,success){
+ loading.value=true;error.value='';status.value='';const active=new AbortController();shared.controller=markRaw(active);saveUi({pending:true});const timer=setTimeout(()=>active.abort('timeout'),180000);let committed=false;
+ const onCommitted=()=>{committed=true;clearTimeout(timer);shared.controller=null;saveUi({pending:false,cancelled:false});};
+ try{await handler(spec.value,ownerConversationId,{signal:active.signal,onCommitted});status.value=success;}
+ catch(e){error.value=committed?'操作已提交，完成记录暂未保存，请刷新后核对当前计划。':active.signal.reason==='timeout'?'保存等待超时，当前计划没有变化。':active.signal.aborted?'已取消此次操作，当前计划没有变化。':e.message;}
+ finally{clearTimeout(timer);loading.value=false;shared.controller=null;saveUi({pending:false,cancelled:false});}
+}
+async function adopt(){if(loading.value||!phase.value.canExecute)return;await runMutation(spec.value.view==='mrp'?props.saveMrp:props.applyPlan,spec.value.view==='mrp'?'核算结果已保存，生产计划不变。':'方案已采用。');}
+async function restore(){if(loading.value||!canUndo.value)return;await runMutation(props.restorePlan,'已撤销本次采用。');}
 onBeforeUnmount(operation.release);
 </script>
 <style scoped>

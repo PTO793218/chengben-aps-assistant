@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { readSse } from '../../web-frontend/src/services/sse.js';
 
-const base = process.env.BASE_URL || 'http://localhost:18443';
+const base = process.env.BASE_URL || 'http://localhost:19443';
 const health = await fetch(`${base}/api/agent/health`).then(r => r.json());
 assert.equal(health.mode, 'model', 'This eval requires the actual model');
 const results = [];

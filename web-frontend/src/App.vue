@@ -191,9 +191,9 @@
           <span class="connection-state"
             ><i :class="{ offline: !health }"></i
             >{{
-              health ? "" : healthError ? "连接失败" : "连接中"
+              health ? "" : datasetRefreshRequired ? "需要刷新" : healthError ? "连接失败" : "连接中"
             }}</span
-          ><button v-if="healthError" class="alignment-more" type="button" @click="checkHealth">重新连接</button><button
+          ><button v-if="healthError" class="alignment-more" type="button" @click="reconnect">{{ datasetRefreshRequired ? '刷新页面' : '重新连接' }}</button><button
             class="icon-button"
             title="查询生产计划"
             aria-label="查询生产计划"
@@ -271,7 +271,7 @@
                 <PlanTaskAlignmentCard v-else-if="block.type === 'plan-task-alignment'" :block="block" compact @open="openViewer" />
                 <MaterialReadinessCard v-else-if="block.type === 'material-readiness'" :block="block" compact @open="openViewer" />
                 <ProductionCard v-else-if="block.type === 'production-plan'" :block="block" @open="openViewer" @ask="send" />
-                <DemoWorkspaceContext v-if="block.spec?.workspace && block.spec.native && !block.spec.prepare" :workspace="block.spec.workspace" @ask="askLinked" />
+                <DemoWorkspaceContext v-if="block.spec?.workspace && block.spec.native && !block.spec.prepare && block.spec.demandVersion === currentPlan?.demandVersion" :workspace="block.spec.workspace" @ask="askLinked" />
                 <p v-else-if="currentPlan && ['aps-analysis','material-readiness','order-dispatch'].includes(block.type)" class="historical-scope-note">这条记录来自历史计划，保留查询当时的结果。</p>
               </div>
               <div class="message-images" v-if="message.images?.length">
@@ -556,6 +556,7 @@ import ApsAnalysisCard from "./components/ApsAnalysisCard.vue";
 import InteractiveDemoCard from "./components/InteractiveDemoCard.vue";
 import InteractiveDemoViewer from "./components/InteractiveDemoViewer.vue";
 import { usePlanStore } from "./stores/plan.js";
+import { verifyDatasetConnection } from "./services/native-dataset.js";
 import DemoWorkspaceContext from './components/DemoWorkspaceContext.vue';
 import ApsAnalysisViewer from "./components/ApsAnalysisViewer.vue";
 import OrderDispatchCard from "./components/OrderDispatchCard.vue";
@@ -592,6 +593,7 @@ const store = useChatStore(),
   notice = ref(""),
   health = ref(null),
   healthError = ref(false),
+  datasetRefreshRequired = ref(false),
   speechHealth = ref(null),
   voiceState = ref("idle"),
   pendingImages = ref([]);
@@ -605,7 +607,7 @@ let controller,
   activeTask,
   persistTimer,
   followScroll = true;
-let viewerScrollTop = 0, viewerTrigger;
+let viewerScrollTop = 0, viewerTrigger, healthCheckRevision = 0;
 const demoImage = {
     id: "sample-image",
     type: "image",
@@ -673,8 +675,9 @@ function closeViewer() {
   viewer.value = null;
   nextTick(() => { if (scrollEl.value) scrollEl.value.scrollTop = viewerScrollTop; if (viewerTrigger?.isConnected) viewerTrigger.focus({preventScroll:true}); });
 }
-async function resolveCurrentPlan(conversation = store.current) {
+async function resolveCurrentPlan(conversation = store.current, options = {}) {
   if (conversation.dataView === 'historical') return null;
+  await verifyCurrentDataset(options.signal);
   return await planStore.refresh();
 }
 async function appendDemoResult(result, options = {}) {
@@ -682,26 +685,40 @@ async function appendDemoResult(result, options = {}) {
   // Plain notices follow an already committed mutation; they cannot change a plan.
   if(result.uiPayload?.length)requireActiveOwner(owner,options.signal);
   const released = result.uiPayload?.find(b => b.type === 'interactive-demo' && b.spec?.view === 'release' && b.spec?.receipt);
-  if (released) await planStore.apply(released.spec, options);
+  if (released) {
+    await verifyCurrentDataset(options.signal);
+    requireActiveOwner(owner,options.signal);
+    await planStore.apply(released.spec, options);
+    options.onCommitted?.();
+  }
   await store.appendResult(owner, { id:createId(), role:'assistant', content:result.summary, uiBlocks:JSON.parse(JSON.stringify(result.uiPayload)), createdAt:Date.now(), status:'done' });
   if (store.current.id === owner) { closeViewer(); followScroll = true; scroll(); }
 }
-async function applyDemoPlan(spec, owner = store.current.id) {
-  requireActiveOwner(owner);
+async function applyDemoPlan(spec, owner = store.current.id, options = {}) {
+  requireActiveOwner(owner,options.signal);
   if (busy.value) throw new Error('请等待当前查询完成后再采用方案。');
-  await planStore.apply(spec);
+  await verifyCurrentDataset(options.signal);
+  requireActiveOwner(owner,options.signal);
+  await planStore.apply(spec,options);
+  options.onCommitted?.();
   await appendDemoResult({originConversationId:owner,summary:'已采用这次试排方案，后续对话也会继续使用这份计划。',uiPayload:[]});
 }
-async function restoreDemoPlan(spec, owner = store.current.id) {
-  requireActiveOwner(owner);
+async function restoreDemoPlan(spec, owner = store.current.id, options = {}) {
+  requireActiveOwner(owner,options.signal);
   if (busy.value) throw new Error('请等待当前查询完成后再撤销。');
-  await planStore.undo(spec);
+  await verifyCurrentDataset(options.signal);
+  requireActiveOwner(owner,options.signal);
+  await planStore.undo(spec,options);
+  options.onCommitted?.();
   await appendDemoResult({originConversationId:owner,summary:'已撤销这次采用，恢复到调整前的计划。',uiPayload:[]});
 }
-async function saveMrpDemand(spec, owner = store.current.id) {
-  requireActiveOwner(owner);
+async function saveMrpDemand(spec, owner = store.current.id, options = {}) {
+  requireActiveOwner(owner,options.signal);
   if (busy.value) throw new Error('请等待当前查询完成后再保存核算结果。');
-  await planStore.apply(spec);
+  await verifyCurrentDataset(options.signal);
+  requireActiveOwner(owner,options.signal);
+  await planStore.apply(spec,options);
+  options.onCommitted?.();
   await appendDemoResult({originConversationId:owner,summary:'本次物料核算已保存，后续对话可继续核对，生产计划保持不变。',uiPayload:[]});
 }
 async function persistPresentation(owner, block) { await store.persistBlockUi(owner, block); }
@@ -766,16 +783,18 @@ async function selectConversation(id) {
 async function removeConversation(item) {
   if (confirm(`删除“${item.title}”？`)) {
     cancelConversationOperations(item.id);
-    if(item.id===store.current.id){await finishRequest();viewer.value=null;}
-    await store.remove(item.id);
+    const active=item.id===store.current.id,detail=viewer.value;
+    if(active)await finishRequest();
+    const removed=await store.remove(item.id);
+    if(removed!==false&&active&&viewer.value===detail)viewer.value=null;
   }
 }
 async function clearConversations() {
   if (confirm("清空此浏览器中的全部对话记录？")) {
     await finishRequest();
     for(const conversation of store.conversations)cancelConversationOperations(conversation.id);
-    await store.clear();
-    viewer.value = null;
+    const detail=viewer.value,cleared=await store.clear();
+    if(cleared!==false&&viewer.value===detail)viewer.value = null;
   }
 }
 async function copy(text) {
@@ -879,7 +898,7 @@ async function performSend(value, retryIndex = -1) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         conversationId: conversation.id,
-        demoPlan: await resolveCurrentPlan(conversation),
+        demoPlan: await resolveCurrentPlan(conversation,{signal}),
         message: text,
         history,
         summary: conversation.summary,
@@ -997,19 +1016,35 @@ function escape(event) {
     if (viewer.value) closeViewer();
   }
 }
+async function verifyCurrentDataset(signal) {
+  const revision=++healthCheckRevision;
+  try {
+    const result = await verifyDatasetConnection({signal});
+    if(revision===healthCheckRevision){
+      health.value = result;
+      healthError.value = false;
+      datasetRefreshRequired.value = false;
+    }else if(datasetRefreshRequired.value){
+      throw Object.assign(new Error('页面数据与服务数据不一致，请刷新页面后重试。'),{refreshRequired:true});
+    }
+    return result;
+  } catch (error) {
+    if(signal?.aborted)throw error;
+    if(revision===healthCheckRevision){
+      health.value = null;
+      healthError.value = true;
+      datasetRefreshRequired.value = error.refreshRequired === true;
+      if(datasetRefreshRequired.value)notice.value = error.message;
+    }
+    throw error;
+  }
+}
 async function checkHealth() {
   health.value = null;
   healthError.value = false;
-  try {
-    const response = await fetch("/api/agent/health", { signal: AbortSignal.timeout(10000) });
-    if (!response.ok) throw new Error("连接失败");
-    const result = await response.json();
-    if (result.status !== "ok" || !["demo", "model"].includes(result.mode)) throw new Error("连接失败");
-    health.value = result;
-  } catch {
-    healthError.value = true;
-  }
+  await verifyCurrentDataset().catch(()=>{});
 }
+function reconnect() { if(datasetRefreshRequired.value)window.location.reload();else void checkHealth(); }
 onMounted(async () => {
   await store.init();
   await planStore.init(store.conversations).catch(e => notice.value = e.message);

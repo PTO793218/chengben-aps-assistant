@@ -5,6 +5,7 @@ import {createPinia,setActivePinia} from '../../web-frontend/node_modules/pinia/
 import {useChatStore} from '../../web-frontend/src/stores/chat.js';
 import {initialDemoPlan} from '../../web-frontend/src/services/demo-plan.js';
 import {createWorkspacePlan} from '../../web-frontend/src/services/workspace-plan.js';
+import {nativeDatasetIdentity} from '../../web-frontend/src/services/native-dataset.js';
 
 const storage=new Map();
 globalThis.localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v),removeItem:k=>storage.delete(k)};
@@ -61,7 +62,7 @@ test('deleting a conversation cancels its detail operation and rejects a late re
  const detail=await setupSfc('web-frontend/src/components/NativeDemoCard.vue',{...props,compact:false});t.after(()=>detail.unmount());
  app.state.viewer.value={type:'interactive-demo',id:'release',block};
  let respond,signal;const originalFetch=globalThis.fetch;t.after(()=>globalThis.fetch=originalFetch);
- globalThis.fetch=async(_url,options)=>{signal=options.signal;return await new Promise(resolve=>respond=resolve);};
+ globalThis.fetch=async(url,options)=>{if(url==='/api/agent/health')return new Response(JSON.stringify({status:'ok',mode:'model',dataset:nativeDatasetIdentity}));signal=options.signal;return await new Promise(resolve=>respond=resolve);};
  const waiting=detail.state.calculate();for(let n=0;n<20&&!respond;n++)await Promise.resolve();assert.equal(typeof respond,'function');
  await app.state.removeConversation(store.current);
  compact.unmount();

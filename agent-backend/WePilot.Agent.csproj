@@ -3,4 +3,5 @@
 <ItemGroup><PackageReference Include="Microsoft.SemanticKernel" Version="1.45.0" /></ItemGroup>
 <ItemGroup><EmbeddedResource Include="Data/production-demo.json" /><EmbeddedResource Include="Data/coupled-demo.json" /></ItemGroup>
 <ItemGroup><EmbeddedResource Include="Data/native-demo.json" /><EmbeddedResource Include="Data/native-baseline.json" /><EmbeddedResource Include="Data/native-mrp-baseline.json" /></ItemGroup>
+<ItemGroup><EmbeddedResource Include="../dev-config/native-demo/dataset.json" LogicalName="WePilot.Agent.Data.native-dataset.json" /><EmbeddedResource Include="Data/datasets/large85/native-*.json" /></ItemGroup>
 </Project>

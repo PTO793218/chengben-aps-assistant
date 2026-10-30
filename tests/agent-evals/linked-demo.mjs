@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readSse } from '../../web-frontend/src/services/sse.js';
 
-const base = process.env.BASE_URL || 'http://localhost:18440';
+const base = process.env.BASE_URL || 'http://localhost:19440';
 const health = await fetch(`${base}/api/agent/health`).then(response => response.json());
 assert.equal(health.mode, 'model');
 

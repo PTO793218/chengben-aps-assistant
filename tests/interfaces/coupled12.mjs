@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {initialDemoPlan,adoptDemoPlan} from '../../web-frontend/src/services/demo-plan.js';
-const base=process.env.BASE_URL||'http://127.0.0.1:18440',records=[];
+const base=process.env.BASE_URL||'http://127.0.0.1:19440',records=[];
 async function call(body,ok=true){const r=await fetch(base+'/api/agent/tools/interactive-demo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const d=await r.json();assert.equal(d.success,ok,JSON.stringify(d));assert.equal(r.status,ok?200:400);records.push({body,result:d});return d.uiPayload?.[0]?.spec;}
 const p=initialDemoPlan();
 for(const [scenario,gap] of [['none',49029.22],['stock',43049.61],['supply',0],['late',0]]){

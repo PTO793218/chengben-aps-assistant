@@ -5,6 +5,7 @@ WORKDIR /src
 COPY agent-backend/WePilot.Agent.csproj ./
 RUN dotnet restore
 COPY agent-backend/ ./
+COPY dev-config/native-demo/dataset.json /dev-config/native-demo/dataset.json
 RUN dotnet publish -c Release -o /app --no-restore /p:UseAppHost=false
 FROM ${DOTNET_ASPNET_IMAGE}
 WORKDIR /app

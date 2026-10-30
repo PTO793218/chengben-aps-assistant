@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-const base=process.env.BASE_URL||'http://localhost:18440';
+const base=process.env.BASE_URL||'http://localhost:19440';
 const reference=JSON.parse(fs.readFileSync(new URL('../../temp/business-data/order-reference.json',import.meta.url),'utf8'));
 const response=await fetch(base+'/api/agent/tools/aps-analysis?type=order&source=business&orderId='+reference.orderId+'&version='+reference.version);
 assert.equal(response.status,200);

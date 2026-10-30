@@ -39,6 +39,15 @@ public static class NativeReplyGuard
         if(view=="insert")bad|=Regex.IsMatch(draft,@"(?:已|已经)[^。！？；\n]*(?:插入|加入|纳入)[^。！？；\n]*计划|插单[^。！？；\n]*(?:生效|完成)")||(Flag(native,"prepare")&&Regex.IsMatch(draft,@"已(?:经)?(?:插入|加入|纳入)"));
         if(Regex.IsMatch(draft,@"负载|理论工时|年月日|日期视图"))
             bad|=!Regex.IsMatch(question,@"负载|理论工时|年月日|日期视图")||Regex.IsMatch(draft,@"(?:已展示|已提供|支持).*(?:负载|理论工时|年月日|日期视图)|(?:负载|理论工时|年月日|日期视图).*(?:已展示|已提供)");
+        // Only a small navigation grammar may bypass typed fact rendering.
+        // Unknown assertions must not become safe merely by avoiding keywords.
+        var navigationOnly=Regex.IsMatch(draft.Trim(),@"\A(?:请|可以|可)?(?:展开|继续)?(?:查看|核对)(?:下方)?(?:卡片|明细|详情|表格)[。！]?\z");
+        var foundOrder=Regex.Match(draft.Trim(),@"\A(?<id>"+OrderPattern+@")的工序安排已查到，可以展开查看。\z");
+        var verifiedOrderNavigation=view=="order"&&orders.Length==1&&foundOrder.Success
+            &&foundOrder.Groups["id"].Value==Text(orders[0],"orderId")
+            &&Text(orders[0],"planStart").Length>0&&Text(orders[0],"planEnd").Length>0
+            &&native.TryGetProperty("chart",out var chart)&&chart.ValueKind==JsonValueKind.Object&&Rows(chart,"items").Length>0;
+        bad|=!navigationOnly&&!verifiedOrderNavigation;
         if(!bad)return draft.Trim();
         var id=Text(native,"orderId");
         var count=native.TryGetProperty("allOrders",out var all)&&all.ValueKind==JsonValueKind.Array?all.GetArrayLength():orders.Length;

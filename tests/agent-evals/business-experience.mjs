@@ -5,7 +5,7 @@ import {readSse} from '../../web-frontend/src/services/sse.js';
 let plan=initialDemoPlan();const records=[],out='output/verification/experience-fix';mkdirSync(out,{recursive:true});
 const save=(status,error)=>writeFileSync(out+'/model.json',JSON.stringify({status,error,plan,records},null,2));
 async function call(message,expected,demoAction,history=[]){
- const started=Date.now(),response=await fetch('http://127.0.0.1:18440/api/agent/chat/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({conversationId:'authored-business-experience',message,history,demoPlan:plan,...(demoAction?{demoAction}:{})}),signal:AbortSignal.timeout(180000)});assert.equal(response.status,200);
+ const started=Date.now(),response=await fetch('http://127.0.0.1:19440/api/agent/chat/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({conversationId:'authored-business-experience',message,history,demoPlan:plan,...(demoAction?{demoAction}:{})}),signal:AbortSignal.timeout(180000)});assert.equal(response.status,200);
  let text='',blocks=[],done;await readSse(response.body,(event,v)=>{if(event==='error')throw Error(v.message);if(event==='delta')text+=v.text||'';if(event==='ui_payload')blocks.push(...v.blocks);if(event==='done')done=v;});
  const record={message,text,blocks,done,elapsedMs:Date.now()-started};records.push(record);save('running');
  assert.equal(done?.modelInvoked,true);assert.ok(done.toolCalls?.length);const spec=blocks.find(b=>b.spec?.native)?.spec;

@@ -120,7 +120,7 @@ public static class NativeDemoWorkspace
                 "dispatch"=>$"查到{tasks.Length}条关联任务，其中{tasks.Count(t=>Text(t,"state_type")=="run")}条处于运行中。",
                 "risk"=>$"当前范围有{orders.Length}张订单的计划结束日期晚于交期。",
                 "order"=>orders.Length==1?$"{id}计划安排在{orders[0].PlanStart}至{orders[0].PlanEnd}。":"当前范围未查到计划记录。",
-                _=>$"本批{p.OrderIds.Length}张订单中，{orders.Count(o=>o.PlanEnd.Length>0)}张已有计划，{orders.Count(o=>o.Risk)}张存在交期风险。"};
+                _=>$"当前范围{orders.Length}张订单中，{orders.Count(o=>o.PlanEnd.Length>0)}张已有计划，{orders.Count(o=>o.Risk)}张存在交期风险。"};
             var facts=headline;
             if(view=="material")facts+=$"{MrpFacts(mrp,id,codes)}。物料核算与当前生产计划分别保存。";
             if(view=="material"&&orders.Any(o=>!Rows(mrp,"inputOrderIds").Any(v=>v.GetString()==o.OrderId)))facts+="新加入订单尚无已保存的独立物料核算，请按当前整批订单重新核算；下方计划用料来自当前排程。";

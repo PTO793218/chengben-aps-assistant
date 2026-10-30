@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const baseline=JSON.parse(fs.readFileSync(new URL('../../temp/business-data/line-load-reference.json',import.meta.url),'utf8'));
-const result=await fetch((process.env.BASE_URL||'http://localhost:18440')+'/api/agent/tools/aps-analysis?type=order&source=business&orderId=Z9900027&version=260904001').then(r=>r.json());
+const result=await fetch((process.env.BASE_URL||'http://localhost:19440')+'/api/agent/tools/aps-analysis?type=order&source=business&orderId=Z9900027&version=260904001').then(r=>r.json());
 const load=result.uiPayload[0].spec.lineLoad;
 const close=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-7,`${actual} != ${expected}`);
 assert.equal(load.available,true);

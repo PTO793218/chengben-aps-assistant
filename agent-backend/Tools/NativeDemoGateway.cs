@@ -8,11 +8,28 @@ namespace WePilot.Agent.Tools;
 public static class NativeDemoGateway
 {
     public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web);
-    public static readonly JsonElement Config = Embedded("native-demo.json");
-    public static readonly JsonElement Baseline = Embedded("native-baseline.json");
-    public static readonly JsonElement MrpBaseline = Embedded("native-mrp-baseline.json");
+    public static string DatasetId { get; } = ResolveDataset(Environment.GetEnvironmentVariable("APS_DEMO_DATASET"), Embedded("native-dataset.json"));
+    static string DataPrefix => DatasetId=="small13" ? "" : "datasets.large85.";
+    public static readonly JsonElement Config = Embedded(DataPrefix+"native-demo.json");
+    public static readonly JsonElement Baseline = Embedded(DataPrefix+"native-baseline.json");
+    public static readonly JsonElement MrpBaseline = Embedded(DataPrefix+"native-mrp-baseline.json");
     public static string Root => Environment.GetEnvironmentVariable("NativeDemo__RuntimePath") ?? "/demo-runtime";
     public static bool Token(string? value) => value != null && Regex.IsMatch(value,"\\A[a-f0-9]{32}\\z");
+    public static string ResolveDataset(string? value, JsonElement selection)
+    {
+        var id=string.IsNullOrEmpty(value) ? selection.GetProperty("active").GetString() : value;
+        return id is "small13" or "large85" ? id : throw new InvalidOperationException("未知数据集，只支持 small13 或 large85。");
+    }
+    public static void VerifyRuntimeIdentity(string? root=null)
+    {
+        var path=Path.Combine(root??Root,"identity.json");
+        if(!File.Exists(path))throw new InvalidOperationException("本机计算服务配置尚未就绪，请按当前数据集重新启动本地服务。");
+        using var identity=JsonDocument.Parse(File.ReadAllText(path));
+        var value=identity.RootElement;
+        if(!value.TryGetProperty("datasetId",out var id)||id.GetString()!=DatasetId||
+           new[]{"demandVersion","fixtureId","inputFingerprint"}.Any(key=>!value.TryGetProperty(key,out var item)||item.GetString()!=Config.GetProperty(key).GetString()))
+            throw new InvalidOperationException("计算服务与当前数据集不一致，当前计划保留，请重新启动对应数据集服务。");
+    }
     public static JsonElement Embedded(string name)
     {
         using var stream=typeof(NativeDemoGateway).Assembly.GetManifestResourceStream("WePilot.Agent.Data."+name) ?? throw new InvalidOperationException("缺少隔离演示资料");
@@ -38,6 +55,7 @@ public static class NativeDemoGateway
     }
     public static JsonElement Calculate(string action,string[] orderIds,string resultId="",string[]? controlOrderIds=null)
     {
+        VerifyRuntimeIdentity();
         var heartbeat=Path.Combine(Root,"heartbeat");
         if(!File.Exists(heartbeat)||!double.TryParse(File.ReadAllText(heartbeat),NumberStyles.Float,CultureInfo.InvariantCulture,out var seconds)||DateTimeOffset.UtcNow.ToUnixTimeSeconds()-seconds>30)
             throw new InvalidOperationException("本机隔离计算服务未就绪；当前计划保留，请启动本地演示服务后重试。");

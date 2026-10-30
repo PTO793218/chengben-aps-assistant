@@ -1,5 +1,5 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
-const base=process.env.BASE_URL||'http://localhost:18440';
+const base=process.env.BASE_URL||'http://localhost:19440';
 const response=await fetch(base+'/api/speech/tts/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'你好，这是一段语音测试。请展示示例数据。',format:'pcm',sampleRate:24000}),signal:AbortSignal.timeout(45000)});
 assert.equal(response.status,200,'TTS request failed');assert.match(response.headers.get('content-type'),/audio\/pcm/);
 const pcm=Buffer.from(await response.arrayBuffer());assert.ok(pcm.length>1000,'TTS must return audio');

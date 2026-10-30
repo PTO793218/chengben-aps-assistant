@@ -1,7 +1,7 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
 import {readSse} from '../../web-frontend/src/services/sse.js';
 import {hasForbiddenAssertion} from './eval-text.mjs';
-const base=process.env.BASE_URL||'http://localhost:18440';
+const base=process.env.BASE_URL||'http://localhost:19440';
 const health=await fetch(base+'/api/agent/health').then(r=>r.json());
 assert.equal(health.mode,'model','Real model evals require AGENT_MODE=model');
 const allCases=fs.readFileSync(new URL('./cases.jsonl',import.meta.url),'utf8').trim().split('\n').map(JSON.parse);

@@ -28,13 +28,14 @@ export function operationState(spec = {}, current = {}, {cancelled = false, load
  current ||= {};
  if (spec.archived) return {key:'archived',label:'历史记录',canExecute:false};
  if (loading) return {key:'running',label:spec.view === 'mrp' ? '正在核算物料需求…' : spec.view === 'release' ? '正在下发计划…' : '正在试排并比较影响…',canExecute:false};
- if (cancelled) return {key:'cancelled',label:'已取消此次操作。',canExecute:false};
- if (completed) return {key:'completed',label:'已完成，请查看新的结果。',canExecute:false};
  if (spec.receipt) return !spec.native || current.nativeReleaseId === spec.proposedPlan?.nativeReleaseId && current.releaseStatus === 'released' ? {key:'released',label:'已下发',canExecute:false} : {key:'superseded',label:'这是之前的下发记录，请查询当前计划。',canExecute:false};
  if (spec.proposedPlan && ['reschedule','insert'].includes(spec.view) && current.nativeResultId === spec.calculationId && current.revision > spec.baseRevision) return {key:'adopted',label:'已采用此方案',canExecute:false};
  if (spec.proposedPlan && spec.view === 'mrp' && current.nativeMrpResultId === spec.mrpResultId && current.revision > spec.baseRevision) return {key:'saved',label:'已保存核算结果',canExecute:false};
  if (current.releaseStatus === 'released' && (spec.prepare || spec.proposedPlan)) return {key:'locked',label:'当前计划已下发，无需重复操作。',canExecute:false};
  if ((spec.prepare || spec.proposedPlan) && (current.revision !== spec.baseRevision || (spec.native && !samePlanBase(current,spec.baseState)) || (spec.baseState?.nativeResultId && current.nativeResultId !== spec.baseState.nativeResultId))) return {key:'superseded',label:'计划或物料信息已更新，请按当前方案重新准备。',canExecute:false};
+ // Persisted UI flags can lag behind an already committed workspace transaction.
+ if (cancelled) return {key:'cancelled',label:'已取消此次操作。',canExecute:false};
+ if (completed) return {key:'completed',label:'已完成，请查看新的结果。',canExecute:false};
  if (spec.prepare) return {key:'confirmation',label:'待确认',canExecute:true};
  if (spec.proposedPlan) return {key:'ready',label:spec.view === 'mrp' ? '核算完成，待保存' : '试排完成，待采用',canExecute:true};
  if (spec.native && spec.baseState && !samePlanBase(current,spec.baseState)) return {key:'snapshot',label:'保留查询时的结果；当前计划或物料信息已有更新。',canExecute:false};
@@ -58,7 +59,10 @@ export function businessTitle(spec = {}) {
 }
 export function businessMetrics(spec = {}) {
  const orders = spec.orders || [], tasks = spec.tasks || [], focus = materialFocusRows(spec.mrpRows || []);
- if (spec.view === 'dispatch') return [{label:'关联任务',value:tasks.length},{label:'运行中',value:tasks.filter(t=>t.state_type === 'run').length},{label:'关联订单',value:orders.length}];
+ if (spec.view === 'dispatch') {
+  const scope=new Set(orders.map(o=>o.orderId)),linked=new Set(tasks.flatMap(t=>t.orderIds||[]).filter(id=>scope.has(id)));
+  return [{label:'关联任务',value:tasks.length},{label:'运行中',value:tasks.filter(t=>t.state_type === 'run').length},{label:'关联订单',value:linked.size}];
+ }
  if (['material','mrp'].includes(spec.view)) return [{label:'核对订单',value:orders.length},{label:'物料核算行',value:(spec.mrpRows || []).length},{label:'需补充物料项',value:focus.filter(r=>r.remaining > 0).length}];
  if (spec.view === 'order' && orders.length === 1) return [{label:'计划开始',value:orders[0].planStart || '待核对'},{label:'计划结束',value:orders[0].planEnd || '待核对'},{label:'订单交期',value:orders[0].dueDate || '待核对'}];
  if (spec.view === 'release') return [{label:'下发订单',value:orders.length},{label:'当前状态',value:'已下发'},{label:'关联任务',value:tasks.length}];

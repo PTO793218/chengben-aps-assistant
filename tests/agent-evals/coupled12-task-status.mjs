@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {readSse} from '../../web-frontend/src/services/sse.js';
 import {initialDemoPlan} from '../../web-frontend/src/services/demo-plan.js';
-const base=process.env.BASE_URL||'http://127.0.0.1:18440',records=[];
+const base=process.env.BASE_URL||'http://127.0.0.1:19440',records=[];
 async function fixture(body){const r=await fetch(base+'/api/agent/tools/interactive-demo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});assert.equal(r.status,200);return (await r.json()).uiPayload[0].spec.proposedPlan;}
 for(const released of [false,true]){
  let p=initialDemoPlan();if(released){p=await fixture({action:'mrp',orderId:'Z9900003',quantity:12500,scenario:'supply',plan:p});p=await fixture({action:'release',plan:p});}

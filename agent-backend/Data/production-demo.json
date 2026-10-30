@@ -5018,7 +5018,7 @@
     "schemaVersion": 2,
     "snapshotId": "CB-MATERIAL-DEMO-20260926",
     "source": "synthetic-demo",
-    "sourceLabel": "受控业务场景演示数据 · 字段/规则基于 wsbase731",
+    "sourceLabel": "受控业务场景演示数据 · 字段/规则基于 示例MES",
     "systemNo": "731",
     "demandVer": "DEMO-20260926",
     "asOf": "2026-09-26T17:30:00+08:00",
@@ -5056,7 +5056,7 @@
       }
     },
     "ruleBasis": {
-      "database": "wsbase731",
+      "database": "示例MES",
       "procedure": "PA06_produce_plan_detail_active / PA06_produce_plan_detail_active_bySeg",
       "resultTable": "TA06_produce_plan_detail_calc",
       "resultView": "VA06_produce_plan_detail_calc",
@@ -5273,7 +5273,7 @@
         "evidenceRef": [
           "T205_stock_remain.quality_state",
           "T200_quality_state.regular_type",
-          "wsbase731原始质量状态样本"
+          "示例MES原始质量状态样本"
         ]
       },
       {
@@ -6157,7 +6157,7 @@
         "qualityStateName": "不合格/待处置",
         "arrivalFeasible": false,
         "lackNum": 14000,
-        "evidenceRef": "wsbase731.T205_stock_remain + T200_quality_state实际状态样本"
+        "evidenceRef": "示例MES.T205_stock_remain + T200_quality_state实际状态样本"
       },
       {
         "orderId": "Z9900002",
@@ -6732,7 +6732,7 @@
       ]
     },
     "limitations": [
-      "本场景为受控synthetic-demo，不代表实时业务库；字段结构和规则依据来自wsbase731只读调查。",
+      "本场景为受控synthetic-demo，不代表实时业务库；字段结构和规则依据来自示例MES只读调查。",
       "fullTag是演示中按PA06规则设计的结果，应用层只展示，不重新计算APS齐套。",
       "fullTag=F不直接等同于已确认短缺；页面同时展示riskCode和证据边界。",
       "S03的订单级占用、S04的可赶工判断和S07的共享分配是mock/派生场景，不是持久化数据库事实。",

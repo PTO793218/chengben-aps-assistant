@@ -1,9 +1,13 @@
 import { defineStore } from "pinia";
 import { createId } from "../services/id.js";
-const KEY = "wepilot-conversations-v1",
-  SETTINGS = "wepilot-settings-v1";
+import { browserChatStorage } from "../services/chat-storage.js";
+const SETTINGS = "wepilot-settings-v1";
 const snapshot = (value) => JSON.parse(JSON.stringify(value));
-const writes = new Map(), deleted = new Set();
+const repositories = new WeakMap();
+const storageFor = store => {
+  if (!repositories.has(store)) repositories.set(store, browserChatStorage());
+  return repositories.get(store);
+};
 const empty = () => ({
   id: createId(),
   title: "新对话",
@@ -19,27 +23,6 @@ const parse = (key, fallback) => {
     return fallback;
   }
 };
-async function dbAction(mode, action) {
-  const db = await new Promise((resolve, reject) => {
-    const request = indexedDB.open("wepilot", 1);
-    request.onupgradeneeded = () =>
-      request.result.createObjectStore("conversations", { keyPath: "id" });
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction("conversations", mode);
-    const request = action(tx.objectStore("conversations"));
-    tx.oncomplete = () => {
-      db.close();
-      resolve(request.result);
-    };
-    tx.onerror = tx.onabort = () => {
-      db.close();
-      reject(tx.error || new Error("无法保存会话"));
-    };
-  });
-}
 export const useChatStore = defineStore("chat", {
   state: () => ({
     conversations: [],
@@ -55,12 +38,10 @@ export const useChatStore = defineStore("chat", {
   actions: {
     async init() {
       this.settings = { ...this.settings, ...parse(SETTINGS, {}) };
-      try {
-        this.conversations = await dbAction("readonly", (s) => s.getAll());
-      } catch {
-        this.conversations = parse(KEY, []);
-      }
-      if (!Array.isArray(this.conversations)) this.conversations = [];
+      const recovered = await storageFor(this).read();
+      this.persistenceWarning = recovered.warning;
+      if (!recovered.available) return;
+      this.conversations = recovered.conversations;
       this.conversations.sort((a, b) => b.updatedAt - a.updatedAt);
       for (const conversation of this.conversations) {
         for (const message of conversation.messages || [])
@@ -68,9 +49,11 @@ export const useChatStore = defineStore("chat", {
       }
       if (this.conversations.length)
         this.current = snapshot(this.conversations[0]);
+      else this.current = empty();
     },
     async persist(conversation = this.current, {touch = true} = {}) {
-      if (!conversation.messages.length || deleted.has(conversation.id)) return;
+      const storage = storageFor(this);
+      if (!conversation.messages.length || storage.isDeleted(conversation.id)) return;
       if(touch) conversation.updatedAt = Date.now();
       if (conversation.title === "新对话")
         conversation.title = (
@@ -84,22 +67,16 @@ export const useChatStore = defineStore("chat", {
         item,
         ...this.conversations.filter((c) => c.id !== item.id),
       ];
-      try {
-        const write = (writes.get(item.id) || Promise.resolve()).catch(() => {}).then(() => deleted.has(item.id) ? undefined : dbAction("readwrite", (s) => s.put(item)));
-        writes.set(item.id, write);
-        await write;
-        this.persistenceWarning = "";
-      } catch {
-        try {
-          localStorage.setItem(KEY, JSON.stringify(this.conversations));
-          this.persistenceWarning = "本地数据库不可用，已使用备用存储。";
-        } catch {
-          this.persistenceWarning = "浏览器存储空间不足，本次会话尚未保存。";
-        }
+      const result = await storage.save(item);
+      if (result.blocked) return;
+      this.persistenceWarning = result.warning;
+      if (result.deleted) {
+        this.conversations = this.conversations.filter(c => c.id !== item.id);
+        if (this.current.id === item.id) this.current = this.conversations.length ? snapshot(this.conversations[0]) : empty();
       }
     },
     findConversation(id) {
-      return deleted.has(id) ? null : this.current.id === id ? this.current : this.conversations.find(c => c.id === id);
+      return storageFor(this).isDeleted(id) ? null : this.current.id === id ? this.current : this.conversations.find(c => c.id === id);
     },
     async appendResult(id, message) {
       const conversation = this.findConversation(id);
@@ -117,6 +94,7 @@ export const useChatStore = defineStore("chat", {
     async create() {
       await this.persist(this.current,{touch:false});
       this.current = empty();
+      storageFor(this).track(this.current.id);
     },
     async select(id) {
       await this.persist(this.current,{touch:false});
@@ -124,28 +102,34 @@ export const useChatStore = defineStore("chat", {
       if (item) this.current = snapshot(item);
     },
     async remove(id) {
-      deleted.add(id);
-      await writes.get(id)?.catch(() => {});
-      await dbAction("readwrite", (s) => s.delete(id)).catch(() => {});
+      const storage = storageFor(this);
+      storage.block(id);
+      const result = await storage.remove(id);
+      this.persistenceWarning = result.warning;
+      storage.unblock(id);
+      if (!result.saved) return false;
       this.conversations = this.conversations.filter((c) => c.id !== id);
       if (this.current.id === id)
         this.current = this.conversations.length
           ? snapshot(this.conversations[0])
           : empty();
-      try {
-        localStorage.setItem(KEY, JSON.stringify(this.conversations));
-      } catch {}
+      return true;
     },
     async clear() {
-      for (const c of [...this.conversations, this.current]) deleted.add(c.id);
-      await Promise.allSettled([...writes.values()]);
-      await dbAction("readwrite", (s) => s.clear()).catch(() => {});
+      const storage = storageFor(this), ids = [...this.conversations, this.current].map(c => c.id);
+      for (const id of ids) storage.block(id);
+      const result = await storage.clear();
+      this.persistenceWarning = result.warning;
+      for (const id of ids) storage.unblock(id);
+      if (!result.saved) return false;
       this.conversations = [];
       this.current = empty();
-      localStorage.removeItem(KEY);
+      storage.track(this.current.id);
+      return true;
     },
     saveSettings() {
-      localStorage.setItem(SETTINGS, JSON.stringify(this.settings));
+      try { localStorage.setItem(SETTINGS, JSON.stringify(this.settings)); }
+      catch { this.persistenceWarning = "浏览器存储不可用，设置尚未保存，请重试。"; }
     },
   },
 });

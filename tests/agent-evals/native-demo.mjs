@@ -3,7 +3,7 @@ import {writeFileSync} from 'node:fs';
 import {initialDemoPlan,adoptDemoPlan,saveDemoMrp} from '../../web-frontend/src/services/demo-plan.js';
 import {readSse} from '../../web-frontend/src/services/sse.js';
 
-let plan=initialDemoPlan();const records=[];const base='http://127.0.0.1:18440';
+let plan=initialDemoPlan();const records=[];const base='http://127.0.0.1:19440';
 async function call(message,demoAction){
  const start=Date.now();const response=await fetch(base+'/api/agent/chat/stream',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({conversationId:'native-demo-acceptance',message,history:[],demoPlan:plan,...(demoAction?{demoAction}: {})}),signal:AbortSignal.timeout(180000)});assert.equal(response.status,200);
  let text='',blocks=[],done;await readSse(response.body,(event,value)=>{if(event==='error')throw Error(value.message);if(event==='delta')text+=value.text||'';if(event==='ui_payload')blocks.push(...value.blocks);if(event==='done')done=value;});

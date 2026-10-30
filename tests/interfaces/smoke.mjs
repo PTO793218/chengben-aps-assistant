@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-const base=process.env.BASE_URL||'http://localhost:18440';
+const base=process.env.BASE_URL||'http://localhost:19440';
 async function get(path){const response=await fetch(base+path,{signal:AbortSignal.timeout(15000)});assert.equal(response.status,200,path);return response;}
 assert.match(await (await get('/')).text(),/诚本 APS 助手/);
 const health=await (await get('/api/agent/health')).json();
